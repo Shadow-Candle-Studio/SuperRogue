@@ -1,0 +1,13 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "4.25",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "Pixel2DKit",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
