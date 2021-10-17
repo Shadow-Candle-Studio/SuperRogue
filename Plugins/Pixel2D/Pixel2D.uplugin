@@ -1,0 +1,76 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.5",
+	"FriendlyName": "Pixel2D",
+	"Description": "Pixel 2D Plugin - Complete 2D solution for Unreal Engine 4",
+	"Category": "Other",
+	"CreatedBy": "Polyart Studio",
+	"CreatedByURL": "https://www.polyart.io",
+	"DocsURL": "https://docs.google.com/document/d/1MtL9Ysp0QGNoiujELkKR_gi0IdZ5pXXaP4y7jJObyaQ",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/974da5852e8f433fbbfc4bf4d8ecc77b",
+	"SupportURL": "",
+	"EngineVersion": "4.26.0",
+	"CanContainContent": true,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "Pixel2D",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Win32",
+				"Mac",
+				"IOS",
+				"Android",
+				"Linux"
+			]
+		},
+		{
+			"Name": "Pixel2DEditor",
+			"Type": "UncookedOnly",
+			"LoadingPhase": "Default",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Win32",
+				"Mac",
+				"IOS",
+				"Android",
+				"Linux"
+			]
+		},
+		{
+			"Name": "Pixel2DEditorPawnSensing",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Win32",
+				"Mac",
+				"IOS",
+				"Android",
+				"Linux"
+			]
+		},
+		{
+			"Name": "Pixel2DEditorTileReplacer",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Win32",
+				"Mac",
+				"IOS",
+				"Android",
+				"Linux"
+			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "Paper2D",
+			"Enabled": true
+		}
+	]
+}
