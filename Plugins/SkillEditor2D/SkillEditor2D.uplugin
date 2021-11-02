@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "SkillEditor2D",
+	"Description": "An editor for composed skills",
+	"Category": "Other",
+	"CreatedBy": "Sigua",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "SkillEditor2D",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
