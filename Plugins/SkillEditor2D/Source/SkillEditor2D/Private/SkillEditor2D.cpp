@@ -1,19 +1,96 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "SkillEditor2D.h"
+#include"SkillEditorWindowStyle.h"
+#include "FSkillEditorcommands.h"
+#include "LevelEditor.h"
+#include "Widgets/Docking/SDockTab.h"
+#include "Widgets/Layout/SBox.h"
+#include "Widgets/Text/STextBlock.h"
+#include "ToolMenus.h"
 
+static const FName SkillEditor2DTabName("SkillEditor2D");
 #define LOCTEXT_NAMESPACE "FSkillEditor2DModule"
 
 void FSkillEditor2DModule::StartupModule()
 {
-	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
+	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-modul
+	SkillEditorWindowStyle::Initialize();
+	SkillEditorWindowStyle::Reloadtextures();
+	FSkillEditorcommands::Register();
+	PluginCommands = MakeShareable(new FUICommandList);
+	PluginCommands->MapAction(FSkillEditorcommands::Get().OpenPluginWindow,
+		FExecuteAction::CreateRaw(this,&FSkillEditor2DModule::PluginButtonClicked),
+		FCanExecuteAction());
+
+	UToolMenus::RegisterStartupCallback(FSimpleMulticastDelegate::FDelegate::CreateRaw(this,&FSkillEditor2DModule::RegisterMenus));
+	
+	FGlobalTabmanager::Get()->RegisterNomadTabSpawner(SkillEditor2DTabName, FOnSpawnTab::CreateRaw(this, &FSkillEditor2DModule::OnSpawnPluginTab))
+	.SetDisplayName(LOCTEXT("FSkillEditor2DTabTitle","SkillEditor2D"))
+	.SetMenuType(ETabSpawnerMenuType::Hidden);
+	
 }
 
 void FSkillEditor2DModule::ShutdownModule()
 {
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.
+	UToolMenus::UnRegisterStartupCallback(this);
+	UToolMenus::UnregisterOwner(this);
+	SkillEditorWindowStyle::ShutDown();
+	FSkillEditorcommands::Unregister();
+	FGlobalTabmanager::Get()->UnregisterNomadTabSpawner(SkillEditor2DTabName);
 }
+TSharedRef<SDockTab> FSkillEditor2DModule::OnSpawnPluginTab(const FSpawnTabArgs& SpawnTabArgs)
+{
+	FText WidgetText=FText::Format(
+	LOCTEXT("WindowWidgetText","Add code to {0} in {1} to override this window's contents"),
+	FText::FromString(TEXT("FSkillEditor2DModule::OnSpawnPluginTab")),
+	FText::FromString(TEXT("SkillEditor2D.cpp"))
+		);
+	return SNew(SDockTab)
+	.TabRole(ETabRole::NomadTab)
+	[
+		SNew(SBox)
+		.HAlign(HAlign_Center)
+		.VAlign(VAlign_Center)
+		[
+			SNew(STextBlock)
+			.Text(WidgetText)
+
+		]
+
+	];
+}
+void FSkillEditor2DModule::PluginButtonClicked()
+{
+	FGlobalTabmanager::Get()->TryInvokeTab(SkillEditor2DTabName);
+}
+
+void FSkillEditor2DModule::RegisterMenus()
+{
+	FToolMenuOwnerScoped OwnerScoped(this);
+	{
+		UToolMenu* Menu=UToolMenus::Get()->ExtendMenu("LevelEditor.MainMenu.Window");
+		{
+			FToolMenuSection& Section=Menu->FindOrAddSection("WindowLayout");
+			Section.AddMenuEntryWithCommandList(FSkillEditorcommands::Get().OpenPluginWindow,PluginCommands);
+		}
+	}
+	{
+		UToolMenu* ToolbarMenu=UToolMenus::Get()->ExtendMenu("LevelEditor.LevelEditorToolBar");
+		{
+			FToolMenuSection& Section=ToolbarMenu->FindOrAddSection("Settings");
+			{
+				FToolMenuEntry& Entry=Section.AddEntry(FToolMenuEntry::InitToolBarButton(FSkillEditorcommands::Get().OpenPluginWindow));
+				Entry.SetCommandList(PluginCommands);
+			}
+		}
+	}
+}
+
+
+
 
 #undef LOCTEXT_NAMESPACE
 	
