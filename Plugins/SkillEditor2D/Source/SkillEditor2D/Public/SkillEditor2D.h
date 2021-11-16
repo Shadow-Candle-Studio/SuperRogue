@@ -3,10 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
 #include "Modules/ModuleManager.h"
+#include "Modules/ModuleInterface.h"
+#include "Toolkits/AssetEditorToolkit.h"
+
 class FToolBarBuilder;
 class FMenuBuilder;
-
+class USkillAsset;
 class FSkillEditor2DModule : public IModuleInterface
 {
 public:

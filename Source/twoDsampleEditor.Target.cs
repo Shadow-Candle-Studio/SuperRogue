@@ -9,6 +9,6 @@ public class twoDsampleEditorTarget : TargetRules
 	{
 		Type = TargetType.Editor;
 
-		ExtraModuleNames.AddRange( new string[] { "twoDsample" } );
+		ExtraModuleNames.AddRange( new string[] { "twoDsample","SkillEditor2D" } );
 	}
 }

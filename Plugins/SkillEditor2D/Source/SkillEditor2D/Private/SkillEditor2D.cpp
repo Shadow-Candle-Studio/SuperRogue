@@ -1,19 +1,25 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "SkillEditor2D.h"
+
+#include "AssetToolsModule.h"
 #include"SkillEditorWindowStyle.h"
 #include "FSkillEditorcommands.h"
+#include "IAssetTools.h"
 #include "LevelEditor.h"
 #include "Widgets/Docking/SDockTab.h"
 #include "Widgets/Layout/SBox.h"
 #include "Widgets/Text/STextBlock.h"
 #include "ToolMenus.h"
-
+#include "SkillAssetAction.h"
 static const FName SkillEditor2DTabName("SkillEditor2D");
 #define LOCTEXT_NAMESPACE "FSkillEditor2DModule"
 
 void FSkillEditor2DModule::StartupModule()
 {
+	
+
+	
 	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-modul
 	SkillEditorWindowStyle::Initialize();
 	SkillEditorWindowStyle::Reloadtextures();
@@ -24,10 +30,23 @@ void FSkillEditor2DModule::StartupModule()
 		FCanExecuteAction());
 
 	UToolMenus::RegisterStartupCallback(FSimpleMulticastDelegate::FDelegate::CreateRaw(this,&FSkillEditor2DModule::RegisterMenus));
-	
+	UE_LOG(LogTemp,Warning,L"Skill editor 2D started1")
 	FGlobalTabmanager::Get()->RegisterNomadTabSpawner(SkillEditor2DTabName, FOnSpawnTab::CreateRaw(this, &FSkillEditor2DModule::OnSpawnPluginTab))
 	.SetDisplayName(LOCTEXT("FSkillEditor2DTabTitle","SkillEditor2D"))
 	.SetMenuType(ETabSpawnerMenuType::Hidden);
+
+
+
+
+
+	IAssetTools& AssetToolsModule=FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools").Get();
+	SkillAssetTypeCategory=AssetToolsModule.RegisterAdvancedAssetCategory(FName(
+		TEXT("SkillAsset")),
+		
+LOCTEXT("SkillEditor2D","Skill Editor Assets")
+	);
+	
+	AssetToolsModule.RegisterAssetTypeActions(MakeShareable(new SkillAssetAction));
 	
 }
 

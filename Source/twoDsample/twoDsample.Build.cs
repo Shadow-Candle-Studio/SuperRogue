@@ -8,7 +8,7 @@ public class twoDsample : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "SpinePlugin", "ProceduralMeshComponent" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core","AssetTools" ,"CoreUObject", "Engine", "InputCore", "SpinePlugin", "ProceduralMeshComponent" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

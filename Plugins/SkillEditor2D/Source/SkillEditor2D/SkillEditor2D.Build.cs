@@ -16,16 +16,28 @@ public class SkillEditor2D : ModuleRules
 				
 		
 		PrivateIncludePaths.AddRange(
-			new string[] {
-				// ... add other private include paths required here ...
+			new string[] 
+			{
+				
+				
 			}
 			);
+		PrivateIncludePathModuleNames.AddRange(
+			new string[]
+			{
+				"Settings",
+				"IntroTutorials",
+				"AssetTools",
+				"LevelEditor"
+			}
 			
+			);	
 		
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
 				"Core",
+				//"AssetTools"
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
@@ -36,13 +48,25 @@ public class SkillEditor2D : ModuleRules
 			{
 				"Projects",
 				"InputCore",
-				"UnrealEd",
 				"ToolMenus",
 				"CoreUObject",
 				"Engine",
 				"Slate",
 				"SlateCore",
-				// ... add private dependencies that you statically link with here ...	
+				"Json",
+				"Core",
+				"CoreUObject",
+				"Json",
+				"UnrealEd", // for FAssetEditorManager
+				"KismetWidgets",
+				"Kismet",  // for FWorkflowCentricApplication
+				"PropertyEditor",
+				"RenderCore",
+				"ContentBrowser",
+				"WorkspaceMenuStructure",
+				"EditorStyle",
+				"EditorWidgets",
+				"AssetRegistry"
 			}
 			);
 		
@@ -50,7 +74,7 @@ public class SkillEditor2D : ModuleRules
 		DynamicallyLoadedModuleNames.AddRange(
 			new string[]
 			{
-				// ... add any modules that your module loads dynamically here ...
+				"AssetTools"
 			}
 			);
 	}
