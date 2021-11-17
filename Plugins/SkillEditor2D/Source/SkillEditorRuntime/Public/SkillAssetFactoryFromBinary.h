@@ -10,7 +10,7 @@
  * 
  */
 UCLASS()
-class SKILLEDITOR2D_API USkillAssetFactoryFromBinary : public UFactory
+class SKILLEDITORRUNTIME_API USkillAssetFactoryFromBinary : public UFactory
 {
 	GENERATED_BODY()
 public:

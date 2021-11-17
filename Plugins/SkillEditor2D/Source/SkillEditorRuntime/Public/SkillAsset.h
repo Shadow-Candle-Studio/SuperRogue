@@ -12,11 +12,11 @@
  * 
  */
 UCLASS(ClassGroup=SkillEditor,Category="SkillEditor", HideCategories=(Object),BlueprintType,Blueprintable)
-class SKILLEDITOR2D_API USkillAsset : public UObject
+class SKILLEDITORRUNTIME_API USkillAsset : public UObject
 {
 	GENERATED_BODY()
 public :
-	UPROPERTY(BlueprintReadOnly,EditAnywhere,Category="SkillEditoreTest")
+	UPROPERTY(BlueprintReadOnly,EditAnywhere,Category="Skill Editor Test")
 	FText text;
 	
 };

@@ -5,7 +5,26 @@
     <projectFile>Intermediate/ProjectFiles/UE4.vcxproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa3c9db2-0144-44ee-bf21-7a08a4670a13" name="Changes" comment="" />
+    <list default="true" id="fa3c9db2-0144-44ee-bf21-7a08a4670a13" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SuperRogue/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SuperRogue/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/NewSkillAsset.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/NewSkillAsset.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Public/Maps/Demo01.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Maps/Demo01.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Public/Maps/Demo01_BuiltData.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Maps/Demo01_BuiltData.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/SkillEditor2D.uplugin" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/SkillEditor2D.uplugin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/ISkillAssetEditor.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAsset.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/SkillAsset.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAssetAction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/SkillAssetAction.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAssetFactory.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/SkillAssetFactory.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAssetFactoryFromBinary.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/SkillAssetFactoryFromBinary.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillEditor2D.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillEditor2D.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/ISkillAssetEditor.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillAsset.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/SkillAsset.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillAssetAction.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/SkillAssetAction.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillAssetFactory.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/SkillAssetFactory.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillAssetFactoryFromBinary.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/SkillAssetFactoryFromBinary.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillEditor2D.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillEditor2D.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/SkillEditor2D.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/SkillEditor2D.Build.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -362,7 +381,11 @@
       <workItem from="1636986527573" duration="1955000" />
       <workItem from="1637046436658" duration="8717000" />
       <workItem from="1637055298631" duration="2246000" />
-      <workItem from="1637058066619" duration="9046000" />
+      <workItem from="1637058066619" duration="9740000" />
+      <workItem from="1637115363973" duration="1970000" />
+      <workItem from="1637118918357" duration="110000" />
+      <workItem from="1637139851426" duration="11787000" />
+      <workItem from="1637161238194" duration="135000" />
     </task>
     <servers />
   </component>

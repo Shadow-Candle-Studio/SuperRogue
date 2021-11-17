@@ -1,11 +1,10 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
-
 using System;
 using UnrealBuildTool;
 
-public class SkillEditor2D : ModuleRules
+public class SkillEditorRuntime : ModuleRules
 {
-	public SkillEditor2D(ReadOnlyTargetRules Target) : base(Target)
+	public SkillEditorRuntime(ReadOnlyTargetRules target) : base(target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 		
@@ -30,14 +29,14 @@ public class SkillEditor2D : ModuleRules
 				"IntroTutorials",
 				"AssetTools",
 				"LevelEditor",
-				"SkillEditorRuntime"
+				"SkillEditor2D"
 			}
 			
-			);	
+		);	
 		PublicIncludePathModuleNames.AddRange(
 			new string[]
 			{
-				"SkillEditorRuntime"
+				"SkillEditor2D"
 			}
 
 

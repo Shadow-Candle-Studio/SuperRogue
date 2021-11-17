@@ -11,7 +11,7 @@ static EAssetTypeCategories::Type SkillAssetTypeCategory;
  * 
  */
 UCLASS(HideCategories=(Object))
-class SKILLEDITOR2D_API USkillAssetFactory : public UFactory
+class SKILLEDITORRUNTIME_API USkillAssetFactory : public UFactory
 {
 	GENERATED_BODY()
 public:

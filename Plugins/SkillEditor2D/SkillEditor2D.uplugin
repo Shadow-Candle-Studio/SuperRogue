@@ -17,6 +17,11 @@
 	"Modules": [
 		{
 			"Name": "SkillEditor2D",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "SkillEditorRuntime",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
 		}

@@ -2,11 +2,13 @@
 
 
 #include "SkillAssetAction.h"
-
+#include "SkillEditor2D.h"
 #define LOCTEXT_NAMESPACE "SkillAssetActions"
 SkillAssetAction::SkillAssetAction()
 {
 }
+
+
 
 SkillAssetAction::~SkillAssetAction()
 {
@@ -20,7 +22,7 @@ FText SkillAssetAction::GetName() const
 
 FColor SkillAssetAction::GetTypeColor() const
 {
-	return FColor(rand()%255,rand()%255,rand()%255);
+	return FColor::Green;
 }
 
 UClass* SkillAssetAction::GetSupportedClass() const
@@ -28,10 +30,19 @@ UClass* SkillAssetAction::GetSupportedClass() const
 	return USkillAsset::StaticClass();
 }
 
-void SkillAssetAction::OpenAssetEditor(const TArray<UObject*>& InObjects,
-                                       TSharedPtr<IToolkitHost> EditWithinLevelEditor)
+void SkillAssetAction::OpenAssetEditor(const TArray<UObject*>& InObjects, TSharedPtr<class IToolkitHost> EditWithinLevelEditor)
 {
-	FAssetTypeActions_Base::OpenAssetEditor(InObjects, EditWithinLevelEditor);
+	EToolkitMode::Type Mode = EditWithinLevelEditor.IsValid() ? EToolkitMode::WorldCentric : EToolkitMode::Standalone;
+
+	for (auto ObjIt = InObjects.CreateConstIterator(); ObjIt; ++ObjIt)
+	{
+		auto MySkillAsset = Cast<USkillAsset>(*ObjIt);
+		if (MySkillAsset != NULL)
+		{
+			ISkillAssetEditorModule_Base* CustomAssetEditorModule = &FModuleManager::LoadModuleChecked<ISkillAssetEditorModule_Base>("SkillEditor2D");
+			CustomAssetEditorModule->CreateCustomAssetEditor(Mode, EditWithinLevelEditor, MySkillAsset);
+		}
+	}
 }
 
 uint32 SkillAssetAction::GetCategories()
@@ -84,5 +95,10 @@ FText SkillAssetAction::GetAssetDescription(const FAssetData& AssetData) const
 	
 	return FText::FromString("Skill Asset stores all scripts of a special skill");
 	
+}
+
+bool SkillAssetAction::CanFilter()
+{
+	return true;
 }
 #undef LOCTEXT_NAMESPACE
