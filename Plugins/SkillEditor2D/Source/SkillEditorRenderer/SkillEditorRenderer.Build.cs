@@ -3,14 +3,16 @@
 using System;
 using UnrealBuildTool;
 
-public class SkillEditor2D : ModuleRules
+public class SkillEditorRenderer : ModuleRules
 {
-	public SkillEditor2D(ReadOnlyTargetRules Target) : base(Target)
+	public SkillEditorRenderer(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 		
 		PublicIncludePaths.AddRange(
-			new string[] {
+			new string[] 
+			{
+				
 				// ... add public include paths required here ...
 			}
 			);
@@ -30,14 +32,16 @@ public class SkillEditor2D : ModuleRules
 				"IntroTutorials",
 				"AssetTools",
 				"LevelEditor",
-				"SkillEditorRuntime"
+				"SkillEditorRuntime",
+				"Engine"
 			}
 			
 			);	
 		PublicIncludePathModuleNames.AddRange(
 			new string[]
 			{
-				"SkillEditorRuntime"
+				"SkillEditorRuntime",
+				"Engine"
 			}
 
 
@@ -46,7 +50,7 @@ public class SkillEditor2D : ModuleRules
 			new string[]
 			{
 				"Core",
-				"SkillEditorRenderer"
+				"Engine"
 				//"AssetTools"
 				// ... add other public dependencies that you statically link with here ...
 			}

@@ -27,16 +27,23 @@ public class SkillEditorRuntime : ModuleRules
 			{
 				"Settings",
 				"IntroTutorials",
-				"AssetTools",
+				//"AssetTools",
 				"LevelEditor",
-				"SkillEditor2D"
+				"SkillEditor2D",
+				"CurveEditor",
+				"SequencerWidgets",
+				"Sequencer"
 			}
 			
 		);	
 		PublicIncludePathModuleNames.AddRange(
 			new string[]
 			{
-				"SkillEditor2D"
+				"SkillEditor2D",
+				//"AssetTools",
+				"CurveEditor",
+				"SequencerWidgets",
+				"Sequencer"
 			}
 
 
@@ -45,7 +52,10 @@ public class SkillEditorRuntime : ModuleRules
 			new string[]
 			{
 				"Core",
-				//"AssetTools"
+				//"AssetTools",
+				"CurveEditor",
+				"SequencerWidgets",
+				"Sequencer"
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
@@ -74,7 +84,11 @@ public class SkillEditorRuntime : ModuleRules
 				"WorkspaceMenuStructure",
 				"EditorStyle",
 				"EditorWidgets",
-				"AssetRegistry"
+				"AssetRegistry",
+				"AssetTools",
+				"CurveEditor",
+				"SequencerWidgets",
+				"Sequencer"
 			}
 			);
 		
@@ -82,7 +96,7 @@ public class SkillEditorRuntime : ModuleRules
 		DynamicallyLoadedModuleNames.AddRange(
 			new string[]
 			{
-				"AssetTools"
+				//"AssetTools"
 			}
 			);
 	}

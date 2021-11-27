@@ -3,8 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "SlateStyle.h"
+#include "IAssetTools.h"
 
+#include "SlateStyle.h"
+class IAssetTypeActions;
 #include "Modules/ModuleManager.h"
 #include "Modules/ModuleInterface.h"
 
@@ -19,5 +21,7 @@ public:
 	virtual void ShutdownModule() override;
 	virtual bool IsGameModule() const override;
 private :
-TSharedPtr<FSlateStyleSet> StyleSet;
+    TSharedPtr<FSlateStyleSet> StyleSet;
+	TSharedPtr<IAssetTypeActions> SkillAsset2DAction;
+	IAssetTools* AssetToolsModule;
 };

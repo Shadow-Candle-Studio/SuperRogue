@@ -4,31 +4,31 @@
 
 #include "AssetToolsModule.h"
 #include "IAssetTools.h"
+#include "IAssetTypeActions.h"
 #include "IPluginManager.h"
-#include "SkillAssetAction.h"
+
 #include "SkillAssetFactory.h"
 #include "SlateStyleRegistry.h"
-
+#include "SkillAssetAction.h"
 
 #define LOCTEXT_NAMESPACE "FSkillEditorRuntimeModule"
 
 void FSkillEditorRuntimeModule::StartupModule()
 {
 	//asset registration!s
-	IAssetTools& AssetToolsModule=FModuleManager::
+	AssetToolsModule=&FModuleManager::
 	LoadModuleChecked<FAssetToolsModule>("AssetTools").
 	Get();
 	
-	SkillAssetTypeCategory=AssetToolsModule.
+	SkillAssetTypeCategory=AssetToolsModule->
 	RegisterAdvancedAssetCategory(FName
 		(
 		TEXT("SkillAsset")),
 		
 LOCTEXT("SkillEditor2D","Skill Editor Assets")
 	);
-	
-	AssetToolsModule.RegisterAssetTypeActions(MakeShareable
-		(new SkillAssetAction));
+	SkillAsset2DAction=MakeShareable(new SkillAssetAction);
+	AssetToolsModule->RegisterAssetTypeActions(SkillAsset2DAction.ToSharedRef());
 
 
 	//Register new thumbnail
@@ -49,6 +49,7 @@ LOCTEXT("SkillEditor2D","Skill Editor Assets")
 		("ClassThumbnail.SkillAsset",
 			thumbNailBrush);
 	}
+	if(StyleSet.IsValid())
 	FSlateStyleRegistry::RegisterSlateStyle(*StyleSet);
 
 	
@@ -58,7 +59,20 @@ LOCTEXT("SkillEditor2D","Skill Editor Assets")
 
 void FSkillEditorRuntimeModule::ShutdownModule()
 {
-	FSlateStyleRegistry::RegisterSlateStyle(*StyleSet);
+
+
+	
+	//IAssetTools& AssetTools=FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools").Get();
+	// if(AssetToolsModule!=nullptr)
+	// AssetToolsModule->UnregisterAssetTypeActions(SkillAsset2DAction.ToSharedRef());
+	
+	
+
+	
+	FSlateStyleRegistry::UnRegisterSlateStyle(*StyleSet);
+	ensure(StyleSet.IsUnique());
+	StyleSet.Reset();
+	
 }
 
 bool FSkillEditorRuntimeModule::IsGameModule() const
