@@ -5,6 +5,7 @@
 
 #include "CanvasItem.h"
 #include "FSkillEditorShaderRenderer.h"
+#include "SkillEditorRenderer.h"
 #include "Engine/TextureRenderTarget2D.h"
 
 

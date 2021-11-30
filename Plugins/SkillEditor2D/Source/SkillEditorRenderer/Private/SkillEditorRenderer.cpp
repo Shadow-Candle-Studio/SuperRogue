@@ -16,30 +16,4 @@ void FSkillEditorRenderer::ShutdownModule()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 IMPLEMENT_MODULE(FSkillEditorRenderer, SkillEditorRenderer)

@@ -7,7 +7,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fa3c9db2-0144-44ee-bf21-7a08a4670a13" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SuperRogue/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SuperRogue/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillEditor2D.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillEditor2D.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/FSkillEditorViewPortRenderingClient.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/FSkillEditorViewPortRenderingClient.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRenderer/Private/SkillEditorRenderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRenderer/Private/SkillEditorRenderer.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRenderer/Public/SkillEditorRenderer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRenderer/Public/SkillEditorRenderer.h" afterDir="false" />
     </list>
@@ -395,7 +395,7 @@
       <workItem from="1637501361110" duration="3462000" />
       <workItem from="1637560854111" duration="4068000" />
       <workItem from="1637587083750" duration="8525000" />
-      <workItem from="1638236396198" duration="4301000" />
+      <workItem from="1638236396198" duration="5802000" />
     </task>
     <servers />
   </component>
