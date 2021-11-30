@@ -5,6 +5,7 @@
 #include "AssetToolsModule.h"
 #include"SkillEditorWindowStyle.h"
 #include "FSkillEditorcommands.h"
+#include "FSkillEditorShaderRenderer.h"
 #include "IAssetTools.h"
 #include "IPluginManager.h"
 #include "LevelEditor.h"
@@ -107,6 +108,7 @@ TSharedRef<ISkillAssetEditor> FSkillEditor2DModule::CreateCustomAssetEditor(cons
 	TSharedRef<FSkillAssetEditor>NewSkillAssetEditor(new FSkillAssetEditor());
 	NewSkillAssetEditor->InitSkillAssetEditor(Mode,InitToolkitHost,CustomAsset);
 	return NewSkillAssetEditor;
+	FModuleManager::Get().LoadModuleChecked<YourModuelImplementClassName>(TEXT("YourModuleName"));
 }
 
 void FSkillEditor2DModule::RegisterMenus()

@@ -20,8 +20,10 @@ public:
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
 	virtual bool IsGameModule() const override;
+	
 private :
     TSharedPtr<FSlateStyleSet> StyleSet;
 	TSharedPtr<IAssetTypeActions> SkillAsset2DAction;
 	IAssetTools* AssetToolsModule;
+	
 };

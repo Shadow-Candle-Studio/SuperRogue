@@ -99,5 +99,7 @@ public class SkillEditorRuntime : ModuleRules
 				//"AssetTools"
 			}
 			);
+		PrivatePCHHeaderFile = "YourModuleNamePrivatePCH.h";
+		SharedPCHHeaderFile = "YourModuleNameSharedPCH.h";
 	}
 }
