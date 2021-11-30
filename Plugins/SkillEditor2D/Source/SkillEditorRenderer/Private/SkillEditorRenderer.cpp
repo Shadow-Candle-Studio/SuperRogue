@@ -4,12 +4,12 @@
 
 #include "Interfaces/IPluginManager.h"
 
-void FSkillEditorRendererModule::StartupModule()
+void FSkillEditorRenderer::StartupModule()
 {
 	FString PluginShaderDir = FPaths::Combine(IPluginManager::Get().FindPlugin(TEXT("SkillEditor2D"))->GetBaseDir(), TEXT("Shaders"));
 	AddShaderSourceDirectoryMapping(TEXT("/Plugins/SkillEditor2D"), PluginShaderDir);
 }
-void FSkillEditorRendererModule::ShutdownModule()
+void FSkillEditorRenderer::ShutdownModule()
 {
 	
 }
@@ -42,4 +42,4 @@ void FSkillEditorRendererModule::ShutdownModule()
 
 
 
-IMPLEMENT_MODULE(FSkillEditorRendererModule, SkillEditorRenderer)
+IMPLEMENT_MODULE(FSkillEditorRenderer, SkillEditorRenderer)

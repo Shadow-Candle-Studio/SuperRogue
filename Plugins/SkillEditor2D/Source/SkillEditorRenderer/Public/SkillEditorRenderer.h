@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
 
-class SKILLEDITORRENDERER_API FSkillEditorRendererModule : public IModuleInterface
+class SKILLEDITORRENDERER_API FSkillEditorRenderer : public IModuleInterface
 {
 public:
 	virtual void StartupModule() override;

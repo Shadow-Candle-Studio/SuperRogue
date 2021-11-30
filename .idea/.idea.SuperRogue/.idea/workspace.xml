@@ -6,39 +6,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa3c9db2-0144-44ee-bf21-7a08a4670a13" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/FSkillEditorViewPortRenderingClient.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAssetEditor.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/FSkillEditorViewPortRenderingClient.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillAssetEditor.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRenderer/Private/FSkillEditorShaderRenderer.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRenderer/Private/SkillEditorRenderer.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRenderer/Public/FSkillEditorShaderRenderer.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRenderer/Public/SkillEditorRenderer.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRenderer/SkillEditorRenderer.Build.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SuperRogue/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SuperRogue/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/NewSkillAsset.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/NewSkillAsset.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Prototype_Level/2DSideScrollerBP/Maps/2DSideScrollerExampleMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Prototype_Level/2DSideScrollerBP/Maps/2DSideScrollerExampleMap.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Public/Blueprints/BP_AI_Enemy_Melee_Master.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Blueprints/BP_AI_Enemy_Melee_Master.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Public/Maps/Demo01.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Maps/Demo01.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Public/Maps/Demo01_BuiltData.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Maps/Demo01_BuiltData.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Sprite/Tilemap/A_Type_Boss.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Sprite/Tilemap/A_Type_LRD.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Sprite/Tilemap/A_Type_LRU.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Sprite/Tilemap/A_Type_Left_Right.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Sprite/Tilemap/A_Type_Start.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Sprite/Tilemap/Actor_Map/BP_MapG.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Sprite/Tilemap/BP_MapG.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Sprite/Tilemap/B_Type_Down.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Sprite/Tilemap/B_Type_UD.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Sprite/Tilemap/B_Type_Up.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/SkillEditor2D.uplugin" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/SkillEditor2D.uplugin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillEditor2D.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillEditor2D.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillEditor2D.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillEditor2D.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/SkillEditor2D.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/SkillEditor2D.Build.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/SkillAssetAction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/SkillAssetAction.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/SkillEditorRuntime.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/SkillEditorRuntime.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/SkillEditorRuntime.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/SkillEditorRuntime.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/SkillEditorRuntime.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/SkillEditorRuntime.Build.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRenderer/Private/SkillEditorRenderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRenderer/Private/SkillEditorRenderer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRenderer/Public/SkillEditorRenderer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRenderer/Public/SkillEditorRenderer.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -424,6 +395,7 @@
       <workItem from="1637501361110" duration="3462000" />
       <workItem from="1637560854111" duration="4068000" />
       <workItem from="1637587083750" duration="8525000" />
+      <workItem from="1638236396198" duration="4301000" />
     </task>
     <servers />
   </component>

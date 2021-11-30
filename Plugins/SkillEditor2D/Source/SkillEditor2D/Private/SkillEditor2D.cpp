@@ -131,4 +131,5 @@ void FSkillEditor2DModule::RegisterMenus()
 	}
 }
 #undef LOCTEXT_NAMESPACE
+
 IMPLEMENT_MODULE(FSkillEditor2DModule, SkillEditor2D)
