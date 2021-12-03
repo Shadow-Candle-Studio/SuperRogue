@@ -4,14 +4,17 @@
 
 #include "CoreMinimal.h"
 
+class FSkillEditorShaderRenderer;
 /**
  * 
  */
-class SKILLEDITOR2D_API FSkillEditorViewPortRenderingClient: public FViewportClient
+class SKILLEDITORRENDERER_API FSkillEditorViewPortRenderingClient: public FViewportClient
 {
 public:
 	virtual void Draw(FViewport* Viewport, FCanvas* Canvas) override;
 	FSkillEditorViewPortRenderingClient();
 	~FSkillEditorViewPortRenderingClient();
 	TSharedPtr<UTextureRenderTarget2D> RenderTarget;
+	TSharedPtr<FSkillEditorShaderRenderer> render;
+	
 };

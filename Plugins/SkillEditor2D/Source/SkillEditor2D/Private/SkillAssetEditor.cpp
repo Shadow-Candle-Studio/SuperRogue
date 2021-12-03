@@ -3,8 +3,8 @@
 
 #include "SkillAssetEditor.h"
 
-#include "FSkillEditorViewPortRenderingClient.h"
 #include "SceneViewport.h"
+#include "SkillEditor2D.h"
 #include "SViewport.h"
 
 
@@ -107,6 +107,7 @@ FSkillAssetEditor::~FSkillAssetEditor()
 {
 	DetailsView.Reset();
 	PropertiesTab.Reset();
+	
 }
 
 FName FSkillAssetEditor::GetToolkitFName() const
@@ -224,11 +225,21 @@ TSharedRef<SDockTab> FSkillAssetEditor::SpawnPropertiesTab(const FSpawnTabArgs& 
 			]
 			
 		];
-	ViewPortProcessingClient=
-		MakeShareable(new FSkillEditorViewPortRenderingClient());
-     Viewport=MakeShareable
-	(new FSceneViewport(ViewPortProcessingClient.Get(),ViewportWidget));
-	ViewportWidget->SetViewportInterface(Viewport.ToSharedRef());
+
+	// auto& mod=FModuleManager::GetModuleChecked<FSkillEditor2DModule>("SkillEditor2D").RealRenderingClient;
+	// mod=MakeShareable(new FSkillEditorViewPortRenderingClient());
+	// if(mod.IsValid())
+	// {
+	// 	Viewport=MakeShareable
+ //   (new FSceneViewport(mod.Get(),ViewportWidget));
+	// 	ViewportWidget->SetViewportInterface(Viewport.ToSharedRef());
+	// }
+	// else
+	// {
+	// 	//mod=MakeShareable(new FSkillEditorViewPortRenderingClient());
+	// 	UE_LOG(LogTemp,Warning,L"Rendering client in module is invalid")
+	// }
+
 	
 return Tab;
 }

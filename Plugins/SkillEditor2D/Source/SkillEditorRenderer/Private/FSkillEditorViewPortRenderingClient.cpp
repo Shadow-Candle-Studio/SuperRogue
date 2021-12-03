@@ -14,8 +14,8 @@ void FSkillEditorViewPortRenderingClient::Draw(FViewport* Viewport, FCanvas* Can
 	Canvas->Clear(FLinearColor::Black);
 	if (RenderTarget)
 	{
-		FSkillEditorShaderRenderer render;
-		render.Render(RenderTarget.Get());
+		
+		render->Render(RenderTarget.Get());
 		
 		FCanvasTileItem Tile(FVector2D::ZeroVector, RenderTarget->Resource, Viewport->GetSizeXY(), FLinearColor(1,1,1,1));
 		Canvas->DrawItem(Tile);
@@ -29,9 +29,14 @@ FSkillEditorViewPortRenderingClient::FSkillEditorViewPortRenderingClient()
 	RenderTarget->InitAutoFormat(1024, 1024);
 	RenderTarget->ClearColor = FLinearColor::Blue;
 	RenderTarget->UpdateResource();
+	render=MakeShareable(new FSkillEditorShaderRenderer());
 }
 
 FSkillEditorViewPortRenderingClient::~FSkillEditorViewPortRenderingClient()
 {
+	render->ReleaseAllResource();
 	RenderTarget->ReleaseResource();
+	
+	
+	
 }

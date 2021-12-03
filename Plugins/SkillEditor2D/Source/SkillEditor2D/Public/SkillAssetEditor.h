@@ -3,18 +3,23 @@
 #pragma once
 
 #include "CoreMinimal.h"
-class FSkillEditorViewPortRenderingClient;
+#include "WorkflowCentricApplication.h"
+
+
 class USkillAsset;
 
 
-class SKILLEDITOR2D_API ISkillAssetEditor : public FAssetEditorToolkit
+class SKILLEDITOR2D_API ISkillAssetEditor : public FWorkflowCentricApplication
 {
 public:
 	virtual USkillAsset* GetSkillAsset()=0;
 	virtual void SetSkillAsset(USkillAsset* InSkillAsset) =0;
 };
 
-class SKILLEDITOR2D_API FSkillAssetEditor: public ISkillAssetEditor
+class SKILLEDITOR2D_API FSkillAssetEditor:
+public ISkillAssetEditor,
+public FEditorUndoClient,
+public FNotifyHook
 {
 public:
 	virtual void RegisterTabSpawners(const TSharedRef<FTabManager>& TabManager) override;
@@ -36,7 +41,7 @@ public:
 	virtual void SetSkillAsset(USkillAsset* InSkillAsset) override;
 	TSharedPtr<class FSceneViewport> Viewport;
 	TSharedPtr<class SViewport> ViewportWidget;
-	TSharedPtr<FSkillEditorViewPortRenderingClient> ViewPortProcessingClient;
+	// FSkillEditorViewPortRenderingClient* RenderingClient;
 	
 private:
 	TSharedRef<SDockTab> SpawnPropertiesTab(const FSpawnTabArgs& Args);
@@ -48,4 +53,5 @@ private:
 	static const FName	ToolkitFName;
 	static const FName PropertiesTabId;
 	USkillAsset* SkillAsset = nullptr;
+	
 };

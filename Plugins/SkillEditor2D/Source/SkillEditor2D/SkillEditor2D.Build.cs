@@ -30,14 +30,16 @@ public class SkillEditor2D : ModuleRules
 				"IntroTutorials",
 				"AssetTools",
 				"LevelEditor",
-				"SkillEditorRuntime"
+				"SkillEditorRuntime",
+				//"SkillEditorRenderer"
 			}
 			
 			);	
 		PublicIncludePathModuleNames.AddRange(
 			new string[]
 			{
-				"SkillEditorRuntime"
+				"SkillEditorRuntime",
+				//"SkillEditorRenderer"
 			}
 
 
@@ -46,7 +48,7 @@ public class SkillEditor2D : ModuleRules
 			new string[]
 			{
 				"Core",
-				"SkillEditorRenderer"
+				//"SkillEditorRenderer"
 				//"AssetTools"
 				// ... add other public dependencies that you statically link with here ...
 			}
@@ -79,7 +81,8 @@ public class SkillEditor2D : ModuleRules
 				"AssetRegistry",
 				"RenderCore",
 				"Projects",
-				"RHI"
+				"RHI",
+				//"SkillEditorRenderer"
 			}
 			);
 		

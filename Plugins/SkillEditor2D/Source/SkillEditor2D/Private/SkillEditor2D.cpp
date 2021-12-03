@@ -5,7 +5,7 @@
 #include "AssetToolsModule.h"
 #include"SkillEditorWindowStyle.h"
 #include "FSkillEditorcommands.h"
-#include "FSkillEditorShaderRenderer.h"
+
 #include "IAssetTools.h"
 #include "IPluginManager.h"
 #include "LevelEditor.h"
@@ -18,6 +18,7 @@
 #include "SViewport.h"
 #include "Slate/SceneViewport.h"
 #include "Sequencer/Private/SSequencerTrackArea.h"
+
 
 static const FName SkillEditor2DTabName("SkillEditor2D");
 #define LOCTEXT_NAMESPACE "FSkillEditor2DModule"
@@ -54,8 +55,8 @@ void FSkillEditor2DModule::StartupModule()
 	MenuExtensibilityManager=MakeShareable(new FExtensibilityManager);
 	ToolBarExtensibilityManager=MakeShareable(new FExtensibilityManager);
 
-	
-
+	// RealRenderingClient=MakeShareable(new FSkillEditorViewPortRenderingClient());
+	//
 
 	
 	
@@ -74,6 +75,7 @@ void FSkillEditor2DModule::ShutdownModule()
 
 	MenuExtensibilityManager.Reset();
 	ToolBarExtensibilityManager.Reset();
+	// RealRenderingClient.Reset();
 }
 TSharedRef<SDockTab> FSkillEditor2DModule::OnSpawnPluginTab(const FSpawnTabArgs& SpawnTabArgs)
 {
@@ -107,8 +109,13 @@ TSharedRef<ISkillAssetEditor> FSkillEditor2DModule::CreateCustomAssetEditor(cons
 {
 	TSharedRef<FSkillAssetEditor>NewSkillAssetEditor(new FSkillAssetEditor());
 	NewSkillAssetEditor->InitSkillAssetEditor(Mode,InitToolkitHost,CustomAsset);
+	
+	// NewSkillAssetEditor.Get().RenderingClient=this->RealRenderingClient.Get();
+	
+
+	
 	return NewSkillAssetEditor;
-	FModuleManager::Get().LoadModuleChecked<YourModuelImplementClassName>(TEXT("YourModuleName"));
+	
 }
 
 void FSkillEditor2DModule::RegisterMenus()

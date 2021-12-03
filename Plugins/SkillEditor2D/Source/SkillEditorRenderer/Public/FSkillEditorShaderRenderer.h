@@ -77,9 +77,7 @@ public:
 	}
 };
 
-TGlobalResource
-<FSkillEditorShaderRendererVertexBuffer>
-G_SFSkillEditorShaderRendererVertexBuffer;
+
 
 //vertex declaration
 class SKILLEDITORRENDERER_API FSkillEditorShaderRendererVertexDeclaration : public FRenderResource
@@ -100,9 +98,7 @@ public:
 	}
 };
 
-TGlobalResource
-<FSkillEditorShaderRendererVertexDeclaration>
-G_FSkillEditorShaderRendererVertexDeclaration;
+
 
 //index buffer
 class SKILLEDITORRENDERER_API FSkillEditorShaderRendererIndexBuffer : public FIndexBuffer
@@ -122,13 +118,25 @@ public:
 	}
 };
 
-TGlobalResource
-<FSkillEditorShaderRendererIndexBuffer>
-G_FSkillEditorShaderRendererIndexBuffer;
+
+
 
 class SKILLEDITORRENDERER_API FSkillEditorShaderRenderer
 {
 public:
 	FSkillEditorShaderRenderer(){};
 	void Render(class UTextureRenderTarget2D* RenderTarget);
+	static void ReleaseAllResource();
+	TGlobalResource
+		 <FSkillEditorShaderRendererVertexBuffer>
+	G_SFSkillEditorShaderRendererVertexBuffer;
+	TGlobalResource
+		<FSkillEditorShaderRendererVertexDeclaration>
+		G_FSkillEditorShaderRendererVertexDeclaration;
+	
+	TGlobalResource
+		<FSkillEditorShaderRendererIndexBuffer>
+		G_FSkillEditorShaderRendererIndexBuffer;
+	
+	
 };

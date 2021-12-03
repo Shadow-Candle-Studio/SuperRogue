@@ -3,7 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "FSkillEditorViewPortRenderingClient.h"
+
+
 #include "Modules/ModuleManager.h"
 #include "Modules/ModuleInterface.h"
 #include "Toolkits/AssetEditorToolkit.h"
@@ -36,12 +37,12 @@ public:
 class FSkillEditor2DModule : public ISkillAssetEditorModule_Base
 {
 public:
-
+	// TSharedPtr<FSkillEditorViewPortRenderingClient> RealRenderingClient;
 	/** IModuleInterface implementation */
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
 	void PluginButtonClicked();
-	virtual TSharedRef<ISkillAssetEditor> CreateCustomAssetEditor(const EToolkitMode::Type Mode, const TSharedPtr< IToolkitHost >& InitToolkitHost, USkillAsset* CustomAsset);
+	virtual TSharedRef<ISkillAssetEditor> CreateCustomAssetEditor(const EToolkitMode::Type Mode, const TSharedPtr< IToolkitHost >& InitToolkitHost, USkillAsset* CustomAsset) override;
 	virtual TSharedPtr<FExtensibilityManager> GetMenuExtensibilityManager() override
 	{
 		return  MenuExtensibilityManager;
@@ -50,6 +51,7 @@ public:
 	{
 		return ToolBarExtensibilityManager;
 	}
+	
 private :
 	void RegisterMenus();
 	TSharedRef<class SDockTab> OnSpawnPluginTab(const class FSpawnTabArgs& SpawnTabArgs);
@@ -58,4 +60,6 @@ private :
 	//for editor
 	TSharedPtr<FExtensibilityManager> MenuExtensibilityManager;
 	TSharedPtr<FExtensibilityManager> ToolBarExtensibilityManager;
+	
+
 };
