@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "SkillEditorPreviewTabBody.h"
 #include "WorkflowCentricApplication.h"
 
 
@@ -42,7 +43,8 @@ public:
 	TSharedPtr<class FSceneViewport> Viewport;
 	TSharedPtr<class SViewport> ViewportWidget;
 	// FSkillEditorViewPortRenderingClient* RenderingClient;
-	
+	TSharedPtr<SkillEditorPreviewTabBody> SkillAssetTabBody;
+	TSharedRef<SWidget> SpawnPreview();
 private:
 	TSharedRef<SDockTab> SpawnPropertiesTab(const FSpawnTabArgs& Args);
 	

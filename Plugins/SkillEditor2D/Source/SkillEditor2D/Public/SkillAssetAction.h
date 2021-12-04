@@ -10,7 +10,7 @@
 /**
  * 
  */
-class SKILLEDITORRUNTIME_API SkillAssetAction :public FAssetTypeActions_Base
+class SKILLEDITOR2D_API SkillAssetAction :public FAssetTypeActions_Base
 {
 public:
 	SkillAssetAction();

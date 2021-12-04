@@ -27,9 +27,7 @@ public class SkillEditorRuntime : ModuleRules
 			{
 				"Settings",
 				"IntroTutorials",
-				//"AssetTools",
 				"LevelEditor",
-				"SkillEditor2D",
 				"CurveEditor",
 				"SequencerWidgets",
 				"Sequencer"
@@ -39,7 +37,7 @@ public class SkillEditorRuntime : ModuleRules
 		PublicIncludePathModuleNames.AddRange(
 			new string[]
 			{
-				"SkillEditor2D",
+				
 				//"AssetTools",
 				"CurveEditor",
 				"SequencerWidgets",

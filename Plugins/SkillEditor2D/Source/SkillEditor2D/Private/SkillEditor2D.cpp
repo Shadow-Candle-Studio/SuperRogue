@@ -15,6 +15,7 @@
 #include "ToolMenus.h"
 #include "SkillAssetAction.h"
 #include "SkillAssetEditor.h"
+#include "SlateStyleRegistry.h"
 #include "SViewport.h"
 #include "Slate/SceneViewport.h"
 #include "Sequencer/Private/SSequencerTrackArea.h"
@@ -36,7 +37,6 @@ void FSkillEditor2DModule::StartupModule()
 {
 	
 
-	
 	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-modul
 	SkillEditorWindowStyle::Initialize();
 	SkillEditorWindowStyle::Reloadtextures();
@@ -56,7 +56,46 @@ void FSkillEditor2DModule::StartupModule()
 	ToolBarExtensibilityManager=MakeShareable(new FExtensibilityManager);
 
 	// RealRenderingClient=MakeShareable(new FSkillEditorViewPortRenderingClient());
-	//
+	//action registration
+	//asset registration!s
+	AssetToolsModule=&FModuleManager::
+	LoadModuleChecked<FAssetToolsModule>("AssetTools").
+	Get();
+	
+	SkillAssetTypeCategory=AssetToolsModule->
+	RegisterAdvancedAssetCategory(FName
+		(
+		TEXT("SkillAsset")),
+		
+LOCTEXT("SkillEditor2D","Skill Editor Assets")
+	);
+	SkillAsset2DAction=MakeShareable(new SkillAssetAction);
+	AssetToolsModule->RegisterAssetTypeActions(SkillAsset2DAction.ToSharedRef());
+
+
+	//Register new thumbnail
+	StyleSet=MakeShareable(new FSlateStyleSet("SkillAssetStyle"));
+	FString contentDir=IPluginManager::Get().FindPlugin("SkillEditor2D")->GetBaseDir();
+	StyleSet->SetContentRoot(contentDir);
+
+	FSlateImageBrush* thumbNailBrush=new FSlateImageBrush
+	(StyleSet->RootToContentDir
+		(TEXT
+			("Resources/Icon128"), TEXT
+			(".png")), FVector2D
+			(128.f, 128.f));
+
+	if(thumbNailBrush)
+	{
+		StyleSet->Set
+		("ClassThumbnail.SkillAsset",
+			thumbNailBrush);
+	}
+	if(StyleSet.IsValid())
+		FSlateStyleRegistry::RegisterSlateStyle(*StyleSet);
+
+
+	
 
 	
 	
@@ -76,6 +115,16 @@ void FSkillEditor2DModule::ShutdownModule()
 	MenuExtensibilityManager.Reset();
 	ToolBarExtensibilityManager.Reset();
 	// RealRenderingClient.Reset();
+	//IAssetTools& AssetTools=FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools").Get();
+	// if(AssetToolsModule!=nullptr)
+	// AssetToolsModule->UnregisterAssetTypeActions(SkillAsset2DAction.ToSharedRef());
+	
+	
+
+	
+	FSlateStyleRegistry::UnRegisterSlateStyle(*StyleSet);
+	ensure(StyleSet.IsUnique());
+	StyleSet.Reset();
 }
 TSharedRef<SDockTab> FSkillEditor2DModule::OnSpawnPluginTab(const FSpawnTabArgs& SpawnTabArgs)
 {

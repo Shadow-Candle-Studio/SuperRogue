@@ -155,11 +155,17 @@ void FSkillAssetEditor::SetSkillAsset(USkillAsset* InSkillAsset)
 	SkillAsset=InSkillAsset;
 }
 
+TSharedRef<SWidget> FSkillAssetEditor::SpawnPreview()
+{
+	SAssignNew(SkillAssetTabBody,SkillEditorPreviewTabBody);
+	return SkillAssetTabBody.ToSharedRef();
+}
+
 TSharedRef<SDockTab> FSkillAssetEditor::SpawnPropertiesTab(const FSpawnTabArgs& Args)
 {
 	// Make sure we have the correct tab id
 	check(Args.GetTabId() == PropertiesTabId);
-    
+   
 	// Return a new slate dockable tab that contains our details view
 	TSharedRef<SDockTab> Tab=SNew(SDockTab)
 		.Icon(FEditorStyle::GetBrush
@@ -190,7 +196,9 @@ TSharedRef<SDockTab> FSkillAssetEditor::SpawnPropertiesTab(const FSpawnTabArgs& 
 					.HAlign(HAlign_Fill)
 					.VAlign(VAlign_Fill)
 					[
-						SAssignNew(ViewportWidget, SViewport)
+						
+						//SAssignNew(ViewportWidget, SViewport)
+					SpawnPreview()
 					]
 				]
 				+SSplitter::Slot()

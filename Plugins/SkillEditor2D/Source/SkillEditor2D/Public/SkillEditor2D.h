@@ -9,6 +9,9 @@
 #include "Modules/ModuleInterface.h"
 #include "Toolkits/AssetEditorToolkit.h"
 
+class FSlateStyleSet;
+class IAssetTypeActions;
+class IAssetTools;
 class ISkillAssetEditor;
 class FToolBarBuilder;
 class FMenuBuilder;
@@ -60,6 +63,8 @@ private :
 	//for editor
 	TSharedPtr<FExtensibilityManager> MenuExtensibilityManager;
 	TSharedPtr<FExtensibilityManager> ToolBarExtensibilityManager;
-	
+	TSharedPtr<FSlateStyleSet> StyleSet;
+	TSharedPtr<IAssetTypeActions> SkillAsset2DAction;
+	IAssetTools* AssetToolsModule;
 
 };

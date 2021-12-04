@@ -6,7 +6,7 @@
 #include "IAssetTools.h"
 
 #include "SlateStyle.h"
-class IAssetTypeActions;
+
 #include "Modules/ModuleManager.h"
 #include "Modules/ModuleInterface.h"
 
@@ -22,8 +22,6 @@ public:
 	virtual bool IsGameModule() const override;
 	
 private :
-    TSharedPtr<FSlateStyleSet> StyleSet;
-	TSharedPtr<IAssetTypeActions> SkillAsset2DAction;
-	IAssetTools* AssetToolsModule;
+   
 	
 };
