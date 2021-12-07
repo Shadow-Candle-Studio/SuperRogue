@@ -1,20 +1,20 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Factories/Factory.h"
-#include "SkillAssetFactoryFromBinary.generated.h"
+#include "Object.h"
+#include "SKABFactory.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class SKILLEDITORRUNTIME_API USkillAssetFactoryFromBinary : public UFactory
+class SKILLEDITOR2D_API USKABFactory : public UFactory
 {
 	GENERATED_BODY()
 public:
-	USkillAssetFactoryFromBinary(const FObjectInitializer& ObjectInitializer);
+	USKABFactory(const FObjectInitializer& ObjectInitializer);
 	virtual UObject* FactoryCreateBinary(UClass* InClass,
 		UObject* InParent,
 		FName InName,
@@ -32,4 +32,6 @@ public:
 		const TCHAR* Parms,
 		FFeedbackContext* Warn,
 		bool& bOutOperationCanceled) override;
+	virtual uint32 GetMenuCategories() const override;
+	
 };

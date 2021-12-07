@@ -6,8 +6,6 @@
 #include "IAssetTools.h"
 #include "IAssetTypeActions.h"
 #include "IPluginManager.h"
-
-#include "SkillAssetFactory.h"
 #include "SlateStyleRegistry.h"
 
 

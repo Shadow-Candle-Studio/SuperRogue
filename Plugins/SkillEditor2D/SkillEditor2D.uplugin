@@ -23,7 +23,7 @@
 		{
 			"Name": "SkillEditorRuntime",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "PreDefault"
 		},
 		{
 			"Name": "SkillEditorRenderer",

@@ -1,14 +1,15 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "SkillAssetFactoryFromBinary.h"
+#include "SKABFactory.h"
 
-#include <ThirdParty/CryptoPP/5.6.5/include/argnames.h>
-
+#include "AssetTypeCategories.h"
 #include "FileHelper.h"
+#include "SKAFactory.h"
 #include "SkillAsset.h"
 
-USkillAssetFactoryFromBinary::USkillAssetFactoryFromBinary(
+
+USKABFactory::USKABFactory(
 	const FObjectInitializer& ObjectInitializer)
 :Super(ObjectInitializer)
 {
@@ -19,7 +20,7 @@ USkillAssetFactoryFromBinary::USkillAssetFactoryFromBinary(
 	bEditorImport=true;
 }
 
-UObject* USkillAssetFactoryFromBinary::FactoryCreateBinary(UClass* InClass, UObject* InParent, FName InName,
+UObject* USKABFactory::FactoryCreateBinary(UClass* InClass, UObject* InParent, FName InName,
 	EObjectFlags Flags, UObject* Context, const TCHAR* String, const uint8*& Buffer, const uint8* BufferEnd,
 	FFeedbackContext* Warn)
 {
@@ -35,9 +36,9 @@ UObject* USkillAssetFactoryFromBinary::FactoryCreateBinary(UClass* InClass, UObj
 	
 }
 
-UObject* USkillAssetFactoryFromBinary::FactoryCreateFile(UClass* InClass, UObject* InParent, FName InName,
-                                                         EObjectFlags Flags, const FString& Filename, const TCHAR* Parms, FFeedbackContext* Warn,
-                                                         bool& bOutOperationCanceled)
+UObject* USKABFactory::FactoryCreateFile(UClass* InClass, UObject* InParent, FName InName,
+														 EObjectFlags Flags, const FString& Filename, const TCHAR* Parms, FFeedbackContext* Warn,
+														 bool& bOutOperationCanceled)
 {
 	USkillAsset* SkillAsset=nullptr;
 	FString TextString;
@@ -50,4 +51,9 @@ UObject* USkillAssetFactoryFromBinary::FactoryCreateFile(UClass* InClass, UObjec
 	}
 	bOutOperationCanceled=false;
 	return SkillAsset;
+}
+
+uint32 USKABFactory::GetMenuCategories() const
+{
+	return SKACategory;
 }

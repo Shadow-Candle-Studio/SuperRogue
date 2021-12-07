@@ -2,22 +2,24 @@
 
 
 #include "SkillAssetAction.h"
+
+#include "SKAFactory.h"
 #include "SkillEditor2D.h"
 #define LOCTEXT_NAMESPACE "SkillAssetActions"
-SkillAssetAction::SkillAssetAction()
-{
-}
+SkillAssetAction::SkillAssetAction(EAssetTypeCategories::Type Cat): MyCat(Cat)
+{}
 
 
 
 SkillAssetAction::~SkillAssetAction()
 {
+	
 }
 
 FText SkillAssetAction::GetName() const
 {
 	return NSLOCTEXT("AssetTypeActions",
-			"SkillAssetAction","SkillAsset");
+			"SkillAsset Action","Skill Asset");
 }
 
 FColor SkillAssetAction::GetTypeColor() const
@@ -47,7 +49,7 @@ void SkillAssetAction::OpenAssetEditor(const TArray<UObject*>& InObjects, TShare
 
 uint32 SkillAssetAction::GetCategories()
 {
-	return SkillAssetTypeCategory;
+	return SKACategory;
 }
 
 bool SkillAssetAction::HasActions(const TArray<UObject*>& InObjects) const

@@ -9,6 +9,7 @@
 #include "IAssetTools.h"
 #include "IPluginManager.h"
 #include "LevelEditor.h"
+#include "SKAFactory.h"
 #include "Widgets/Docking/SDockTab.h"
 #include "Widgets/Layout/SBox.h"
 #include "Widgets/Text/STextBlock.h"
@@ -62,17 +63,10 @@ void FSkillEditor2DModule::StartupModule()
 	LoadModuleChecked<FAssetToolsModule>("AssetTools").
 	Get();
 	
-	SkillAssetTypeCategory=AssetToolsModule->
-	RegisterAdvancedAssetCategory(FName
-		(
-		TEXT("SkillAsset")),
-		
-LOCTEXT("SkillEditor2D","Skill Editor Assets")
-	);
-	SkillAsset2DAction=MakeShareable(new SkillAssetAction);
+	
+	//
+	SkillAsset2DAction=MakeShareable(new SkillAssetAction(SKACategory));
 	AssetToolsModule->RegisterAssetTypeActions(SkillAsset2DAction.ToSharedRef());
-
-
 	//Register new thumbnail
 	StyleSet=MakeShareable(new FSlateStyleSet("SkillAssetStyle"));
 	FString contentDir=IPluginManager::Get().FindPlugin("SkillEditor2D")->GetBaseDir();
