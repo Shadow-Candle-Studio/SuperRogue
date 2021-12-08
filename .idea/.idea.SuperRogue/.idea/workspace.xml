@@ -5,18 +5,7 @@
     <projectFile>Intermediate/ProjectFiles/UE4.vcxproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa3c9db2-0144-44ee-bf21-7a08a4670a13" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SuperRogue/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SuperRogue/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/twoDsample.Target.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SuperRogue.Target.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/twoDsample/ControlleablePixelPawn_Base.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SuperRogue/ControlleablePixelPawn_Base.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/twoDsample/ControlleablePixelPawn_Base.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SuperRogue/ControlleablePixelPawn_Base.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/twoDsample/twoDsample.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SuperRogue/SuperRogue.Build.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/twoDsample/twoDsample.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SuperRogue/SuperRogue.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/twoDsample/twoDsample.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SuperRogue/SuperRogue.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/twoDsampleEditor.Target.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SuperRogueEditor.Target.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SuperRogue.sln" beforeDir="false" afterPath="$PROJECT_DIR$/SuperRogue.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SuperRogue.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/SuperRogue.uproject" afterDir="false" />
-    </list>
+    <list default="true" id="fa3c9db2-0144-44ee-bf21-7a08a4670a13" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -442,6 +431,7 @@
       <workItem from="1638895735586" duration="802000" />
       <workItem from="1638931332835" duration="645000" />
       <workItem from="1638932043141" duration="335000" />
+      <workItem from="1638932469689" duration="780000" />
     </task>
     <servers />
   </component>
