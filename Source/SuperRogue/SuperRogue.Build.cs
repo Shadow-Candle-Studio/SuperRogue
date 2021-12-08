@@ -2,9 +2,9 @@
 
 using UnrealBuildTool;
 
-public class twoDsample : ModuleRules
+public class SuperRogue : ModuleRules
 {
-	public twoDsample(ReadOnlyTargetRules Target) : base(Target)
+	public SuperRogue(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 

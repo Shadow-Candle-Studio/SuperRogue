@@ -10,7 +10,7 @@
  * 
  */
 UCLASS()
-class TWODSAMPLE_API AControlleablePixelPawn_Base : public APixel2DCharacter
+class SUPERROGUE_API AControlleablePixelPawn_Base : public APixel2DCharacter
 {
 	GENERATED_BODY()
 	

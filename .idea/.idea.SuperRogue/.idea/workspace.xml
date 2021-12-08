@@ -6,21 +6,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa3c9db2-0144-44ee-bf21-7a08a4670a13" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SKABFactory.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SKAFactory.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SKABFactory.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SKAFactory.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SuperRogue/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SuperRogue/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/SkillEditor2D.uplugin" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/SkillEditor2D.uplugin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAssetAction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAssetAction.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillEditor2D.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillEditor2D.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillAssetAction.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillAssetAction.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/SkillAssetFactory.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/SkillAssetFactoryFromBinary.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/SkillEditorRuntime.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/SkillEditorRuntime.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/SkillAssetFactory.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/SkillAssetFactoryFromBinary.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/twoDsample.Target.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SuperRogue.Target.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/twoDsample/ControlleablePixelPawn_Base.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SuperRogue/ControlleablePixelPawn_Base.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/twoDsample/ControlleablePixelPawn_Base.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SuperRogue/ControlleablePixelPawn_Base.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/twoDsample/twoDsample.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SuperRogue/SuperRogue.Build.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/twoDsample/twoDsample.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SuperRogue/SuperRogue.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/twoDsample/twoDsample.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SuperRogue/SuperRogue.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/twoDsampleEditor.Target.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SuperRogueEditor.Target.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SuperRogue.sln" beforeDir="false" afterPath="$PROJECT_DIR$/SuperRogue.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SuperRogue.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/SuperRogue.uproject" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,8 +54,8 @@
     <setting file="file://$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAssetEditor.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillAssetEditor.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../UE_4.26/Engine/Source/Editor/AdvancedPreviewScene/Public/AdvancedPreviewScene.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/twoDsample/twoDsample.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/twoDsample/twoDsample.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/SuperRogue/SuperRogue.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/SuperRogue/SuperRogue.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../UE_4.26/Engine/Source/Runtime/Engine/Classes/Engine/TextureRenderTarget.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SKAFactory.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../UE_4.26/Engine/Source/Runtime/Engine/Classes/Engine/TextureRenderTarget2D.h" root0="FORCE_HIGHLIGHTING" />
@@ -445,6 +440,8 @@
       <workItem from="1638881585471" duration="3875000" />
       <workItem from="1638895477013" duration="145000" />
       <workItem from="1638895735586" duration="802000" />
+      <workItem from="1638931332835" duration="645000" />
+      <workItem from="1638932043141" duration="335000" />
     </task>
     <servers />
   </component>
