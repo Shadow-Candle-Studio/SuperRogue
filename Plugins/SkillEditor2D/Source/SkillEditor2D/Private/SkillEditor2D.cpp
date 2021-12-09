@@ -41,7 +41,9 @@ void FSkillEditor2DModule::StartupModule()
 	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-modul
 	SkillEditorWindowStyle::Initialize();
 	SkillEditorWindowStyle::Reloadtextures();
+	//register the command to the system
 	FSkillEditorcommands::Register();
+	//map the command from system click to action
 	PluginCommands = MakeShareable(new FUICommandList);
 	PluginCommands->MapAction(FSkillEditorcommands::Get().OpenPluginWindow,
 		FExecuteAction::CreateRaw(this,&FSkillEditor2DModule::PluginButtonClicked),
@@ -147,8 +149,9 @@ void FSkillEditor2DModule::PluginButtonClicked()
 	FGlobalTabmanager::Get()->TryInvokeTab(SkillEditor2DTabName);
 }
 
+
 TSharedRef<ISkillAssetEditor> FSkillEditor2DModule::CreateCustomAssetEditor(const EToolkitMode::Type Mode,
-	const TSharedPtr<IToolkitHost>& InitToolkitHost, USkillAsset* CustomAsset)
+                                                                            const TSharedPtr<IToolkitHost>& InitToolkitHost, USkillAsset* CustomAsset)
 {
 	TSharedRef<FSkillAssetEditor>NewSkillAssetEditor(new FSkillAssetEditor());
 	NewSkillAssetEditor->InitSkillAssetEditor(Mode,InitToolkitHost,CustomAsset);
@@ -169,6 +172,8 @@ void FSkillEditor2DModule::RegisterMenus()
 		{
 			FToolMenuSection& Section=Menu->FindOrAddSection("WindowLayout");
 			Section.AddMenuEntryWithCommandList(FSkillEditorcommands::Get().OpenPluginWindow,PluginCommands);
+			
+			
 		}
 	}
 	{

@@ -15,4 +15,5 @@ public:
 	virtual void RegisterCommands() override;
 
 	TSharedPtr<FUICommandInfo> OpenPluginWindow;
+	TSharedPtr<FUICommandInfo> Textfunc;
 };

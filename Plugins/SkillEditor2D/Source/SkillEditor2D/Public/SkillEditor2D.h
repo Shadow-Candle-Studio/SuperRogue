@@ -45,6 +45,7 @@ public:
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
 	void PluginButtonClicked();
+
 	virtual TSharedRef<ISkillAssetEditor> CreateCustomAssetEditor(const EToolkitMode::Type Mode, const TSharedPtr< IToolkitHost >& InitToolkitHost, USkillAsset* CustomAsset) override;
 	virtual TSharedPtr<FExtensibilityManager> GetMenuExtensibilityManager() override
 	{

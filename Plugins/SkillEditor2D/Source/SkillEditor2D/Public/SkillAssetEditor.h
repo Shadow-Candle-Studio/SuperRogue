@@ -23,8 +23,11 @@ public FEditorUndoClient,
 public FNotifyHook
 {
 public:
+	//register all tab spawner factory to produce tab when opened
 	virtual void RegisterTabSpawners(const TSharedRef<FTabManager>& TabManager) override;
+	//unregister all the tab spawner factory to stop spawning
 	virtual void UnregisterTabSpawners(const TSharedRef<FTabManager>& TabManager) override;
+	//Editor initialization
 	void InitSkillAssetEditor
 	(const EToolkitMode::Type Mode,
 	const TSharedPtr<class IToolkitHost>& InitToolkitHost,
@@ -37,23 +40,37 @@ public:
 	virtual FString GetWorldCentricTabPrefix() const override;
 	virtual FLinearColor GetWorldCentricTabColorScale() const override;
 	virtual bool IsPrimaryEditor() const override;
-
+	//register the layout of the editor
+    virtual void SetCurrentMode(FName NewMode) override;
 	virtual USkillAsset* GetSkillAsset() override;
 	virtual void SetSkillAsset(USkillAsset* InSkillAsset) override;
 	TSharedPtr<class FSceneViewport> Viewport;
 	TSharedPtr<class SViewport> ViewportWidget;
 	// FSkillEditorViewPortRenderingClient* RenderingClient;
 	TSharedPtr<SkillEditorPreviewTabBody> SkillAssetTabBody;
+	//spawn the preview widget
 	TSharedRef<SWidget> SpawnPreview();
-private:
-	TSharedRef<SDockTab> SpawnPropertiesTab(const FSpawnTabArgs& Args);
-	
-	TSharedPtr< SDockableTab > PropertiesTab;
-
-
-	TSharedPtr<class IDetailsView> DetailsView;
 	static const FName	ToolkitFName;
 	static const FName PropertiesTabId;
-	USkillAsset* SkillAsset = nullptr;
+	static const FName GraphCanvasId;
 	
+	TSharedPtr<FUICommandList> SkillAssetExtcommands;
+	void TextFuncOncliked();
+	void FillsubMenu(FMenuBuilder& Menubuilder);
+	void FillToolbar(FToolBarBuilder& ToolBarbuilder);
+	void ExtendMenu();
+	 void ExtendToolBar();
+	void CreateNewNode();
+	bool CanCreateNewNode();
+
+private:
+	TSharedRef<SDockTab> SpawnPropertiesTab(const FSpawnTabArgs& Args);
+	TSharedRef<SDockTab> SpawnBPGraphTab(const FSpawnTabArgs& Args );
+	//TSharedPtr< SDockableTab > PropertiesTab;
+
+	TSharedPtr<class IDetailsView> DetailsView;
+	//TSharedPtr<class SkillAssetEditorAPPMode> SKAEditorModeInuse;
+	USkillAsset* SkillAsset = nullptr;
 };
+
+
