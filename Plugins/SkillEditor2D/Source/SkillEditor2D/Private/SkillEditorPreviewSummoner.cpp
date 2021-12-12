@@ -20,7 +20,7 @@ SkillEditorPreviewSummoner::SkillEditorPreviewSummoner
 
 TSharedRef<SWidget> SkillEditorPreviewSummoner::CreateTabBody(const FWorkflowTabSpawnInfo& Info) const
 {
-	return SKillEditor.Pin()->SpawnPreview();
+	return SKillEditor.Pin()->SpawnPreviewWidget();
 }
 
 FText SkillEditorPreviewSummoner::GetTabToolTipText(const FWorkflowTabSpawnInfo& Info) const

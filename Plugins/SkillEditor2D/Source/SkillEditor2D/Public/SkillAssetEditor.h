@@ -47,12 +47,13 @@ public:
 	TSharedPtr<class FSceneViewport> Viewport;
 	TSharedPtr<class SViewport> ViewportWidget;
 	// FSkillEditorViewPortRenderingClient* RenderingClient;
-	TSharedPtr<SkillEditorPreviewTabBody> SkillAssetTabBody;
-	//spawn the preview widget
-	TSharedRef<SWidget> SpawnPreview();
+	
+	
 	static const FName	ToolkitFName;
-	static const FName PropertiesTabId;
+	static const FName PreviewTabId;
 	static const FName GraphCanvasId;
+	static const FName SequencerAreaTabID;
+	static const FName PropertiesPanelTabID;
 	
 	TSharedPtr<FUICommandList> SkillAssetExtcommands;
 	void TextFuncOncliked();
@@ -62,10 +63,23 @@ public:
 	 void ExtendToolBar();
 	void CreateNewNode();
 	bool CanCreateNewNode();
-
-private:
-	TSharedRef<SDockTab> SpawnPropertiesTab(const FSpawnTabArgs& Args);
+	/*
+	 * All functions responsible for spawning widgets for showing you all of the
+	 * details and preview of the asset even you can play the asset instantly
+	 */
+	//spawn the preview widget
+	TSharedRef<SWidget> SpawnPreviewWidget();
+	//spawn the detail panel
+	TSharedRef<SWidget> SpawnDetailPanelWidget();
+	//spawn properties and preview
+	TSharedRef<SDockTab> SpawnPreviewTab(const FSpawnTabArgs& Args);
 	TSharedRef<SDockTab> SpawnBPGraphTab(const FSpawnTabArgs& Args );
+	TSharedRef<SDockTab> SpawnPropertiesTab(const FSpawnTabArgs& Args);
+	TSharedRef<SDockTab> SpawnSequenceAreaTab(const FSpawnTabArgs& Args);
+    //bodies for spawning preview corresponding widgets we need
+	TSharedPtr<SkillEditorPreviewTabBody> SkillAssetPreviewTabBody;
+private:
+	
 	//TSharedPtr< SDockableTab > PropertiesTab;
 
 	TSharedPtr<class IDetailsView> DetailsView;
