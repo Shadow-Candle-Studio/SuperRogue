@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "SKAUEdGraph.h"
 #include "SkillEditorPreviewTabBody.h"
 #include "WorkflowCentricApplication.h"
 #include "WorkflowTabManager.h"
@@ -68,9 +69,9 @@ public:
 	
 	//called mainly by mode instance
 	virtual void RegisterToolbarTab(const TSharedRef<class FTabManager>& InTabManager);
-	
-
-    
+	void InvokeSkillAssetEventBPGraphTab();
+	TSharedPtr<FDocumentTracker> DocumentManager;
+	TSharedPtr<UEdGraph> EventGraph;
 private:
 	
 	
@@ -78,7 +79,7 @@ private:
 	
 	TSharedPtr<class SkillAssetEditorAPPMode> SKAEditorModeInuse;
 	USkillAsset* SkillAsset;
-	TSharedPtr<FDocumentTracker> DocumentManager;
+
 };
 
 

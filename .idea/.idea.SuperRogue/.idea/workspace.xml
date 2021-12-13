@@ -6,22 +6,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa3c9db2-0144-44ee-bf21-7a08a4670a13" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAssetBPGraphTabSummoner.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAssetEditorSequenceTabSummoner.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillAssetBPGraphTabSummoner.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillAssetEditorSequenceTabSummoner.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SKAGraphSchema_CreateNode.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SKAUEdGraph.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SKAUEdGraphSchema.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SKAUEdGraphTab.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SKAGraphSchema_CreateNode.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SKAUEdGraph.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SKAUEdGraphSchema.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SKAUEdGraphTab.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SuperRogue/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SuperRogue/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Public/Maps/Demo01.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Maps/Demo01.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Public/Maps/Demo01_BuiltData.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Maps/Demo01_BuiltData.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAssetBPGraphTabSummoner.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAssetBPGraphTabSummoner.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAssetEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAssetEditor.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAssetEditorAPPMode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAssetEditorAPPMode.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAssetPropertyTabSummoner.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAssetPropertyTabSummoner.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillEditorPreviewSummoner.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillEditorPreviewSummoner.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillAssetBPGraphTabSummoner.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillAssetBPGraphTabSummoner.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillAssetEditor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillAssetEditor.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillAssetEditorAPPMode.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillAssetEditorAPPMode.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillAssetPropertyTabSummoner.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillAssetPropertyTabSummoner.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillEditor2D.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillEditor2D.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillEditorPreviewSummoner.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillEditorPreviewSummoner.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +71,7 @@
     <setting file="file://$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SKillAssetPriveiwScene.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRenderer/Public/FSkillEditorViewPortRenderingClient.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../UE_4.26/Engine/Plugins/ScriptPlugin/Source/ScriptEditorPlugin/Private/ScriptBlueprintEditor.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/SkillAsset.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/SkillAsset.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../UE_4.26/Engine/Source/Editor/StaticMeshEditor/Private/SStaticMeshEditorViewport.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../UE_4.26/Engine/Source/Runtime/Core/Public/Modules/ModuleManager.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../UE_4.26/Engine/Source/Editor/StaticMeshEditor/Private/SStaticMeshEditorViewport.h" root0="FORCE_HIGHLIGHTING" />
@@ -454,6 +452,7 @@
       <workItem from="1639279268462" duration="7419000" />
       <workItem from="1639323306922" duration="653000" />
       <workItem from="1639358945766" duration="14207000" />
+      <workItem from="1639391398290" duration="15494000" />
     </task>
     <servers />
   </component>

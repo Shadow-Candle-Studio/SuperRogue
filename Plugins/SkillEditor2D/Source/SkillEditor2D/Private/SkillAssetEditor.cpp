@@ -3,12 +3,15 @@
 
 #include "SkillAssetEditor.h"
 
+#include "BlueprintEditorUtils.h"
 #include "FSkillEditorcommands.h"
 #include "SceneViewport.h"
+#include "SKAUEdGraphSchema.h"
 #include "SkillAssetEditorAPPMode.h"
 #include "SkillEditor2D.h"
 #include "SViewport.h"
 #include "ToolMenus.h"
+#include "WorkflowUObjectDocuments.h"
 
 
 const FName SkillAssetEditorAppIdentifier = FName(TEXT("SkillAssetEditorApp"));
@@ -56,11 +59,11 @@ void FSkillAssetEditor::UnregisterTabSpawners
 	// Unregister the tab manager from the asset editor toolkit
 	FAssetEditorToolkit::UnregisterTabSpawners(TabManager);
 
-	// Unregister our custom tab from the tab manager, making sure it is cleaned up when the editor gets destroyed
-	TabManager->UnregisterTabSpawner(PreviewTabId);
-	TabManager->UnregisterTabSpawner(GraphCanvasId);
-	TabManager->UnregisterTabSpawner(PropertiesPanelTabID);
-	TabManager->UnregisterTabSpawner(SequencerAreaTabID);
+	// // Unregister our custom tab from the tab manager, making sure it is cleaned up when the editor gets destroyed
+	// TabManager->UnregisterTabSpawner(PreviewTabId);
+	// TabManager->UnregisterTabSpawner(GraphCanvasId);
+	// TabManager->UnregisterTabSpawner(PropertiesPanelTabID);
+	// TabManager->UnregisterTabSpawner(SequencerAreaTabID);
 }
 
 void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
@@ -84,6 +87,7 @@ void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
 	DocumentManager=MakeShareable(new FDocumentTracker);
 	DocumentManager->Initialize(SharedThis(this));
 	DocumentManager->SetTabManager(TabManager.ToSharedRef());
+	
 	SKAEditorModeInuse=MakeShareable
 		(new SkillAssetEditorAPPMode
 			(SharedThis(this),
@@ -204,6 +208,25 @@ void FSkillAssetEditor::RegisterToolbarTab(const TSharedRef<FTabManager>& InTabM
 {
 	FAssetEditorToolkit::RegisterTabSpawners(InTabManager);
 	
+}
+
+void FSkillAssetEditor::InvokeSkillAssetEventBPGraphTab()
+{
+	bool bNewGraph = false;
+	if (!EventGraph.IsValid())
+	{
+		bNewGraph = true;
+		EventGraph = MakeShareable(FBlueprintEditorUtils::CreateNewGraph(
+			(UObject*)GetSkillAsset(), 
+			GraphCanvasId,
+			USKAUEdGraph::StaticClass(), 
+			USKAUEdGraphSchema::StaticClass()));
+		
+	}
+
+	TSharedRef<FTabPayload_UObject> Payload = FTabPayload_UObject::Make(EventGraph.Get());
+	TSharedPtr<SDockTab> DocumentTab = DocumentManager->OpenDocument(Payload, bNewGraph ? FDocumentTracker::OpenNewDocument :
+		FDocumentTracker::RestorePreviousDocument);
 }
 
 void FSkillAssetEditor::FillToolbar(FToolBarBuilder& ToolBarbuilder)

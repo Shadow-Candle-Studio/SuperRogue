@@ -3,20 +3,27 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "SKAUEdGraph.h"
 #include "WorkflowTabFactory.h"
+#include "WorkflowUObjectDocuments.h"
 
 /**
  * 
  */
-class SKILLEDITOR2D_API SkillAssetBPGraphTabSummoner : public FWorkflowTabFactory
+class SKILLEDITOR2D_API SkillAssetBPGraphTabSummoner : public FDocumentTabFactoryForObjects<USKAUEdGraph>
 {
 public:
-	SkillAssetBPGraphTabSummoner(TSharedPtr<class FSkillAssetEditor> InEditorPtr);
-	virtual TSharedRef<SWidget> CreateTabBody(const FWorkflowTabSpawnInfo& Info) const override;
-	virtual FText GetTabToolTipText(const FWorkflowTabSpawnInfo& Info) const override;
-
-	
 	~SkillAssetBPGraphTabSummoner();
+	SkillAssetBPGraphTabSummoner(TSharedPtr<class FSkillAssetEditor> InEditor);
+	virtual void OnTabActivated(TSharedPtr<SDockTab> Tab) const override;
+	virtual void OnTabRefreshed(TSharedPtr<SDockTab> Tab) const override;
+virtual const FSlateBrush* GetTabIcon(const FWorkflowTabSpawnInfo& Info) const override;
+protected:virtual FText GetTabToolTipText(const FWorkflowTabSpawnInfo& Info) const override;
+	virtual TAttribute<FText> ConstructTabNameForObject(USKAUEdGraph* DocumentID) const override;
+	virtual TSharedRef<SWidget> CreateTabBodyForObject(const FWorkflowTabSpawnInfo& Info, USKAUEdGraph* DocumentID) const;
+	virtual TSharedRef<SWidget> CreateTabBody(const FWorkflowTabSpawnInfo& Info) const override;
+	virtual const FSlateBrush* GetTabIconForObject(const FWorkflowTabSpawnInfo& Info, USKAUEdGraph* DocumentID) const;
+	
 private:
 	TWeakPtr<class FSkillAssetEditor> EditorPtr;
 };

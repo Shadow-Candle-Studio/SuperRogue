@@ -20,10 +20,11 @@ FApplicationMode(InModeName
 	(MakeShareable(new SkillAssetPropertyTabSummoner(InEditor)));
 	SkillAssetTabFactories.RegisterFactory
 	(MakeShareable(new SkillEditorPreviewSummoner(InEditor)));
-	SkillAssetTabFactories.RegisterFactory
-	(MakeShareable(new SkillAssetBPGraphTabSummoner(InEditor)));
+	// SkillAssetTabFactories.RegisterFactory
+	// (MakeShareable(new SkillAssetBPGraphTabSummoner(InEditor)));
 	SkillAssetTabFactories.RegisterFactory
 	(MakeShareable(new SkillAssetEditorSequenceTabSummoner(InEditor)));
+	
 	check(AssetEditor.IsValid());
 	TabLayout=FTabManager::NewLayout("SkillAssetEditor_Layout_v1")
 	->AddArea
@@ -65,6 +66,7 @@ FApplicationMode(InModeName
 			(
 			FTabManager::NewStack()
 			 ->AddTab(FSkillAssetEditor::GraphCanvasId, ETabState::OpenedTab)
+			 
 			)
 			->Split
 			(
@@ -91,7 +93,7 @@ void SkillAssetEditorAPPMode::RegisterTabFactories(TSharedPtr<FTabManager> InTab
 	Editor->PushTabFactories(SkillAssetTabFactories);
 
 	// Graph tab
-	//Editor->GetDocumentManager()->RegisterDocumentFactory(MakeShareable(new FStateMachineGraphTabFactory(Editor)));
+	Editor->DocumentManager->RegisterDocumentFactory(MakeShareable(new SkillAssetBPGraphTabSummoner(Editor)));
 
 	FApplicationMode::RegisterTabFactories(InTabManager);
 }
@@ -117,7 +119,8 @@ void SkillAssetEditorAPPMode::PreDeactivateMode()
 
 void SkillAssetEditorAPPMode::PostActivateMode()
 {
-	FApplicationMode::PostActivateMode();
+	check(AssetEditor.IsValid())
+	AssetEditor.Pin()->InvokeSkillAssetEventBPGraphTab();
 }
 
 SkillAssetEditorAPPMode::~SkillAssetEditorAPPMode()
