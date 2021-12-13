@@ -34,38 +34,8 @@ void FSkillAssetEditor::RegisterTabSpawners
 
 
 	
-	FAssetEditorToolkit::RegisterTabSpawners(TabManager);
-
-	TabManager->RegisterTabSpawner(PreviewTabId,
-		FOnSpawnTab::CreateSP(this,
-			&FSkillAssetEditor::SpawnPreviewTab))
-		.SetDisplayName(LOCTEXT("PreviewTab", "Preview"))
-		.SetGroup(WorkspaceMenuCategory.ToSharedRef())
-		.SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(),
-			"LevelEditor.Tabs.Details"));
-
-	TabManager->RegisterTabSpawner(GraphCanvasId,
-		FOnSpawnTab::CreateSP(this,
-		&FSkillAssetEditor::SpawnBPGraphTab))
-	.SetDisplayName(LOCTEXT("GraphCanvasTab", "Graph"))
-		.SetGroup(WorkspaceMenuCategory.ToSharedRef())
-		.SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(),
-			"GraphEditor.EventGraph_16x"));
-	TabManager->RegisterTabSpawner(PropertiesPanelTabID,
-		FOnSpawnTab::CreateSP(this,
-			&FSkillAssetEditor::SpawnPropertiesTab))
-		.SetDisplayName(LOCTEXT("PropertiesTab", "Details"))
-		.SetGroup(WorkspaceMenuCategory.ToSharedRef())
-		.SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(),
-			"LevelEditor.Tabs.Details"));
 	
-	TabManager->RegisterTabSpawner(SequencerAreaTabID,
-			FOnSpawnTab::CreateSP(this,
-				&FSkillAssetEditor::SpawnSequenceAreaTab))
-			.SetDisplayName(LOCTEXT("SequenceArea", "Sequence"))
-			.SetGroup(WorkspaceMenuCategory.ToSharedRef())
-			.SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(),
-				"LevelEditor.Tabs.Details"));
+	
 
 	
 	//register toolbar
@@ -96,88 +66,33 @@ void FSkillAssetEditor::UnregisterTabSpawners
 void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
 	const TSharedPtr<IToolkitHost>& InitToolkitHost, USkillAsset* InSkillAsset)
 {
-	// Cache some values that will be used for our details view arguments
-	const bool bIsUpdatable = false;
-	const bool bAllowFavorites = true;
-	const bool bIsLockable = false;
-
-	// Set this InCustomAsset as our editing asset
-	SetSkillAsset(InSkillAsset);
-
-	// Retrieve the property editor module and assign properties to DetailsView
-	FPropertyEditorModule& PropertyEditorModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
-	const FDetailsViewArgs DetailsViewArgs(bIsUpdatable, bIsLockable, true, FDetailsViewArgs::ObjectsUseNameArea, false);
-	DetailsView = PropertyEditorModule.CreateDetailView(DetailsViewArgs);
-
-	// Create the layout of our custom asset editor
-	const TSharedRef<FTabManager::FLayout> StandaloneDefaultLayout = FTabManager::NewLayout("SkillAssetEditor_Layout_v1")
-	->AddArea
-	(
-		// Create a vertical area and spawn the toolbar
-		FTabManager::NewPrimaryArea()->SetOrientation(Orient_Vertical)
-		->Split
-		(
-			FTabManager::NewStack()
-			->SetSizeCoefficient(0.1f)
-			->SetHideTabWell(true)
-			->AddTab(GetToolbarTabId(), ETabState::OpenedTab)
-		)
-		->Split
-		(
-			// Split the tab and pass the tab id to the tab spawner
-			FTabManager::NewSplitter()->SetOrientation(Orient_Horizontal)
-			->Split
-			(
-			FTabManager::NewSplitter()->SetOrientation(Orient_Vertical)
-			->Split
-			(
-			FTabManager::NewStack()
-			 ->AddTab(PreviewTabId, ETabState::OpenedTab)
-			)
-			->Split
-			(
-		   FTabManager::NewStack()
-			->AddTab(PropertiesPanelTabID, ETabState::OpenedTab)
-			)
-			
-			
-			)
-			->Split
-			(
-			FTabManager::NewSplitter()->SetOrientation(Orient_Vertical)
-			->Split
-			(
-			FTabManager::NewStack()
-			 ->AddTab(GraphCanvasId, ETabState::OpenedTab)
-			)
-			->Split
-			(
-		   FTabManager::NewStack()
-			->AddTab(SequencerAreaTabID, ETabState::OpenedTab)
-			)
-			)
-		)
-	);
- 
+	
 	const bool bCreateDefaultStandaloneMenu = true;
 	const bool bCreateDefaultToolbar = true;
-
+	const TSharedRef<FTabManager::FLayout> DummyLayout = FTabManager::NewLayout("NullLayout")->AddArea(FTabManager::NewPrimaryArea());
+	// Set this InCustomAsset as our editing asset
+	SetSkillAsset(InSkillAsset);
 	// Initialize our custom asset editor
 	FAssetEditorToolkit::InitAssetEditor(
 		Mode,
 		InitToolkitHost,
 		SkillAssetEditorAppIdentifier,
-		StandaloneDefaultLayout,
+		DummyLayout,
 		bCreateDefaultStandaloneMenu,
 		bCreateDefaultToolbar,
 		(UObject*)InSkillAsset);
-    
-	// Set the asset we are editing in the details view
-	if (DetailsView.IsValid())
-	{
-		DetailsView->SetObject((UObject*)InSkillAsset);
-	}
+	DocumentManager=MakeShareable(new FDocumentTracker);
+	DocumentManager->Initialize(SharedThis(this));
+	DocumentManager->SetTabManager(TabManager.ToSharedRef());
+	SKAEditorModeInuse=MakeShareable
+		(new SkillAssetEditorAPPMode
+			(SharedThis(this),
+				SkillAssetEditorAPPMode::SKAModeID));
+	//set the mode of this application and tabfactories
+	AddApplicationMode(SkillAssetEditorAPPMode::SKAModeID,SKAEditorModeInuse.ToSharedRef());
+	SetCurrentMode(SkillAssetEditorAPPMode::SKAModeID);
 
+	
 
 	SkillAssetExtcommands=MakeShareable(new FUICommandList);
 	SkillAssetExtcommands->MapAction(FSkillEditorcommands::Get().Textfunc,
@@ -191,9 +106,7 @@ void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
 
 FSkillAssetEditor::~FSkillAssetEditor()
 {
-	DetailsView.Reset();
-	//PropertiesTab.Reset();
-	
+	;
 }
 
 FName FSkillAssetEditor::GetToolkitFName() const
@@ -236,35 +149,12 @@ void FSkillAssetEditor::SetCurrentMode(FName NewMode)
 	ISkillAssetEditor::SetCurrentMode(NewMode);
 }
 
-USkillAsset* FSkillAssetEditor::GetSkillAsset()
-{
-	return SkillAsset;
-}
+
 
 void FSkillAssetEditor::SetSkillAsset(USkillAsset* InSkillAsset)
 {
 	SkillAsset=InSkillAsset;
 }
-
-TSharedRef<SWidget> FSkillAssetEditor::SpawnPreviewWidget()
-{
-	SAssignNew(SkillAssetPreviewTabBody,SkillEditorPreviewTabBody);
-	return SkillAssetPreviewTabBody.ToSharedRef();
-}
-
-TSharedRef<SWidget> FSkillAssetEditor::SpawnDetailPanelWidget()
-{
-	return SNew(SVerticalBox)
-	+SVerticalBox::Slot()
-	.FillHeight(1.0f)
-	.HAlign(HAlign_Fill)
-	.VAlign(VAlign_Fill)
-	[
-		DetailsView.ToSharedRef()
-	];
-}
-
-
 void FSkillAssetEditor::ExtendMenu()
 {
 	
@@ -310,6 +200,12 @@ bool FSkillAssetEditor::CanCreateNewNode()
 	return true;
 }
 
+void FSkillAssetEditor::RegisterToolbarTab(const TSharedRef<FTabManager>& InTabManager)
+{
+	FAssetEditorToolkit::RegisterTabSpawners(InTabManager);
+	
+}
+
 void FSkillAssetEditor::FillToolbar(FToolBarBuilder& ToolBarbuilder)
 {
 	ToolBarbuilder.BeginSection("ExtendToolbarItem");
@@ -350,95 +246,11 @@ void FSkillAssetEditor::TextFuncOncliked()
 	UE_LOG(LogTemp,Warning,L"Text Func clicked!")
 }
 
-TSharedRef<SDockTab> FSkillAssetEditor::SpawnPreviewTab(const FSpawnTabArgs& Args)
-{
-	// Make sure we have the correct tab id
-	check(Args.GetTabId() == PreviewTabId);
-   
-	// Return a new slate dockable tab that contains our details view
-	TSharedRef<SDockTab> Tab=SNew(SDockTab)
-		.Icon(FEditorStyle::GetBrush
-			("GenericEditor.Tabs.Properties"))
-		.Label(LOCTEXT("GenericDetailsTitle", "Preview"))
-		.TabColorScale(GetTabColorScale())
-		[
-		SNew(SBox)
-			.HAlign(HAlign_Fill)
-			.VAlign(VAlign_Fill)
-			[
-			//SAssignNew(ViewportWidget, SViewport)
-			SpawnPreviewWidget()
-			]
-		];
-return Tab;
-}
 
-TSharedRef<SDockTab> FSkillAssetEditor::SpawnBPGraphTab(const FSpawnTabArgs& Args)
+
+USkillAsset* FSkillAssetEditor::GetSkillAsset()
 {
-	// Make sure we have the correct tab id
-	check(Args.GetTabId() == GraphCanvasId);
-	TSharedRef<SDockTab> Tab=SNew(SDockTab)
-		.Label(LOCTEXT("GraphCanvasTitle", "Events"))
-		.TabColorScale(GetTabColorScale())
-	[
-	SNew(SBox)
-		.HAlign(HAlign_Fill)
-		.VAlign(VAlign_Fill)
-		[
-			SNew(STextBlock).Text(FText::FromString("GraphArea"))
-		
-		]
-		
-	];
-	
-	return Tab;
-}
-TSharedRef<SDockTab> FSkillAssetEditor::SpawnPropertiesTab(const FSpawnTabArgs& Args)
-{
-	// Make sure we have the correct tab id
-	check(Args.GetTabId() == PropertiesPanelTabID);
-   
-	// Return a new slate dockable tab that contains our details view
-	TSharedRef<SDockTab> Tab=SNew(SDockTab)
-		.Icon(FEditorStyle::GetBrush
-			("GenericEditor.Tabs.Properties"))
-		.Label(LOCTEXT("GenericDetailsTitle", "Details"))
-		.TabColorScale(GetTabColorScale())
-		[
-		SNew(SVerticalBox)
-		+SVerticalBox::Slot()
-		.VAlign(VAlign_Fill)
-		.HAlign(HAlign_Fill)
-		.Padding(2.0f)
-		[
-			DetailsView.ToSharedRef()
-		]
-		];
-	return Tab;
-}
-TSharedRef<SDockTab> FSkillAssetEditor::SpawnSequenceAreaTab(const FSpawnTabArgs& Args)
-{
-	// Make sure we have the correct tab id
-	check(Args.GetTabId() == SequencerAreaTabID);
-   
-	// Return a new slate dockable tab that contains our details view
-	TSharedRef<SDockTab> Tab=SNew(SDockTab)
-		.Icon(FEditorStyle::GetBrush
-			("GenericEditor.Tabs.Properties"))
-		.Label(LOCTEXT("GenericDetailsTitle", "Sequence"))
-		.TabColorScale(GetTabColorScale())
-		[
-		SNew(SVerticalBox)
-		+SVerticalBox::Slot()
-		.VAlign(VAlign_Fill)
-		.HAlign(HAlign_Fill)
-		.Padding(2.0f)
-		[
-			SNew(STextBlock)
-			.Text(FText::FromString("GraphArea"))
-		]
-		];
-	return Tab;
+	return SkillAsset;
 }
 
 

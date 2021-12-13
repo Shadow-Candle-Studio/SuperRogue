@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "WorkflowTabManager.h"
 
 
 #include "Modules/ModuleManager.h"
@@ -67,5 +68,6 @@ private :
 	TSharedPtr<FSlateStyleSet> StyleSet;
 	TSharedPtr<IAssetTypeActions> SkillAsset2DAction;
 	IAssetTools* AssetToolsModule;
+	
 
 };

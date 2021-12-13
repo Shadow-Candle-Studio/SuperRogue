@@ -5,10 +5,12 @@
 #include "CoreMinimal.h"
 #include "WorkflowTabFactory.h"
 
+
+class SkillEditorPreviewTabBody;
 /**
  * 
  */
-class SKILLEDITOR2D_API SkillEditorPreviewSummoner : FWorkflowTabFactory
+class SKILLEDITOR2D_API SkillEditorPreviewSummoner : public FWorkflowTabFactory
 {
 public:
 	SkillEditorPreviewSummoner(TSharedPtr<class FSkillAssetEditor> InSKillEditorPtr);
@@ -20,5 +22,6 @@ public:
 	~SkillEditorPreviewSummoner();
 
 protected:
+	TSharedPtr<SkillEditorPreviewTabBody> SkillAssetPreviewTabBody;
 	TWeakPtr<class FSkillAssetEditor> SKillEditor;
 };

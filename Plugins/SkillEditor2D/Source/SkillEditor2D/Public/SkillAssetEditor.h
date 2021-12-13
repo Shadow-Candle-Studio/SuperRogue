@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "SkillEditorPreviewTabBody.h"
 #include "WorkflowCentricApplication.h"
+#include "WorkflowTabManager.h"
 
 
 class USkillAsset;
@@ -40,16 +41,17 @@ public:
 	virtual FString GetWorldCentricTabPrefix() const override;
 	virtual FLinearColor GetWorldCentricTabColorScale() const override;
 	virtual bool IsPrimaryEditor() const override;
+	
 	//register the layout of the editor
     virtual void SetCurrentMode(FName NewMode) override;
 	virtual USkillAsset* GetSkillAsset() override;
 	virtual void SetSkillAsset(USkillAsset* InSkillAsset) override;
 	TSharedPtr<class FSceneViewport> Viewport;
 	TSharedPtr<class SViewport> ViewportWidget;
-	// FSkillEditorViewPortRenderingClient* RenderingClient;
 	
 	
-	static const FName	ToolkitFName;
+	
+	static const FName ToolkitFName;
 	static const FName PreviewTabId;
 	static const FName GraphCanvasId;
 	static const FName SequencerAreaTabID;
@@ -63,28 +65,20 @@ public:
 	 void ExtendToolBar();
 	void CreateNewNode();
 	bool CanCreateNewNode();
-	/*
-	 * All functions responsible for spawning widgets for showing you all of the
-	 * details and preview of the asset even you can play the asset instantly
-	 */
-	//spawn the preview widget
-	TSharedRef<SWidget> SpawnPreviewWidget();
-	//spawn the detail panel
-	TSharedRef<SWidget> SpawnDetailPanelWidget();
-	//spawn properties and preview
-	TSharedRef<SDockTab> SpawnPreviewTab(const FSpawnTabArgs& Args);
-	TSharedRef<SDockTab> SpawnBPGraphTab(const FSpawnTabArgs& Args );
-	TSharedRef<SDockTab> SpawnPropertiesTab(const FSpawnTabArgs& Args);
-	TSharedRef<SDockTab> SpawnSequenceAreaTab(const FSpawnTabArgs& Args);
-    //bodies for spawning preview corresponding widgets we need
-	TSharedPtr<SkillEditorPreviewTabBody> SkillAssetPreviewTabBody;
+	
+	//called mainly by mode instance
+	virtual void RegisterToolbarTab(const TSharedRef<class FTabManager>& InTabManager);
+	
+
+    
 private:
 	
-	//TSharedPtr< SDockableTab > PropertiesTab;
+	
 
-	TSharedPtr<class IDetailsView> DetailsView;
-	//TSharedPtr<class SkillAssetEditorAPPMode> SKAEditorModeInuse;
-	USkillAsset* SkillAsset = nullptr;
+	
+	TSharedPtr<class SkillAssetEditorAPPMode> SKAEditorModeInuse;
+	USkillAsset* SkillAsset;
+	TSharedPtr<FDocumentTracker> DocumentManager;
 };
 
 

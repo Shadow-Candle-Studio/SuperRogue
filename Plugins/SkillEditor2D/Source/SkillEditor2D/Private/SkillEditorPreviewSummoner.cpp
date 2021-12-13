@@ -7,20 +7,24 @@
 #include "SkillAssetEditor.h"
 
 #define LOCTEXT_NAMESPACE "SkillEditorPreviewSummoner"
-const FName PreviewTabID="SkillEditorPreview";
+
 SkillEditorPreviewSummoner::SkillEditorPreviewSummoner
-(TSharedPtr<FSkillAssetEditor> InSKillEditorPtr):FWorkflowTabFactory(PreviewTabID,InSKillEditorPtr),SKillEditor(InSKillEditorPtr)
+(TSharedPtr<FSkillAssetEditor> InSKillEditorPtr):FWorkflowTabFactory
+(FSkillAssetEditor::PreviewTabId,InSKillEditorPtr),
+SKillEditor(InSKillEditorPtr)
 {
 	TabLabel=LOCTEXT("SkillAssetPreviewLabel","Preview");
-	TabIcon=FSlateIcon(FEditorStyle::GetStyleSetName(),"Kismet.Tabs.Components");
+	TabIcon=FSlateIcon(FEditorStyle::GetStyleSetName(),
+	 		"LevelEditor.Tabs.Details");
 	bIsSingleton=true;
 	ViewMenuDescription=LOCTEXT("SkillAssetPreviewDescription","Preview");
 	ViewMenuTooltip=LOCTEXT("SkillAssetPreview_ToolTip","Show the preview tab");
+	SAssignNew(SkillAssetPreviewTabBody,SkillEditorPreviewTabBody);
 }
 
 TSharedRef<SWidget> SkillEditorPreviewSummoner::CreateTabBody(const FWorkflowTabSpawnInfo& Info) const
 {
-	return SKillEditor.Pin()->SpawnPreviewWidget();
+	return SkillAssetPreviewTabBody.ToSharedRef();
 }
 
 FText SkillEditorPreviewSummoner::GetTabToolTipText(const FWorkflowTabSpawnInfo& Info) const
