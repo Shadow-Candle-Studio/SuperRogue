@@ -7,7 +7,9 @@
 #include "SkillEditor2D.h"
 #define LOCTEXT_NAMESPACE "SkillAssetActions"
 SkillAssetAction::SkillAssetAction(EAssetTypeCategories::Type Cat): MyCat(Cat)
-{}
+{
+	
+}
 
 
 

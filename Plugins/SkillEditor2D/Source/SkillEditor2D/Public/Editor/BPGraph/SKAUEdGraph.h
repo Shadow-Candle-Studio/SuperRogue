@@ -15,4 +15,5 @@ class  USKAUEdGraph : public UEdGraph
 	GENERATED_BODY()
 public:
 	USKAUEdGraph(const FObjectInitializer& ObjectInitializer);
+	
 };

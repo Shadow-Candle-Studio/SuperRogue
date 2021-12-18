@@ -3,6 +3,8 @@
 #include "SkillEditor2D.h"
 
 #include "AssetToolsModule.h"
+#include "BPGraphFactories.h"
+#include "EdGraphUtilities.h"
 #include"SkillEditorWindowStyle.h"
 #include "FSkillEditorcommands.h"
 
@@ -64,8 +66,6 @@ void FSkillEditor2DModule::StartupModule()
 	AssetToolsModule=&FModuleManager::
 	LoadModuleChecked<FAssetToolsModule>("AssetTools").
 	Get();
-	
-	
 	//
 	SkillAsset2DAction=MakeShareable(new SkillAssetAction(SKACategory));
 	AssetToolsModule->RegisterAssetTypeActions(SkillAsset2DAction.ToSharedRef());
@@ -91,6 +91,18 @@ void FSkillEditor2DModule::StartupModule()
 		FSlateStyleRegistry::RegisterSlateStyle(*StyleSet);
 
 
+	//Register graph nodes, pins , connection policy
+	FEdGraphUtilities::RegisterVisualNodeFactory(MakeShareable(new SKAGraphNodeFactory()));
+	FEdGraphUtilities::RegisterVisualPinFactory(MakeShareable(new SKAGraphPinFactory()));
+	FEdGraphUtilities::RegisterVisualPinConnectionFactory(MakeShareable(new SKAGraphPinConnectionFactory()));
+	
+
+
+
+
+	
+	
+	
 	
 
 	

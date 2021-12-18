@@ -71,7 +71,7 @@ public:
 	virtual void RegisterToolbarTab(const TSharedRef<class FTabManager>& InTabManager);
 	void InvokeSkillAssetEventBPGraphTab();
 	TSharedPtr<FDocumentTracker> DocumentManager;
-	TSharedPtr<UEdGraph> EventGraph;
+	
 private:
 	
 	

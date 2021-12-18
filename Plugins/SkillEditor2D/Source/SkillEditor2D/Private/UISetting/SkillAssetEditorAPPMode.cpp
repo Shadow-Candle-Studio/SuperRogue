@@ -65,7 +65,7 @@ FApplicationMode(InModeName
 			->Split
 			(
 			FTabManager::NewStack()
-			 ->AddTab(FSkillAssetEditor::GraphCanvasId, ETabState::OpenedTab)
+			->AddTab(FSkillAssetEditor::GraphCanvasId, ETabState::ClosedTab)
 			 
 			)
 			->Split
@@ -94,7 +94,7 @@ void SkillAssetEditorAPPMode::RegisterTabFactories(TSharedPtr<FTabManager> InTab
 
 	// Graph tab
 	Editor->DocumentManager->RegisterDocumentFactory(MakeShareable(new SkillAssetBPGraphTabSummoner(Editor)));
-
+	
 	FApplicationMode::RegisterTabFactories(InTabManager);
 }
 

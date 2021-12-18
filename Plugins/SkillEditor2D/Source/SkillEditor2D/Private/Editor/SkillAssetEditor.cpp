@@ -7,6 +7,7 @@
 #include "FSkillEditorcommands.h"
 #include "SceneViewport.h"
 #include "SKAUEdGraphSchema.h"
+#include "SkillAsset.h"
 #include "SkillAssetEditorAPPMode.h"
 #include "SkillEditor2D.h"
 #include "SViewport.h"
@@ -110,7 +111,8 @@ void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
 
 FSkillAssetEditor::~FSkillAssetEditor()
 {
-	;
+	DocumentManager.Reset();
+	//EventGraph.Reset();
 }
 
 FName FSkillAssetEditor::GetToolkitFName() const
@@ -213,20 +215,24 @@ void FSkillAssetEditor::RegisterToolbarTab(const TSharedRef<FTabManager>& InTabM
 void FSkillAssetEditor::InvokeSkillAssetEventBPGraphTab()
 {
 	bool bNewGraph = false;
-	if (!EventGraph.IsValid())
+	if (SkillAsset->AssetGraph==nullptr)
 	{
 		bNewGraph = true;
-		EventGraph = MakeShareable(FBlueprintEditorUtils::CreateNewGraph(
+		SkillAsset->AssetGraph = FBlueprintEditorUtils::CreateNewGraph(
 			(UObject*)GetSkillAsset(), 
 			GraphCanvasId,
 			USKAUEdGraph::StaticClass(), 
-			USKAUEdGraphSchema::StaticClass()));
+			USKAUEdGraphSchema::StaticClass());
 		
 	}
 
-	TSharedRef<FTabPayload_UObject> Payload = FTabPayload_UObject::Make(EventGraph.Get());
+	TSharedRef<FTabPayload_UObject> Payload = FTabPayload_UObject::Make(SkillAsset->AssetGraph);
 	TSharedPtr<SDockTab> DocumentTab = DocumentManager->OpenDocument(Payload, bNewGraph ? FDocumentTracker::OpenNewDocument :
 		FDocumentTracker::RestorePreviousDocument);
+	TabManager->InsertNewDocumentTab(GraphCanvasId, FTabManager::ESearchPreference::Type::RequireClosedTab ,DocumentTab.ToSharedRef());
+	TabManager->DrawAttention(DocumentTab.ToSharedRef());
+	
+	
 }
 
 void FSkillAssetEditor::FillToolbar(FToolBarBuilder& ToolBarbuilder)
@@ -266,7 +272,7 @@ void FSkillAssetEditor::FillsubMenu(FMenuBuilder& Menubuilder)
 }
 void FSkillAssetEditor::TextFuncOncliked()
 {
-	UE_LOG(LogTemp,Warning,L"Text Func clicked!")
+	InvokeSkillAssetEventBPGraphTab();
 }
 
 

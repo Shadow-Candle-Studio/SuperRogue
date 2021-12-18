@@ -1,9 +1,12 @@
 ﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "SkillAssetBPGraphTabSummoner.h"
 
-#include "SkillAssetEditor.h"
+#include "Editor/BPGraph/SkillAssetBPGraphTabSummoner.h"
+
+#include "Editor/SkillAssetEditor.h"
+
+
 #define LOCTEXT_NAMESPACE "SkillAssetBPGraphTabSummoner"
 
 SkillAssetBPGraphTabSummoner::SkillAssetBPGraphTabSummoner(
@@ -12,6 +15,7 @@ FDocumentTabFactoryForObjects<USKAUEdGraph>(
 	FSkillAssetEditor::GraphCanvasId,InEditorPtr),
 EditorPtr(InEditorPtr)
 {
+	//InEditorPtr.Get()->GetSkillAsset()
 	TabLabel=LOCTEXT("Events we added in this asset", "Events");
 	TabIcon=FSlateIcon(FEditorStyle::GetStyleSetName(),
 		"GraphEditor.EventGraph_16x");
@@ -84,11 +88,11 @@ TSharedRef<SWidget> SkillAssetBPGraphTabSummoner::CreateTabBodyForObject(const F
 		.GraphEvents(InEvents);
 }
 
-TSharedRef<SWidget> SkillAssetBPGraphTabSummoner::CreateTabBody(const FWorkflowTabSpawnInfo& Info) const
-{
-	UE_LOG(LogTemp,Warning,L"CreateTabBodyXXXXXXXXXXXXX")
-	return FDocumentTabFactoryForObjects<USKAUEdGraph>::CreateTabBody(Info);
-}
+// TSharedRef<SWidget> SkillAssetBPGraphTabSummoner::CreateTabBody(const FWorkflowTabSpawnInfo& Info) const
+// {
+// 	//UE_LOG(LogTemp,Warning,L"CreateTabBodyXXXXXXXXXXXXX")
+// 	//return FDocumentTabFactoryForObjects<USKAUEdGraph>::CreateTabBody(Info);
+// }
 
 FText SkillAssetBPGraphTabSummoner::GetTabToolTipText(const FWorkflowTabSpawnInfo& Info) const
 {
