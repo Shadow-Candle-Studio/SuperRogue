@@ -7,7 +7,12 @@
 #include "SBlueprintEditorToolbar.h"
 
 FPixel2DAnimBlueprintEditorMode::FPixel2DAnimBlueprintEditorMode(const TSharedRef<FPixel2DAnimBlueprintEditor>& InAnimationBlueprintEditor)
-	: FBlueprintEditorApplicationMode(InAnimationBlueprintEditor, FPixel2DAnimBlueprintEditorModes::AnimationBlueprintEditorMode, FPixel2DAnimBlueprintEditorModes::GetLocalizedMode, false, false)
+	: FBlueprintEditorApplicationMode(
+		InAnimationBlueprintEditor,
+		FPixel2DAnimBlueprintEditorModes::AnimationBlueprintEditorMode,
+		FPixel2DAnimBlueprintEditorModes::GetLocalizedMode,
+		false,
+		false)
 {
 	AnimBlueprintPtr = CastChecked<UPixel2DAnimBlueprint>(InAnimationBlueprintEditor->GetBlueprintObj());
 

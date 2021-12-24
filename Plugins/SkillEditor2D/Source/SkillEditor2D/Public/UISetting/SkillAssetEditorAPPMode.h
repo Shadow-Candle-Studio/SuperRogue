@@ -4,12 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "ApplicationMode.h"
+#include "BlueprintEditorModes.h"
 #include "SkillAssetEditor.h"
 
 /**
  * 
  */
-class SKILLEDITOR2D_API SkillAssetEditorAPPMode : public FApplicationMode
+class SKILLEDITOR2D_API SkillAssetEditorAPPMode : public FBlueprintEditorApplicationMode
 {
 public:
 	
@@ -24,7 +25,20 @@ public:
 	
 	~SkillAssetEditorAPPMode();
 	static const FName SKAModeID;
+	static FText GetLocalizedMode(const FName InMode)
+	{
+		static TMap< FName, FText > LocModes;
 
+		if (LocModes.Num() == 0)
+		{
+			LocModes.Add(SKAModeID, NSLOCTEXT("SkillAssetBlueprintEditorModes", "SkillAssetBlueprintEditorMode", "SkillAsset Blueprint"));
+		}
+
+		check(InMode != NAME_None);
+		const FText* OutDesc = LocModes.Find(InMode);
+		check(OutDesc);
+		return *OutDesc;
+	}
 protected:
 	TWeakPtr<FSkillAssetEditor> AssetEditor;
 	FWorkflowAllowedTabSet SkillAssetTabFactories;

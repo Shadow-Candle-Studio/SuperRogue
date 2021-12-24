@@ -3,6 +3,7 @@
 
 #include "SkillAssetEditorAPPMode.h"
 
+#include "SBlueprintEditorToolbar.h"
 #include "SkillAssetBPGraphTabSummoner.h"
 #include "SkillAssetEditorSequenceTabSummoner.h"
 #include "SkillAssetPropertyTabSummoner.h"
@@ -12,8 +13,7 @@ const FName SkillAssetEditorAPPMode::SKAModeID(TEXT("SKAMode"));
 
 SkillAssetEditorAPPMode::SkillAssetEditorAPPMode
 (TSharedPtr<class FSkillAssetEditor> InEditor, FName InModeName):
-FApplicationMode(InModeName
-)
+FBlueprintEditorApplicationMode(InEditor, SkillAssetEditorAPPMode::SKAModeID, SkillAssetEditorAPPMode::GetLocalizedMode, false, false)
 {
 	AssetEditor=InEditor;
 	SkillAssetTabFactories.RegisterFactory
@@ -76,8 +76,20 @@ FApplicationMode(InModeName
 			)
 		)
 	);
- 
-
+	ToolbarExtender = MakeShareable(new FExtender);
+	if(InEditor.IsValid())
+	{
+		if (UToolMenu* Toolbar = InEditor->RegisterModeToolbarIfUnregistered(GetModeName()))
+		{
+			if(InEditor->GetToolbarBuilder().IsValid())
+			{
+				InEditor->GetToolbarBuilder()->AddCompileToolbar(Toolbar);
+				InEditor->GetToolbarBuilder()->AddScriptingToolbar(Toolbar);
+			}
+			
+		}
+	}
+	
 	
 }
 
@@ -89,13 +101,19 @@ void SkillAssetEditorAPPMode::RegisterTabFactories(TSharedPtr<FTabManager> InTab
 	
 	Editor->RegisterToolbarTab(InTabManager.ToSharedRef());
 
+
+
+
+	Editor->PushTabFactories(CoreTabFactories);
+	Editor->PushTabFactories(BlueprintEditorTabFactories);
 	//Register other factories
 	Editor->PushTabFactories(SkillAssetTabFactories);
 
 	// Graph tab
 	Editor->DocumentManager->RegisterDocumentFactory(MakeShareable(new SkillAssetBPGraphTabSummoner(Editor)));
-	
-	FApplicationMode::RegisterTabFactories(InTabManager);
+
+	FBlueprintEditorApplicationMode::RegisterTabFactories(InTabManager);
+	//FApplicationMode::RegisterTabFactories(InTabManager);
 }
 
 void SkillAssetEditorAPPMode::AddTabFactory(FCreateWorkflowTabFactory FactoryCreator)
