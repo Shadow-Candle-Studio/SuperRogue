@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "BlueprintEditor.h"
 #include "SKAUEdGraph.h"
 #include "SkillEditorPreviewTabBody.h"
 #include "WorkflowCentricApplication.h"
@@ -12,7 +13,7 @@
 class USkillAsset;
 
 
-class SKILLEDITOR2D_API ISkillAssetEditor : public FWorkflowCentricApplication
+class SKILLEDITOR2D_API ISkillAssetEditor : public FBlueprintEditor
 {
 public:
 	virtual USkillAsset* GetSkillAsset()=0;
@@ -20,9 +21,7 @@ public:
 };
 
 class SKILLEDITOR2D_API FSkillAssetEditor:
-public ISkillAssetEditor,
-public FEditorUndoClient,
-public FNotifyHook
+public ISkillAssetEditor
 {
 public:
 	//register all tab spawner factory to produce tab when opened

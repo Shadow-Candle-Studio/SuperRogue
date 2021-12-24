@@ -6,12 +6,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa3c9db2-0144-44ee-bf21-7a08a4670a13" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/USKAGeneratedClassBP.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/USKAInstance.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/USKAGeneratedClassBP.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/USKAInstance.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SuperRogue/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SuperRogue/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/NewSkillAsset.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/NewSkillAsset.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Public/Maps/Demo01.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Maps/Demo01.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Public/Maps/Demo01_BuiltData.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Maps/Demo01_BuiltData.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/Editor/SkillAssetEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/Editor/SkillAssetEditor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAsset/SKABFactory.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAsset/SKABFactory.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAsset/SKAFactory.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAsset/SKAFactory.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAsset/SkillAssetAction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAsset/SkillAssetAction.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillEditor2D.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillEditor2D.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillEditor2D.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillEditor2D.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/Editor/SkillAssetEditor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/Editor/SkillAssetEditor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillAsset/SKAFactory.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillAsset/SKAFactory.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/SkillAsset.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/SkillAsset.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/SkillAsset.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/SkillAsset.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -449,7 +459,7 @@
       <workItem from="1639704241061" duration="3106000" />
       <workItem from="1639799009117" duration="23020000" />
       <workItem from="1639843138572" duration="405000" />
-      <workItem from="1640316227849" duration="1757000" />
+      <workItem from="1640316227849" duration="7150000" />
     </task>
     <servers />
   </component>

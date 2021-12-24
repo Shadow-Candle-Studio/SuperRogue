@@ -195,20 +195,21 @@ void FSkillAssetEditor::RegisterToolbarTab(const TSharedRef<FTabManager>& InTabM
 void FSkillAssetEditor::InvokeSkillAssetEventBPGraphTab()
 {
 	bool bNewGraph = false;
-	if (SkillAsset->AssetGraph==nullptr)
-	{
-		bNewGraph = true;
-		SkillAsset->AssetGraph = FBlueprintEditorUtils::CreateNewGraph(
-			(UObject*)GetSkillAsset(), 
-			GraphCanvasId,
-			USKAUEdGraph::StaticClass(), 
-			USKAUEdGraphSchema::StaticClass());
-		
-	}
-
-	TSharedRef<FTabPayload_UObject> Payload = FTabPayload_UObject::Make(SkillAsset->AssetGraph);
-	TSharedPtr<SDockTab> DocumentTab = DocumentManager->OpenDocument(Payload, bNewGraph ? FDocumentTracker::OpenNewDocument :
-		FDocumentTracker::RestorePreviousDocument);
+	
+	// if (SkillAsset->AssetGraph==nullptr)
+	// {
+	// 	bNewGraph = true;
+	// 	SkillAsset->AssetGraph = FBlueprintEditorUtils::CreateNewGraph(
+	// 		(UObject*)GetSkillAsset(), 
+	// 		GraphCanvasId,
+	// 		USKAUEdGraph::StaticClass(), 
+	// 		USKAUEdGraphSchema::StaticClass());
+	// 	
+	// }
+	//
+	// TSharedRef<FTabPayload_UObject> Payload = FTabPayload_UObject::Make(SkillAsset->AssetGraph);
+	// TSharedPtr<SDockTab> DocumentTab = DocumentManager->OpenDocument(Payload, bNewGraph ? FDocumentTracker::OpenNewDocument :
+	// 	FDocumentTracker::RestorePreviousDocument);
 	
 	
 	

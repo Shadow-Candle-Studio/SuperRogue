@@ -83,9 +83,10 @@ void SkillAssetAction::GetActions(const TArray<UObject*>& InObjects, FMenuBuilde
 					FExecuteAction::CreateLambda([=]{
 						for (auto& SkillAsset : SkillAssets)
 						{
-							if (IsValid(SkillAsset) && !SkillAsset->text.IsEmpty())
+							//&& !SkillAsset->text.IsEmpty()
+							if (IsValid(SkillAsset) )
 							{
-								SkillAsset->text = FText::FromString("");
+								//SkillAsset->text = FText::FromString("");
 								SkillAsset->PostEditChange();
 								SkillAsset->MarkPackageDirty();
 							}
@@ -94,7 +95,8 @@ void SkillAssetAction::GetActions(const TArray<UObject*>& InObjects, FMenuBuilde
 					FCanExecuteAction::CreateLambda([=] {
 						for (auto& SkillAsset : SkillAssets)
 						{
-							if (IsValid(SkillAsset) && !SkillAsset->text.IsEmpty())
+							//&& !SkillAsset->text.IsEmpty()
+							if (IsValid(SkillAsset) )
 							{
 								return true;
 							}

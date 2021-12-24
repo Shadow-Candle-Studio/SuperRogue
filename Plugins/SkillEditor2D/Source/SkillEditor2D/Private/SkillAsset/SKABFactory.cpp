@@ -29,7 +29,7 @@ UObject* USKABFactory::FactoryCreateBinary(UClass* InClass, UObject* InParent, F
 	if(FFileHelper::LoadFileToString(TextString,*CurrentFilename))
 	{
 		SkillAsset=NewObject<USkillAsset>(InParent, InClass, InName, Flags);
-		SkillAsset->text=FText::FromString(TextString);
+		///SkillAsset->text=FText::FromString(TextString);
 	}
 	
 	return SkillAsset;
@@ -47,7 +47,7 @@ UObject* USKABFactory::FactoryCreateFile(UClass* InClass, UObject* InParent, FNa
 		SkillAsset=NewObject<USkillAsset>
 		(InParent, InClass,
 			InName, Flags);
-		SkillAsset->text=FText::FromString(TextString);
+		//SkillAsset->text=FText::FromString(TextString);
 	}
 	bOutOperationCanceled=false;
 	return SkillAsset;
