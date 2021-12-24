@@ -158,6 +158,37 @@ void FSkillEditor2DModule::PluginButtonClicked()
 	FGlobalTabmanager::Get()->TryInvokeTab(SkillEditor2DTabName);
 }
 
+void FSkillEditor2DModule::onNewBlueprintCreated(UBlueprint* InSkillAsset)
+{
+	;
+}
+
+bool FSkillEditor2DModule::CanCompile(const UBlueprint* Blueprint)
+{
+	return Cast<USkillAsset>(Blueprint)!=nullptr;
+}
+
+void FSkillEditor2DModule::PreCompile(UBlueprint* Blueprint, const FKismetCompilerOptions& CompileOptions)
+{
+	IBlueprintCompiler::PreCompile(Blueprint, CompileOptions);
+}
+
+void FSkillEditor2DModule::Compile(UBlueprint* Blueprint, const FKismetCompilerOptions& CompileOptions,
+	FCompilerResultsLog& Results)
+{
+	if (USkillAsset* SKA = CastChecked<USkillAsset>(Blueprint))
+	{
+		// FPixel2DAnimBlueprintCompilerContext Compiler(SpriteAnimBlueprint, Results, CompileOptions);
+		// Compiler.Compile();
+		// check(Compiler.NewClass);
+	}
+}
+
+void FSkillEditor2DModule::PostCompile(UBlueprint* Blueprint, const FKismetCompilerOptions& CompileOptions)
+{
+	IBlueprintCompiler::PostCompile(Blueprint, CompileOptions);
+}
+
 
 // TSharedRef<ISkillAssetEditor> FSkillEditor2DModule::CreateCustomAssetEditor(const EToolkitMode::Type Mode,
 //                                                                             const TSharedPtr<IToolkitHost>& InitToolkitHost, USkillAsset* CustomAsset)

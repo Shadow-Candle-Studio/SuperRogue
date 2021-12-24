@@ -86,7 +86,8 @@ public class SkillEditor2D : ModuleRules
 				"SkillEditorRuntime",
 				"AnimGraph",
 				"GraphEditor",
-				"BlueprintGraph"
+				"BlueprintGraph",
+				"KismetCompiler"
 				//"SkillEditorRenderer"
 			}
 			);
