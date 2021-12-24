@@ -5,6 +5,7 @@
 
 #include "BlueprintEditorUtils.h"
 #include "FSkillEditorcommands.h"
+#include "SBlueprintEditorToolbar.h"
 #include "SceneViewport.h"
 #include "SKAUEdGraphSchema.h"
 #include "SkillAsset.h"
@@ -30,6 +31,16 @@ const FName FSkillAssetEditor::SequencerAreaTabID
 (TEXT("SkillAssetEditor_SequencerArea"));
 
 
+UBlueprint* FSkillAssetEditor::GetBlueprintObj() const
+{
+	const TArray<UObject*>& EditingObjs = GetEditingObjects();
+	for (int32 i = 0; i < EditingObjs.Num(); ++i)
+	{
+		if (EditingObjs[i]->IsA<USkillAsset>()) { return (UBlueprint*)EditingObjs[i]; }
+	}
+	return nullptr;
+}
+
 void FSkillAssetEditor::RegisterTabSpawners
 (const TSharedRef<FTabManager>& TabManager)
 {
@@ -50,39 +61,85 @@ void FSkillAssetEditor::UnregisterTabSpawners
 void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
 	const TSharedPtr<IToolkitHost>& InitToolkitHost, USkillAsset* InSkillAsset)
 {
-	
+	if (!Toolbar.IsValid())
+	{
+		Toolbar = MakeShareable(new FBlueprintEditorToolbar(SharedThis(this)));
+	}
+
+	// Build up a list of objects being edited in this asset editor
+	TArray<UObject*> ObjectsBeingEdited;
+	ObjectsBeingEdited.Add(InSkillAsset);
+
+	CreateDefaultCommands();
+
+	// Initialize the asset editor and spawn tabs
+	const TSharedRef<FTabManager::FLayout> DummyLayout = FTabManager::NewLayout("NullLayout")->AddArea(FTabManager::NewPrimaryArea());
 	const bool bCreateDefaultStandaloneMenu = true;
 	const bool bCreateDefaultToolbar = true;
-	const TSharedRef<FTabManager::FLayout> DummyLayout = FTabManager::NewLayout("NullLayout")->AddArea(FTabManager::NewPrimaryArea());
-	// Set this InCustomAsset as our editing asset
-	SetSkillAsset(InSkillAsset);
-	// Initialize our custom asset editor
-	FAssetEditorToolkit::InitAssetEditor(
-		Mode,
+	InitAssetEditor(Mode,
 		InitToolkitHost,
 		SkillAssetEditorAppIdentifier,
 		DummyLayout,
 		bCreateDefaultStandaloneMenu,
 		bCreateDefaultToolbar,
-		(UObject*)InSkillAsset);
+		ObjectsBeingEdited);
 	DocumentManager=MakeShareable(new FDocumentTracker);
 	DocumentManager->Initialize(SharedThis(this));
 	DocumentManager->SetTabManager(TabManager.ToSharedRef());
+
 	
-	SKAEditorModeInuse=MakeShareable
-		(new SkillAssetEditorAPPMode
-			(SharedThis(this),
-				SkillAssetEditorAPPMode::SKAModeID));
-	//set the mode of this application and tabfactories
-	AddApplicationMode(SkillAssetEditorAPPMode::SKAModeID,SKAEditorModeInuse.ToSharedRef());
+	TArray<UBlueprint*> AnimBlueprints;
+	AnimBlueprints.Add(InSkillAsset);
+
+	CommonInitialization(AnimBlueprints, false);
+
+	AddApplicationMode(
+		SkillAssetEditorAPPMode::SKAModeID,
+		MakeShareable(new SkillAssetEditorAPPMode(SharedThis(this),SkillAssetEditorAPPMode::SKAModeID)));
+
+	// ExtendMenu();
+	// ExtendToolbar();
+	RegenerateMenusAndToolbars();
+
+	// Activate the initial mode (which will populate with a real layout)
 	SetCurrentMode(SkillAssetEditorAPPMode::SKAModeID);
 
-	
+	// Post-layout initialization
+	PostLayoutBlueprintEditorInitialization();
 
-	SkillAssetExtcommands=MakeShareable(new FUICommandList);
-	SkillAssetExtcommands->MapAction(FSkillEditorcommands::Get().Textfunc,
-		FExecuteAction::CreateRaw(this,&FSkillAssetEditor::TextFuncOncliked),
-		FCanExecuteAction());
+	
+	// const bool bCreateDefaultStandaloneMenu = true;
+	// const bool bCreateDefaultToolbar = true;
+	// const TSharedRef<FTabManager::FLayout> DummyLayout = FTabManager::NewLayout("NullLayout")->AddArea(FTabManager::NewPrimaryArea());
+	// // Set this InCustomAsset as our editing asset
+	// SetSkillAsset(InSkillAsset);
+	// // Initialize our custom asset editor
+	// FAssetEditorToolkit::InitAssetEditor(
+	// 	Mode,
+	// 	InitToolkitHost,
+	// 	SkillAssetEditorAppIdentifier,
+	// 	DummyLayout,
+	// 	bCreateDefaultStandaloneMenu,
+	// 	bCreateDefaultToolbar,
+	// 	(UObject*)InSkillAsset);
+	// DocumentManager=MakeShareable(new FDocumentTracker);
+	// DocumentManager->Initialize(SharedThis(this));
+	// DocumentManager->SetTabManager(TabManager.ToSharedRef());
+	//
+	// SKAEditorModeInuse=MakeShareable
+	// 	(new SkillAssetEditorAPPMode
+	// 		(SharedThis(this),
+	// 			SkillAssetEditorAPPMode::SKAModeID));
+	// //set the mode of this application and tabfactories
+	// AddApplicationMode(SkillAssetEditorAPPMode::SKAModeID,SKAEditorModeInuse.ToSharedRef());
+	// SetCurrentMode(SkillAssetEditorAPPMode::SKAModeID);
+	//
+	//
+	//
+	// SkillAssetExtcommands=MakeShareable(new FUICommandList);
+	// SkillAssetExtcommands->MapAction(FSkillEditorcommands::Get().Textfunc,
+	// 	FExecuteAction::CreateRaw(this,&FSkillAssetEditor::TextFuncOncliked),
+	// 	FCanExecuteAction());
 
 	ExtendMenu();
 	ExtendToolBar();
@@ -141,6 +198,12 @@ void FSkillAssetEditor::SetSkillAsset(USkillAsset* InSkillAsset)
 {
 	SkillAsset=InSkillAsset;
 }
+
+void FSkillAssetEditor::OnOpenRelatedAsset()
+{
+	ISkillAssetEditor::OnOpenRelatedAsset();
+}
+
 void FSkillAssetEditor::ExtendMenu()
 {
 	
@@ -259,7 +322,12 @@ void FSkillAssetEditor::TextFuncOncliked()
 
 USkillAsset* FSkillAssetEditor::GetSkillAsset()
 {
-	return SkillAsset;
+	const TArray<UObject*>& EditingObjs = GetEditingObjects();
+	for (int32 i = 0; i < EditingObjs.Num(); ++i)
+	{
+		if (EditingObjs[i]->IsA<USkillAsset>()) { return (USkillAsset*)EditingObjs[i]; }
+	}
+	return nullptr;
 }
 
 

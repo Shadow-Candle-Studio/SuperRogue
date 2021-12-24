@@ -24,6 +24,7 @@ class SKILLEDITOR2D_API FSkillAssetEditor:
 public ISkillAssetEditor
 {
 public:
+	virtual UBlueprint* GetBlueprintObj() const override;
 	//register all tab spawner factory to produce tab when opened
 	virtual void RegisterTabSpawners(const TSharedRef<FTabManager>& TabManager) override;
 	//unregister all the tab spawner factory to stop spawning
@@ -48,7 +49,7 @@ public:
 	virtual void SetSkillAsset(USkillAsset* InSkillAsset) override;
 	TSharedPtr<class FSceneViewport> Viewport;
 	TSharedPtr<class SViewport> ViewportWidget;
-	
+	virtual void OnOpenRelatedAsset() override;
 	
 	
 	static const FName ToolkitFName;
