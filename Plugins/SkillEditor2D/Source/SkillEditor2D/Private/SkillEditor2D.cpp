@@ -122,10 +122,7 @@ void FSkillEditor2DModule::ShutdownModule()
 
 	MenuExtensibilityManager.Reset();
 	ToolBarExtensibilityManager.Reset();
-	// RealRenderingClient.Reset();
-	//IAssetTools& AssetTools=FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools").Get();
-	// if(AssetToolsModule!=nullptr)
-	// AssetToolsModule->UnregisterAssetTypeActions(SkillAsset2DAction.ToSharedRef());
+	
 	
 	
 
@@ -162,19 +159,19 @@ void FSkillEditor2DModule::PluginButtonClicked()
 }
 
 
-TSharedRef<ISkillAssetEditor> FSkillEditor2DModule::CreateCustomAssetEditor(const EToolkitMode::Type Mode,
-                                                                            const TSharedPtr<IToolkitHost>& InitToolkitHost, USkillAsset* CustomAsset)
-{
-	TSharedRef<FSkillAssetEditor>NewSkillAssetEditor(new FSkillAssetEditor());
-	NewSkillAssetEditor->InitSkillAssetEditor(Mode,InitToolkitHost,CustomAsset);
-	
-	// NewSkillAssetEditor.Get().RenderingClient=this->RealRenderingClient.Get();
-	
-
-	
-	return NewSkillAssetEditor;
-	
-}
+// TSharedRef<ISkillAssetEditor> FSkillEditor2DModule::CreateCustomAssetEditor(const EToolkitMode::Type Mode,
+//                                                                             const TSharedPtr<IToolkitHost>& InitToolkitHost, USkillAsset* CustomAsset)
+// {
+// 	TSharedRef<FSkillAssetEditor>NewSkillAssetEditor(new FSkillAssetEditor());
+// 	NewSkillAssetEditor->InitSkillAssetEditor(Mode,InitToolkitHost,CustomAsset);
+// 	
+// 	
+// 	
+//
+// 	
+// 	return NewSkillAssetEditor;
+// 	
+// }
 
 void FSkillEditor2DModule::RegisterMenus()
 {

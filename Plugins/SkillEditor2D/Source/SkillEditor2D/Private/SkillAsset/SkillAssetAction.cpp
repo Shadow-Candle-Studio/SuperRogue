@@ -4,6 +4,7 @@
 #include "SkillAssetAction.h"
 
 #include "SKAFactory.h"
+#include "SkillAssetEditor.h"
 #include "SkillEditor2D.h"
 #define LOCTEXT_NAMESPACE "SkillAssetActions"
 SkillAssetAction::SkillAssetAction(EAssetTypeCategories::Type Cat): MyCat(Cat)
@@ -40,11 +41,22 @@ void SkillAssetAction::OpenAssetEditor(const TArray<UObject*>& InObjects, TShare
 	
 	for (auto ObjIt = InObjects.CreateConstIterator(); ObjIt; ++ObjIt)
 	{
-		auto MySkillAsset = Cast<USkillAsset>(*ObjIt);
-		if (MySkillAsset != NULL)
+		if (USkillAsset* SkA = Cast<USkillAsset>(*ObjIt))
 		{
-			ISkillAssetEditorModule_Base* CustomAssetEditorModule = &FModuleManager::LoadModuleChecked<ISkillAssetEditorModule_Base>("SkillEditor2D");
-			CustomAssetEditorModule->CreateCustomAssetEditor(Mode, EditWithinLevelEditor, MySkillAsset);
+			const bool bBringToFrontIfOpen = true;
+			if (IAssetEditorInstance* EditorInstance = GEditor->GetEditorSubsystem<UAssetEditorSubsystem>()->FindEditorForAsset(SkA, bBringToFrontIfOpen))
+			{
+				EditorInstance->FocusWindow(SkA);
+			}
+			else
+			{
+				TSharedRef<FSkillAssetEditor > NewSkillAssetEditorEditor(new FSkillAssetEditor());
+				NewSkillAssetEditorEditor->InitSkillAssetEditor(Mode, EditWithinLevelEditor, SkA);
+			}
+		}
+		else
+		{
+			FMessageDialog::Open(EAppMsgType::Ok, LOCTEXT("FailedToLoadCorruptAnimBlueprint", "The Anim Blueprint could not be loaded because it is corrupt."));
 		}
 	}
 }

@@ -33,25 +33,9 @@ const FName FSkillAssetEditor::SequencerAreaTabID
 void FSkillAssetEditor::RegisterTabSpawners
 (const TSharedRef<FTabManager>& TabManager)
 {
+	//add new workspace menu category
 	WorkspaceMenuCategory=TabManager->AddLocalWorkspaceMenuCategory
 	(LOCTEXT("WorkspaceMenu_SkillAssetEditor","Skill Asset Editor"));
-
-
-	
-	
-	
-
-	
-	//register toolbar
-	// const auto& LocalCategories = TabManager->GetLocalWorkspaceMenuRoot()->GetChildItems();
-	// TSharedRef<FWorkspaceItem> ToolbarSpawnerCategory = LocalCategories.Num() > 0 ? LocalCategories[0] : TabManager->GetLocalWorkspaceMenuRoot();
-	//
-	// TabManager->RegisterTabSpawner( GetToolbarTabId(), FOnSpawnTab::CreateSP(this, &FAssetEditorToolkit::SpawnTab_Toolbar) )
-	// 	.SetDisplayName( LOCTEXT("ToolbarTab", "Toolbar") )
-	// 	.SetGroup( ToolbarSpawnerCategory )
-	// 	.SetIcon( FSlateIcon(FEditorStyle::GetStyleSetName(), "Toolbar.Icon") );
-
-	
 }
 
 void FSkillAssetEditor::UnregisterTabSpawners
@@ -60,11 +44,7 @@ void FSkillAssetEditor::UnregisterTabSpawners
 	// Unregister the tab manager from the asset editor toolkit
 	FAssetEditorToolkit::UnregisterTabSpawners(TabManager);
 
-	// // Unregister our custom tab from the tab manager, making sure it is cleaned up when the editor gets destroyed
-	// TabManager->UnregisterTabSpawner(PreviewTabId);
-	// TabManager->UnregisterTabSpawner(GraphCanvasId);
-	// TabManager->UnregisterTabSpawner(PropertiesPanelTabID);
-	// TabManager->UnregisterTabSpawner(SequencerAreaTabID);
+	
 }
 
 void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
@@ -229,8 +209,7 @@ void FSkillAssetEditor::InvokeSkillAssetEventBPGraphTab()
 	TSharedRef<FTabPayload_UObject> Payload = FTabPayload_UObject::Make(SkillAsset->AssetGraph);
 	TSharedPtr<SDockTab> DocumentTab = DocumentManager->OpenDocument(Payload, bNewGraph ? FDocumentTracker::OpenNewDocument :
 		FDocumentTracker::RestorePreviousDocument);
-	TabManager->InsertNewDocumentTab(GraphCanvasId, FTabManager::ESearchPreference::Type::RequireClosedTab ,DocumentTab.ToSharedRef());
-	TabManager->DrawAttention(DocumentTab.ToSharedRef());
+	
 	
 	
 }
