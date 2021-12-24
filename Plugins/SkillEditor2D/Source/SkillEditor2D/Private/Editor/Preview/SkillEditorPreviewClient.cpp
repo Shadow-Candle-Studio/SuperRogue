@@ -11,6 +11,7 @@ void SkillEditorPreviewClient::Draw(FViewport* Viewport, FCanvas* Canvas)
 
 void SkillEditorPreviewClient::Tick(float DeltaSeconds)
 {
+	FEditorViewportClient::Tick(DeltaSeconds);
 	if(DeltaSeconds>0.f)
 	{
 		PreviewScene->GetWorld()->Tick(LEVELTICK_All,DeltaSeconds);

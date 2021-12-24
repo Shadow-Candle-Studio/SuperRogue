@@ -10,7 +10,7 @@
  * 
  */
 UCLASS(MinimalAPI)
-class  USKAUEdGraphSchema : public UEdGraphSchema
+class  USKAUEdGraphSchema : public UEdGraphSchema_K2
 {
 	GENERATED_BODY()
 public:
