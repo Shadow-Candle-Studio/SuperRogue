@@ -3,6 +3,7 @@
 
 #include "SkillAssetEditorAPPMode.h"
 
+#include "BlueprintEditorTabs.h"
 #include "SBlueprintEditorToolbar.h"
 #include "SkillAssetBPGraphTabSummoner.h"
 #include "SkillAssetEditorSequenceTabSummoner.h"
@@ -16,8 +17,8 @@ SkillAssetEditorAPPMode::SkillAssetEditorAPPMode
 FBlueprintEditorApplicationMode(InEditor, SkillAssetEditorAPPMode::SKAModeID, SkillAssetEditorAPPMode::GetLocalizedMode, false, false)
 {
 	AssetEditor=InEditor;
-	SkillAssetTabFactories.RegisterFactory
-	(MakeShareable(new SkillAssetPropertyTabSummoner(InEditor)));
+	// SkillAssetTabFactories.RegisterFactory
+	// (MakeShareable(new SkillAssetPropertyTabSummoner(InEditor)));
 	SkillAssetTabFactories.RegisterFactory
 	(MakeShareable(new SkillEditorPreviewSummoner(InEditor)));
 	// SkillAssetTabFactories.RegisterFactory
@@ -27,67 +28,104 @@ FBlueprintEditorApplicationMode(InEditor, SkillAssetEditorAPPMode::SKAModeID, Sk
 	
 	check(AssetEditor.IsValid());
 	TabLayout=FTabManager::NewLayout("SkillAssetEditor_Layout_v1")
-	->AddArea
-	(
-		// Create a vertical area and spawn the toolbar
-		FTabManager::NewPrimaryArea()->SetOrientation(Orient_Vertical)
-		->Split
+			->AddArea
 		(
-			
-			FTabManager::NewStack()
-			->SetSizeCoefficient(0.1f)
-			->SetHideTabWell(true)
-			->AddTab(AssetEditor.Pin()->GetToolbarTabId(), ETabState::OpenedTab)
-		)
-		->Split
-		(
-			// Split the tab and pass the tab id to the tab spawner
-			FTabManager::NewSplitter()->SetOrientation(Orient_Horizontal)
+			FTabManager::NewPrimaryArea()
+			->SetOrientation(Orient_Vertical)
 			->Split
 			(
-			FTabManager::NewSplitter()->SetOrientation(Orient_Vertical)
-			->Split
-			(
-			FTabManager::NewStack()
-			 ->AddTab(FSkillAssetEditor::PreviewTabId, ETabState::OpenedTab)
+				// Top toolbar
+				FTabManager::NewStack()
+				->SetSizeCoefficient(0.186721f)
+				->SetHideTabWell(true)
+				->AddTab(InEditor->GetToolbarTabId(), ETabState::OpenedTab)
 			)
 			->Split
 			(
-		   FTabManager::NewStack()
-			->AddTab(FSkillAssetEditor::PropertiesPanelTabID, ETabState::OpenedTab)
+				// Main application area
+				FTabManager::NewSplitter()
+				->SetOrientation(Orient_Horizontal)
+				->Split
+				(
+					// Left side
+					FTabManager::NewSplitter()
+					->SetSizeCoefficient(0.25f)
+					->SetOrientation(Orient_Vertical)
+					->Split
+					(
+						//	Left bottom - preview settings
+						FTabManager::NewStack()
+						->SetSizeCoefficient(0.5f)
+						->AddTab(FSkillAssetEditor::PreviewTabId, ETabState::OpenedTab)
+					)
+					->Split
+					(
+					//	Left bottom - preview settings
+					FTabManager::NewStack()
+					->SetSizeCoefficient(0.5f)
+					->AddTab(FBlueprintEditorTabs::MyBlueprintID, ETabState::OpenedTab)
+					)
+				)
+				->Split
+				(
+					// Middle 
+					FTabManager::NewSplitter()
+					->SetOrientation(Orient_Vertical)
+					->SetSizeCoefficient(0.55f)
+					->Split
+					(
+						// Middle top - document edit area
+						FTabManager::NewStack()
+						->SetSizeCoefficient(0.8f)
+						->AddTab("Document", ETabState::ClosedTab)
+					)
+					->Split
+					(
+						// Middle bottom - compiler results & find
+						FTabManager::NewStack()
+						->SetSizeCoefficient(0.2f)
+						->AddTab(FBlueprintEditorTabs::CompilerResultsID, ETabState::ClosedTab)
+						->AddTab(FBlueprintEditorTabs::FindResultsID, ETabState::ClosedTab)
+					)
+				)
+				->Split
+				(
+					// Right side
+					FTabManager::NewSplitter()
+					->SetSizeCoefficient(0.2f)
+					->SetOrientation(Orient_Vertical)
+					->Split
+					(
+						// Right top - selection details panel & overrides
+						FTabManager::NewStack()
+						->SetHideTabWell(false)
+						->SetSizeCoefficient(0.5f)
+						->AddTab(FBlueprintEditorTabs::DetailsID, ETabState::OpenedTab)
+						->SetForegroundTab(FBlueprintEditorTabs::DetailsID)
+					)
+					->Split
+					(
+						// Right bottom - Asset browser
+						FTabManager::NewStack()
+						->SetHideTabWell(false)
+						->SetSizeCoefficient(0.5f)
+						->AddTab(FSkillAssetEditor::SequencerAreaTabID, ETabState::OpenedTab)
+						->SetForegroundTab(FSkillAssetEditor::SequencerAreaTabID)
+					)
+				)
 			)
-			
-			
-			)
-			->Split
-			(
-			FTabManager::NewSplitter()->SetOrientation(Orient_Vertical)
-			->Split
-			(
-			FTabManager::NewStack()
-			->AddTab(FSkillAssetEditor::GraphCanvasId, ETabState::ClosedTab)
-			 
-			)
-			->Split
-			(
-		   FTabManager::NewStack()
-			->AddTab(FSkillAssetEditor::SequencerAreaTabID, ETabState::OpenedTab)
-			)
-			)
-		)
-	);
+		);
+	
 	ToolbarExtender = MakeShareable(new FExtender);
-	if(InEditor.IsValid())
+	
+	if (UToolMenu* Toolbar = InEditor->RegisterModeToolbarIfUnregistered(GetModeName()))
 	{
-		if (UToolMenu* Toolbar = InEditor->RegisterModeToolbarIfUnregistered(GetModeName()))
+		if(InEditor->GetToolbarBuilder().IsValid())
 		{
-			if(InEditor->GetToolbarBuilder().IsValid())
-			{
-				InEditor->GetToolbarBuilder()->AddCompileToolbar(Toolbar);
-				InEditor->GetToolbarBuilder()->AddScriptingToolbar(Toolbar);
-			}
-			
+			InEditor->GetToolbarBuilder()->AddCompileToolbar(Toolbar);
+			InEditor->GetToolbarBuilder()->AddScriptingToolbar(Toolbar);
 		}
+			
 	}
 	
 	

@@ -42,7 +42,7 @@ public:
 	virtual FString GetWorldCentricTabPrefix() const override;
 	virtual FLinearColor GetWorldCentricTabColorScale() const override;
 	virtual bool IsPrimaryEditor() const override;
-	
+
 	//register the layout of the editor
     virtual void SetCurrentMode(FName NewMode) override;
 	virtual USkillAsset* GetSkillAsset() override;

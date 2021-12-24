@@ -108,38 +108,11 @@ void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
 	PostLayoutBlueprintEditorInitialization();
 
 	
-	// const bool bCreateDefaultStandaloneMenu = true;
-	// const bool bCreateDefaultToolbar = true;
-	// const TSharedRef<FTabManager::FLayout> DummyLayout = FTabManager::NewLayout("NullLayout")->AddArea(FTabManager::NewPrimaryArea());
-	// // Set this InCustomAsset as our editing asset
-	// SetSkillAsset(InSkillAsset);
-	// // Initialize our custom asset editor
-	// FAssetEditorToolkit::InitAssetEditor(
-	// 	Mode,
-	// 	InitToolkitHost,
-	// 	SkillAssetEditorAppIdentifier,
-	// 	DummyLayout,
-	// 	bCreateDefaultStandaloneMenu,
-	// 	bCreateDefaultToolbar,
-	// 	(UObject*)InSkillAsset);
-	// DocumentManager=MakeShareable(new FDocumentTracker);
-	// DocumentManager->Initialize(SharedThis(this));
-	// DocumentManager->SetTabManager(TabManager.ToSharedRef());
-	//
-	// SKAEditorModeInuse=MakeShareable
-	// 	(new SkillAssetEditorAPPMode
-	// 		(SharedThis(this),
-	// 			SkillAssetEditorAPPMode::SKAModeID));
-	// //set the mode of this application and tabfactories
-	// AddApplicationMode(SkillAssetEditorAPPMode::SKAModeID,SKAEditorModeInuse.ToSharedRef());
-	// SetCurrentMode(SkillAssetEditorAPPMode::SKAModeID);
-	//
-	//
-	//
-	// SkillAssetExtcommands=MakeShareable(new FUICommandList);
-	// SkillAssetExtcommands->MapAction(FSkillEditorcommands::Get().Textfunc,
-	// 	FExecuteAction::CreateRaw(this,&FSkillAssetEditor::TextFuncOncliked),
-	// 	FCanExecuteAction());
+
+	SkillAssetExtcommands=MakeShareable(new FUICommandList);
+	SkillAssetExtcommands->MapAction(FSkillEditorcommands::Get().Textfunc,
+		FExecuteAction::CreateRaw(this,&FSkillAssetEditor::TextFuncOncliked),
+		FCanExecuteAction());
 
 	ExtendMenu();
 	ExtendToolBar();
