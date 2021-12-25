@@ -24,14 +24,15 @@ class SKILLEDITOR2D_API FSkillAssetEditor:
 public ISkillAssetEditor
 {
 public:
-	virtual UBlueprint* GetBlueprintObj() const override;
+	
 	
 	//Editor initialization
 	void InitSkillAssetEditor
 	(const EToolkitMode::Type Mode,
 	const TSharedPtr<class IToolkitHost>& InitToolkitHost,
 	USkillAsset* InSkillAsset);
-	virtual ~FSkillAssetEditor() override;
+	//Blueprint interfaces ----begins
+	virtual UBlueprint* GetBlueprintObj() const override;
 	virtual FName GetToolkitFName() const override;
 	virtual FText GetBaseToolkitName() const override;
 	virtual FText GetToolkitName() const override;
@@ -39,14 +40,23 @@ public:
 	virtual FString GetWorldCentricTabPrefix() const override;
 	virtual FLinearColor GetWorldCentricTabColorScale() const override;
 	virtual bool IsPrimaryEditor() const override;
+	//Blueprint interfaces ----ends
 
+
+	//FSkillAssetEditor functions ----begins
 	virtual USkillAsset* GetSkillAsset() override;
 	virtual void SetSkillAsset(USkillAsset* InSkillAsset) override;
 	TSharedPtr<class FSceneViewport> Viewport;
 	TSharedPtr<class SViewport> ViewportWidget;
-	virtual void OnOpenRelatedAsset() override;
-	
-	
+	void TextFuncOncliked();
+	void FillsubMenu(FMenuBuilder& Menubuilder);
+	void FillToolbar(FToolBarBuilder& ToolBarbuilder);
+	void ExtendMenu();
+	void ExtendToolBar();
+	bool canExecuteBar()const {return true;}
+	//FSkillAssetEditor functions ----ends
+
+	//Identifiers for tabs and graphs
 	static const FName ToolkitFName;
 	static const FName PreviewTabId;
 	static const FName GraphCanvasId;
@@ -54,13 +64,7 @@ public:
 	static const FName PropertiesPanelTabID;
 	
 	TSharedPtr<FUICommandList> SkillAssetExtcommands;
-	void TextFuncOncliked();
-	void FillsubMenu(FMenuBuilder& Menubuilder);
-	void FillToolbar(FToolBarBuilder& ToolBarbuilder);
-	void ExtendMenu();
-	 void ExtendToolBar();
-	void CreateNewNode();
-	bool CanCreateNewNode();
+	
 
 private:
 	
@@ -69,7 +73,12 @@ private:
 	
 	TSharedPtr<class SkillAssetEditorAPPMode> SKAEditorModeInuse;
 	USkillAsset* SkillAsset;
+protected:
+	/** The extender to pass to the level editor to extend it's window menu */
+	TSharedPtr<FExtender> MenuExtender;
 
+	/** Toolbar extender */
+	TSharedPtr<FExtender> ToolbarExtender;
 };
 
 

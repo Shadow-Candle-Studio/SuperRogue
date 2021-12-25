@@ -6,14 +6,10 @@
 #include "BlueprintEditorUtils.h"
 #include "FSkillEditorcommands.h"
 #include "SBlueprintEditorToolbar.h"
-#include "SceneViewport.h"
-
 #include "SkillAsset.h"
 #include "SkillAssetEditorAPPMode.h"
 #include "SkillEditor2D.h"
-#include "SViewport.h"
 #include "ToolMenus.h"
-#include "WorkflowUObjectDocuments.h"
 
 
 const FName SkillAssetEditorAppIdentifier = FName(TEXT("SkillAssetEditorApp"));
@@ -46,6 +42,11 @@ UBlueprint* FSkillAssetEditor::GetBlueprintObj() const
 void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
 	const TSharedPtr<IToolkitHost>& InitToolkitHost, USkillAsset* InSkillAsset)
 {
+	//Map the click message to specific function
+	SkillAssetExtcommands=MakeShareable(new FUICommandList);
+	SkillAssetExtcommands->MapAction(FSkillEditorcommands::Get().Textfunc,
+		FExecuteAction::CreateRaw(this,&FSkillAssetEditor::TextFuncOncliked),
+		FCanExecuteAction());
 	if (!Toolbar.IsValid())
 	{
 		Toolbar = MakeShareable(new FBlueprintEditorToolbar(SharedThis(this)));
@@ -88,23 +89,14 @@ void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
 
 	// Post-layout initialization
 	PostLayoutBlueprintEditorInitialization();
-
 	
 
-	// SkillAssetExtcommands=MakeShareable(new FUICommandList);
-	// SkillAssetExtcommands->MapAction(FSkillEditorcommands::Get().Textfunc,
-	// 	FExecuteAction::CreateRaw(this,&FSkillAssetEditor::TextFuncOncliked),
-	// 	FCanExecuteAction());
+	
 
 
 	
 }
 
-FSkillAssetEditor::~FSkillAssetEditor()
-{
-	DocumentManager.Reset();
-	//EventGraph.Reset();
-}
 
 FName FSkillAssetEditor::GetToolkitFName() const
 {
@@ -150,14 +142,17 @@ void FSkillAssetEditor::SetSkillAsset(USkillAsset* InSkillAsset)
 	SkillAsset=InSkillAsset;
 }
 
-void FSkillAssetEditor::OnOpenRelatedAsset()
-{
-	ISkillAssetEditor::OnOpenRelatedAsset();
-}
 
 void FSkillAssetEditor::ExtendMenu()
 {
+	if (MenuExtender.IsValid())
+	{
+		RemoveMenuExtender(MenuExtender);
+		MenuExtender.Reset();
+	}
 	
+	MenuExtender = MakeShareable(new FExtender);
+	AddMenuExtender(MenuExtender);
     // example of how to register an command
     FString WindowsubMenuName=this->GetToolMenuName().ToString();
 	WindowsubMenuName+=".Window";
@@ -175,7 +170,16 @@ void FSkillAssetEditor::ExtendMenu()
 
 void FSkillAssetEditor::ExtendToolBar()
 {
-	
+	// If the ToolbarExtender is valid, remove it before rebuilding it
+	if (ToolbarExtender.IsValid())
+	{
+		RemoveToolbarExtender(ToolbarExtender);
+		ToolbarExtender.Reset();
+	}
+
+	ToolbarExtender = MakeShareable(new FExtender);
+
+	AddToolbarExtender(ToolbarExtender);
 	FName ToolBarName;
 	GetToolMenuToolbarName(ToolBarName);
 	UToolMenu* ToolbarMenu = UToolMenus::Get()->ExtendMenu(ToolBarName);
@@ -190,23 +194,6 @@ void FSkillAssetEditor::ExtendToolBar()
 	
 }
 
-void FSkillAssetEditor::CreateNewNode()
-{
-	;
-}
-
-bool FSkillAssetEditor::CanCreateNewNode()
-{
-	return true;
-}
-
-// void FSkillAssetEditor::RegisterToolbarTab(const TSharedRef<FTabManager>& InTabManager)
-// {
-// 	FAssetEditorToolkit::RegisterTabSpawners(InTabManager);
-// 	
-// }
-
-
 void FSkillAssetEditor::FillToolbar(FToolBarBuilder& ToolBarbuilder)
 {
 	ToolBarbuilder.BeginSection("ExtendToolbarItem");
@@ -217,8 +204,8 @@ void FSkillAssetEditor::FillToolbar(FToolBarBuilder& ToolBarbuilder)
 
 		ToolBarbuilder.AddToolBarButton(
 			FUIAction(
-				FExecuteAction::CreateSP(this, &FSkillAssetEditor::CreateNewNode),
-				FCanExecuteAction::CreateSP(this, &FSkillAssetEditor::CanCreateNewNode),
+				FExecuteAction::CreateSP(this, &FSkillAssetEditor::TextFuncOncliked),
+				FCanExecuteAction::CreateSP(this, &FSkillAssetEditor::canExecuteBar),
 				FIsActionChecked()
 			),
 			NAME_None,
@@ -244,7 +231,7 @@ void FSkillAssetEditor::FillsubMenu(FMenuBuilder& Menubuilder)
 }
 void FSkillAssetEditor::TextFuncOncliked()
 {
-	//InvokeSkillAssetEventBPGraphTab();
+	UE_LOG(LogTemp,Warning,L"Textfunconcliced!")
 }
 
 

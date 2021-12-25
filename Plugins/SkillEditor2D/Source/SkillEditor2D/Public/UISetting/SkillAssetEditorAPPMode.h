@@ -15,13 +15,7 @@ class SKILLEDITOR2D_API SkillAssetEditorAPPMode : public FBlueprintEditorApplica
 public:
 	
 	SkillAssetEditorAPPMode(TSharedPtr<class FSkillAssetEditor> InEditor);
-
-
 	virtual void RegisterTabFactories(TSharedPtr<FTabManager> InTabManager) override;
-	
-	
-	//virtual void PostActivateMode() override;
-	
 	static const FName SKAModeID;
 	static FText GetLocalizedMode(const FName InMode)
 	{
@@ -40,5 +34,4 @@ public:
 protected:
 	
 	FWorkflowAllowedTabSet SkillAssetTabFactories;
-	//TWeakObjectPtr<USkillAsset> AssetPtr;
 };

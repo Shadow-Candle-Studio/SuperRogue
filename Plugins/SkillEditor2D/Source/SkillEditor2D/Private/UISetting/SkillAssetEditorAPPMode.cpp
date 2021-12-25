@@ -19,7 +19,7 @@ FBlueprintEditorApplicationMode(InEditor, SkillAssetEditorAPPMode::SKAModeID,
 	SkillAssetEditorAPPMode::GetLocalizedMode, false, false)
 {
 	MyBlueprintEditor=InEditor;
-	//AssetPtr=CastChecked<USkillAsset>(InEditor->GetBlueprintObj());
+	
 	SkillAssetTabFactories.RegisterFactory
 	(MakeShareable(new SkillEditorPreviewSummoner(InEditor)));
 	
@@ -84,8 +84,8 @@ FBlueprintEditorApplicationMode(InEditor, SkillAssetEditorAPPMode::SKAModeID,
 						// Middle bottom - compiler results & find
 						FTabManager::NewStack()
 						->SetSizeCoefficient(0.2f)
-						->AddTab(FBlueprintEditorTabs::CompilerResultsID, ETabState::ClosedTab)
-						->AddTab(FBlueprintEditorTabs::FindResultsID, ETabState::ClosedTab)
+						->AddTab(FBlueprintEditorTabs::CompilerResultsID, ETabState::OpenedTab)
+						->AddTab(FBlueprintEditorTabs::FindResultsID, ETabState::OpenedTab)
 					)
 				)
 				->Split
@@ -101,7 +101,7 @@ FBlueprintEditorApplicationMode(InEditor, SkillAssetEditorAPPMode::SKAModeID,
 						->SetHideTabWell(false)
 						->SetSizeCoefficient(0.5f)
 						->AddTab(FBlueprintEditorTabs::DetailsID, ETabState::OpenedTab)
-						->SetForegroundTab(FBlueprintEditorTabs::DetailsID)
+						//->SetForegroundTab(FBlueprintEditorTabs::DetailsID)
 					)
 					->Split
 					(
@@ -110,7 +110,7 @@ FBlueprintEditorApplicationMode(InEditor, SkillAssetEditorAPPMode::SKAModeID,
 						->SetHideTabWell(false)
 						->SetSizeCoefficient(0.5f)
 						->AddTab(FSkillAssetEditor::SequencerAreaTabID, ETabState::OpenedTab)
-						->SetForegroundTab(FSkillAssetEditor::SequencerAreaTabID)
+						//->SetForegroundTab(FSkillAssetEditor::SequencerAreaTabID)
 					)
 				)
 			)

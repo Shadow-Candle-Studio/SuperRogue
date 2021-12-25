@@ -21,10 +21,8 @@
 #include "SkillAssetAction.h"
 #include "SkillAssetEditor.h"
 #include "SlateStyleRegistry.h"
-#include "SViewport.h"
 #include "USKAInstance.h"
 #include "Engine/MemberReference.h"
-#include "Slate/SceneViewport.h"
 #include "Sequencer/Private/SSequencerTrackArea.h"
 
 
@@ -45,10 +43,7 @@ void FSkillEditor2DModule::StartupModule()
 	
 
 
-	//Register graph nodes, pins , connection policy
-	// FEdGraphUtilities::RegisterVisualNodeFactory(MakeShareable(new SKAGraphNodeFactory()));
-	// FEdGraphUtilities::RegisterVisualPinFactory(MakeShareable(new SKAGraphPinFactory()));
-	// FEdGraphUtilities::RegisterVisualPinConnectionFactory(MakeShareable(new SKAGraphPinConnectionFactory()));
+	
 	
 	// Register widget blueprint compiler we do this no matter what.
 	IKismetCompilerInterface& KismetCompilerModule = FModuleManager::LoadModuleChecked<IKismetCompilerInterface>("KismetCompiler");
@@ -209,6 +204,7 @@ void FSkillEditor2DModule::onNewBlueprintCreated(UBlueprint* InSkillAsset)
 
 		EventGraph->AddNode(NewEventNode);
 		NewEventNode->MakeAutomaticallyPlacedGhostNode();
+		
 	}
 }
 
@@ -218,6 +214,9 @@ TSharedRef<ISkillAssetEditor> FSkillEditor2DModule::CreateSkillAssetBPEditor(con
 
 	TSharedRef<FSkillAssetEditor > NewSkillAssetEditorEditor(new FSkillAssetEditor());
 	NewSkillAssetEditorEditor->InitSkillAssetEditor(Mode,InitToolkitHost,SKA);
+	UEdGraph* EventGraph = SKA->UbergraphPages[0];
+	EventGraph->bEditable=true;
+	NewSkillAssetEditorEditor->OpenDocument(EventGraph,FDocumentTracker::QuickNavigateCurrentDocument);
 	return NewSkillAssetEditorEditor;
 }
 
