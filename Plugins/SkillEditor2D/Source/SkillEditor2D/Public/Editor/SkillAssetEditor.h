@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "BlueprintEditor.h"
-#include "SKAUEdGraph.h"
 #include "SkillEditorPreviewTabBody.h"
 #include "WorkflowCentricApplication.h"
 #include "WorkflowTabManager.h"

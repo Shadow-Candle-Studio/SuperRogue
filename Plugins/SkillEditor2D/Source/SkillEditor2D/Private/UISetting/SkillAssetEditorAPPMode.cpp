@@ -5,7 +5,7 @@
 
 #include "BlueprintEditorTabs.h"
 #include "SBlueprintEditorToolbar.h"
-#include "SkillAssetBPGraphTabSummoner.h"
+
 #include "SkillAssetEditorSequenceTabSummoner.h"
 #include "SkillAssetPropertyTabSummoner.h"
 #include "SkillEditorPreviewSummoner.h"
@@ -17,12 +17,10 @@ SkillAssetEditorAPPMode::SkillAssetEditorAPPMode
 FBlueprintEditorApplicationMode(InEditor, SkillAssetEditorAPPMode::SKAModeID, SkillAssetEditorAPPMode::GetLocalizedMode, false, false)
 {
 	MyBlueprintEditor=InEditor;
-	// SkillAssetTabFactories.RegisterFactory
-	// (MakeShareable(new SkillAssetPropertyTabSummoner(InEditor)));
+	
 	SkillAssetTabFactories.RegisterFactory
 	(MakeShareable(new SkillEditorPreviewSummoner(InEditor)));
-	// SkillAssetTabFactories.RegisterFactory
-	// (MakeShareable(new SkillAssetBPGraphTabSummoner(InEditor)));
+	
 	SkillAssetTabFactories.RegisterFactory
 	(MakeShareable(new SkillAssetEditorSequenceTabSummoner(InEditor)));
 	

@@ -35,11 +35,11 @@ void SKACompilerContext::CreateClassVariablesFromBlueprint()
 	FKismetCompilerContext::CreateClassVariablesFromBlueprint();
 }
 
-UEdGraphSchema_K2* SKACompilerContext::CreateSchema()
-{
-	SKASchema=NewObject<USKAUEdGraphSchema>();
-	return SKASchema;
-}
+// UEdGraphSchema_K2* SKACompilerContext::CreateSchema()
+// {
+// 	SKASchema=NewObject<USKAUEdGraphSchema>();
+// 	return SKASchema;
+// }
 
 void SKACompilerContext::MergeUbergraphPagesIn(UEdGraph* Ubergraph)
 {
@@ -87,6 +87,11 @@ void SKACompilerContext::PostCompileDiagnostics()
 {
 	FKismetCompilerContext::PostCompileDiagnostics();
 	
+}
+
+UEdGraphSchema_K2* SKACompilerContext::CreateSchema()
+{
+	return FKismetCompilerContext::CreateSchema();
 }
 
 void SKACompilerContext::EnsureProperGeneratedClass(UClass*& TargetClass)

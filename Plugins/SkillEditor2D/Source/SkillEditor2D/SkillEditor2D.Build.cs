@@ -48,7 +48,7 @@ public class SkillEditor2D : ModuleRules
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"Core", "AdvancedPreviewScene", "SpinePlugin"
+				"Core", "AdvancedPreviewScene"
 				//"SkillEditorRenderer"
 				//"AssetTools"
 				// ... add other public dependencies that you statically link with here ...

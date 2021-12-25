@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "KismetCompiler.h"
-#include "SKAUEdGraphSchema.h"
+
 #include "SkillAsset.h"
 #include "USKAGeneratedClassBP.h"
 #include "Animation/AnimNodeBase.h"
@@ -27,7 +27,6 @@ public:
 protected:
 	// Implementation of FKismetCompilerContext interface
 	virtual void CreateClassVariablesFromBlueprint() override;
-	virtual UEdGraphSchema_K2* CreateSchema() override;
 	virtual void MergeUbergraphPagesIn(UEdGraph* Ubergraph) override;
 	virtual void ProcessOneFunctionGraph(UEdGraph* SourceGraph, bool bInternalFunction = false) override;
 	virtual void CreateFunctionList() override;
@@ -35,6 +34,7 @@ protected:
 	virtual void OnNewClassSet(UBlueprintGeneratedClass* ClassToUse) override;
 	virtual void CopyTermDefaultsToDefaultObject(UObject* DefaultObject) override;
 	virtual void PostCompileDiagnostics() override;
+	virtual UEdGraphSchema_K2* CreateSchema() override;
 	virtual void EnsureProperGeneratedClass(UClass*& TargetClass) override;
 	virtual void CleanAndSanitizeClass(UBlueprintGeneratedClass* ClassToClean, UObject*& InOldCDO) override;
 	virtual void FinishCompilingClass(UClass* Class) override;
@@ -44,5 +44,5 @@ protected:
 protected:
 	USKAGeneratedClassBP* SkillAssetGeneratedClassBP;
 	USkillAsset* SkillAsset;
-	USKAUEdGraphSchema* SKASchema;
+	
 };

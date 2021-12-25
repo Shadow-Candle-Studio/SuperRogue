@@ -3,7 +3,7 @@
 #include "SkillEditor2D.h"
 
 #include "AssetToolsModule.h"
-#include "BPGraphFactories.h"
+
 #include "EdGraphUtilities.h"
 #include"SkillEditorWindowStyle.h"
 #include "FSkillEditorcommands.h"
@@ -46,9 +46,9 @@ void FSkillEditor2DModule::StartupModule()
 
 
 	//Register graph nodes, pins , connection policy
-	FEdGraphUtilities::RegisterVisualNodeFactory(MakeShareable(new SKAGraphNodeFactory()));
-	FEdGraphUtilities::RegisterVisualPinFactory(MakeShareable(new SKAGraphPinFactory()));
-	FEdGraphUtilities::RegisterVisualPinConnectionFactory(MakeShareable(new SKAGraphPinConnectionFactory()));
+	// FEdGraphUtilities::RegisterVisualNodeFactory(MakeShareable(new SKAGraphNodeFactory()));
+	// FEdGraphUtilities::RegisterVisualPinFactory(MakeShareable(new SKAGraphPinFactory()));
+	// FEdGraphUtilities::RegisterVisualPinConnectionFactory(MakeShareable(new SKAGraphPinConnectionFactory()));
 	
 	// Register widget blueprint compiler we do this no matter what.
 	IKismetCompilerInterface& KismetCompilerModule = FModuleManager::LoadModuleChecked<IKismetCompilerInterface>("KismetCompiler");

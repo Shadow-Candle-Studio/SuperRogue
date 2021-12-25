@@ -7,7 +7,7 @@
 #include "FSkillEditorcommands.h"
 #include "SBlueprintEditorToolbar.h"
 #include "SceneViewport.h"
-#include "SKAUEdGraphSchema.h"
+
 #include "SkillAsset.h"
 #include "SkillAssetEditorAPPMode.h"
 #include "SkillEditor2D.h"
