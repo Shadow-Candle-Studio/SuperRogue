@@ -13,10 +13,10 @@
 const FName SkillAssetEditorAPPMode::SKAModeID(TEXT("SKAMode"));
 
 SkillAssetEditorAPPMode::SkillAssetEditorAPPMode
-(TSharedPtr<class FSkillAssetEditor> InEditor, FName InModeName):
+(TSharedPtr<class FSkillAssetEditor> InEditor):
 FBlueprintEditorApplicationMode(InEditor, SkillAssetEditorAPPMode::SKAModeID, SkillAssetEditorAPPMode::GetLocalizedMode, false, false)
 {
-	AssetEditor=InEditor;
+	MyBlueprintEditor=InEditor;
 	// SkillAssetTabFactories.RegisterFactory
 	// (MakeShareable(new SkillAssetPropertyTabSummoner(InEditor)));
 	SkillAssetTabFactories.RegisterFactory
@@ -26,7 +26,7 @@ FBlueprintEditorApplicationMode(InEditor, SkillAssetEditorAPPMode::SKAModeID, Sk
 	SkillAssetTabFactories.RegisterFactory
 	(MakeShareable(new SkillAssetEditorSequenceTabSummoner(InEditor)));
 	
-	check(AssetEditor.IsValid());
+	check(MyBlueprintEditor.IsValid());
 	TabLayout=FTabManager::NewLayout("SkillAssetEditor_Layout_v1")
 			->AddArea
 		(
@@ -133,45 +133,32 @@ FBlueprintEditorApplicationMode(InEditor, SkillAssetEditorAPPMode::SKAModeID, Sk
 
 void SkillAssetEditorAPPMode::RegisterTabFactories(TSharedPtr<FTabManager> InTabManager)
 {
-	TSharedPtr<FSkillAssetEditor> Editor = AssetEditor.Pin();
+	auto Editor = MyBlueprintEditor.Pin();
 
-	// Tool bar tab
-	
 	Editor->RegisterToolbarTab(InTabManager.ToSharedRef());
-
-
-
-
 	Editor->PushTabFactories(CoreTabFactories);
 	Editor->PushTabFactories(BlueprintEditorTabFactories);
-	//Register other factories
 	Editor->PushTabFactories(SkillAssetTabFactories);
-
-	// Graph tab
-	Editor->DocumentManager->RegisterDocumentFactory(MakeShareable(new SkillAssetBPGraphTabSummoner(Editor)));
-
-	FBlueprintEditorApplicationMode::RegisterTabFactories(InTabManager);
-	//FApplicationMode::RegisterTabFactories(InTabManager);
 }
 
-void SkillAssetEditorAPPMode::AddTabFactory(FCreateWorkflowTabFactory FactoryCreator)
-{
-	if(FactoryCreator.IsBound())
-	{
-		SkillAssetTabFactories.RegisterFactory(FactoryCreator.Execute(AssetEditor.Pin()));
-	}
-	
-}
 
-void SkillAssetEditorAPPMode::RemoveTabFactory(FName TabFactoryID)
-{
-	SkillAssetTabFactories.UnregisterFactory(TabFactoryID);
-}
+
 
 
 void SkillAssetEditorAPPMode::PostActivateMode()
 {
+	// Reopen any documents that were open when the blueprint was last saved
+	TSharedPtr<FBlueprintEditor> BP = MyBlueprintEditor.Pin();
+	if(BP.IsValid())
+	{
+		UE_LOG(LogTemp,Warning,L"BP VALID")
+		// BP->RestoreEditedObjectState();
+		// BP->SetupViewForBlueprintEditingMode();
+	}
 	
+
+	FApplicationMode::PostActivateMode();
+	//FBlueprintEditorApplicationMode::PostActivateMode();
 }
 
 SkillAssetEditorAPPMode::~SkillAssetEditorAPPMode()

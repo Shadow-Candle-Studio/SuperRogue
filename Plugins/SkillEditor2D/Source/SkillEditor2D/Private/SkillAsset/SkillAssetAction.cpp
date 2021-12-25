@@ -50,8 +50,8 @@ void SkillAssetAction::OpenAssetEditor(const TArray<UObject*>& InObjects, TShare
 			}
 			else
 			{
-				TSharedRef<FSkillAssetEditor > NewSkillAssetEditorEditor(new FSkillAssetEditor());
-				NewSkillAssetEditorEditor->InitSkillAssetEditor(Mode, EditWithinLevelEditor, SkA);
+				ISkillAssetEditorModule_Base& BaseEditorModule = FModuleManager::LoadModuleChecked<ISkillAssetEditorModule_Base>("SkillEditor2D");
+				BaseEditorModule.CreateSkillAssetBPEditor(Mode, EditWithinLevelEditor, SkA);
 			}
 		}
 		else

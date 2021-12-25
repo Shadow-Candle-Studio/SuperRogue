@@ -212,6 +212,15 @@ void FSkillEditor2DModule::onNewBlueprintCreated(UBlueprint* InSkillAsset)
 	}
 }
 
+TSharedRef<ISkillAssetEditor> FSkillEditor2DModule::CreateSkillAssetBPEditor(const EToolkitMode::Type Mode,
+	const TSharedPtr<IToolkitHost>& InitToolkitHost, USkillAsset* SKA)
+{
+
+	TSharedRef<FSkillAssetEditor > NewSkillAssetEditorEditor(new FSkillAssetEditor());
+	NewSkillAssetEditorEditor->InitSkillAssetEditor(Mode,InitToolkitHost,SKA);
+	return NewSkillAssetEditorEditor;
+}
+
 
 bool FSkillEditor2DModule::CanCompile(const UBlueprint* Blueprint)
 {

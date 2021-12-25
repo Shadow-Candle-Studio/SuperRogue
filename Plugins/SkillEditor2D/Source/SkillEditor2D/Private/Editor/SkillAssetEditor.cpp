@@ -65,7 +65,7 @@ void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
 	{
 		Toolbar = MakeShareable(new FBlueprintEditorToolbar(SharedThis(this)));
 	}
-
+	
 	// Build up a list of objects being edited in this asset editor
 	TArray<UObject*> ObjectsBeingEdited;
 	ObjectsBeingEdited.Add(InSkillAsset);
@@ -83,22 +83,19 @@ void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
 		bCreateDefaultStandaloneMenu,
 		bCreateDefaultToolbar,
 		ObjectsBeingEdited);
-	DocumentManager=MakeShareable(new FDocumentTracker);
-	DocumentManager->Initialize(SharedThis(this));
-	DocumentManager->SetTabManager(TabManager.ToSharedRef());
-
 	
-	TArray<UBlueprint*> AnimBlueprints;
-	AnimBlueprints.Add(InSkillAsset);
+	
+	TArray<UBlueprint*> Blueprints;
+	Blueprints.Add(InSkillAsset);
 
-	CommonInitialization(AnimBlueprints, false);
+	CommonInitialization(Blueprints, false);
 
 	AddApplicationMode(
 		SkillAssetEditorAPPMode::SKAModeID,
-		MakeShareable(new SkillAssetEditorAPPMode(SharedThis(this),SkillAssetEditorAPPMode::SKAModeID)));
+		MakeShareable(new SkillAssetEditorAPPMode(SharedThis(this))));
 
-	// ExtendMenu();
-	// ExtendToolbar();
+	ExtendMenu();
+	ExtendToolBar();
 	RegenerateMenusAndToolbars();
 
 	// Activate the initial mode (which will populate with a real layout)
@@ -109,13 +106,12 @@ void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
 
 	
 
-	SkillAssetExtcommands=MakeShareable(new FUICommandList);
-	SkillAssetExtcommands->MapAction(FSkillEditorcommands::Get().Textfunc,
-		FExecuteAction::CreateRaw(this,&FSkillAssetEditor::TextFuncOncliked),
-		FCanExecuteAction());
+	// SkillAssetExtcommands=MakeShareable(new FUICommandList);
+	// SkillAssetExtcommands->MapAction(FSkillEditorcommands::Get().Textfunc,
+	// 	FExecuteAction::CreateRaw(this,&FSkillAssetEditor::TextFuncOncliked),
+	// 	FCanExecuteAction());
 
-	ExtendMenu();
-	ExtendToolBar();
+
 	
 }
 
@@ -160,10 +156,10 @@ bool FSkillAssetEditor::IsPrimaryEditor() const
 	return true;
 }
 
-void FSkillAssetEditor::SetCurrentMode(FName NewMode)
-{
-	ISkillAssetEditor::SetCurrentMode(NewMode);
-}
+// void FSkillAssetEditor::SetCurrentMode(FName NewMode)
+// {
+// 	
+// }
 
 
 
@@ -228,28 +224,6 @@ void FSkillAssetEditor::RegisterToolbarTab(const TSharedRef<FTabManager>& InTabM
 	
 }
 
-void FSkillAssetEditor::InvokeSkillAssetEventBPGraphTab()
-{
-	bool bNewGraph = false;
-	
-	// if (SkillAsset->AssetGraph==nullptr)
-	// {
-	// 	bNewGraph = true;
-	// 	SkillAsset->AssetGraph = FBlueprintEditorUtils::CreateNewGraph(
-	// 		(UObject*)GetSkillAsset(), 
-	// 		GraphCanvasId,
-	// 		USKAUEdGraph::StaticClass(), 
-	// 		USKAUEdGraphSchema::StaticClass());
-	// 	
-	// }
-	//
-	// TSharedRef<FTabPayload_UObject> Payload = FTabPayload_UObject::Make(SkillAsset->AssetGraph);
-	// TSharedPtr<SDockTab> DocumentTab = DocumentManager->OpenDocument(Payload, bNewGraph ? FDocumentTracker::OpenNewDocument :
-	// 	FDocumentTracker::RestorePreviousDocument);
-	
-	
-	
-}
 
 void FSkillAssetEditor::FillToolbar(FToolBarBuilder& ToolBarbuilder)
 {
@@ -288,7 +262,7 @@ void FSkillAssetEditor::FillsubMenu(FMenuBuilder& Menubuilder)
 }
 void FSkillAssetEditor::TextFuncOncliked()
 {
-	InvokeSkillAssetEventBPGraphTab();
+	//InvokeSkillAssetEventBPGraphTab();
 }
 
 

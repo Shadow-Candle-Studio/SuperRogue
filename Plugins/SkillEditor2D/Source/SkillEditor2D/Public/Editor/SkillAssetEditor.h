@@ -18,6 +18,7 @@ class SKILLEDITOR2D_API ISkillAssetEditor : public FBlueprintEditor
 public:
 	virtual USkillAsset* GetSkillAsset()=0;
 	virtual void SetSkillAsset(USkillAsset* InSkillAsset) =0;
+	
 };
 
 class SKILLEDITOR2D_API FSkillAssetEditor:
@@ -42,9 +43,9 @@ public:
 	virtual FString GetWorldCentricTabPrefix() const override;
 	virtual FLinearColor GetWorldCentricTabColorScale() const override;
 	virtual bool IsPrimaryEditor() const override;
-
+	
 	//register the layout of the editor
-    virtual void SetCurrentMode(FName NewMode) override;
+    //virtual void SetCurrentMode(FName NewMode) override;
 	virtual USkillAsset* GetSkillAsset() override;
 	virtual void SetSkillAsset(USkillAsset* InSkillAsset) override;
 	TSharedPtr<class FSceneViewport> Viewport;
@@ -69,8 +70,7 @@ public:
 	
 	//called mainly by mode instance
 	virtual void RegisterToolbarTab(const TSharedRef<class FTabManager>& InTabManager);
-	void InvokeSkillAssetEventBPGraphTab();
-	TSharedPtr<FDocumentTracker> DocumentManager;
+	
 	
 private:
 	

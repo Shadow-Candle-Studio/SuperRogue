@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "BlueprintEditorModule.h"
 #include "ISettingsModule.h"
 #include "WorkflowTabManager.h"
 
@@ -32,7 +33,7 @@ public IHasMenuExtensibility,
 public IHasToolBarExtensibility
 {
 public:
-	
+	virtual TSharedRef<ISkillAssetEditor> CreateSkillAssetBPEditor(const EToolkitMode::Type Mode, const TSharedPtr< class IToolkitHost >& InitToolkitHost,USkillAsset* Blueprint) = 0;
 	ISkillAssetEditorModule_Base();
 	~ISkillAssetEditorModule_Base();
 };
@@ -52,7 +53,7 @@ public:
 	virtual void ShutdownModule() override;
 	void PluginButtonClicked();
 	virtual void onNewBlueprintCreated(UBlueprint* InSkillAsset);
-	
+	virtual TSharedRef<ISkillAssetEditor> CreateSkillAssetBPEditor(const EToolkitMode::Type Mode, const TSharedPtr< class IToolkitHost >& InitToolkitHost,USkillAsset* Blueprint) override;
 	virtual TSharedPtr<FExtensibilityManager> GetMenuExtensibilityManager() override
 	{
 		return  MenuExtensibilityManager;

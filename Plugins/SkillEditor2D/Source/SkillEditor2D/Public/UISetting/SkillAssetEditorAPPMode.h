@@ -14,12 +14,11 @@ class SKILLEDITOR2D_API SkillAssetEditorAPPMode : public FBlueprintEditorApplica
 {
 public:
 	
-	SkillAssetEditorAPPMode(TSharedPtr<class FSkillAssetEditor> InEditor, FName InModeName);
+	SkillAssetEditorAPPMode(TSharedPtr<class FSkillAssetEditor> InEditor);
 
 
 	virtual void RegisterTabFactories(TSharedPtr<FTabManager> InTabManager) override;
-	virtual void AddTabFactory(FCreateWorkflowTabFactory FactoryCreator) override;
-	virtual void RemoveTabFactory(FName TabFactoryID) override;
+	
 	
 	virtual void PostActivateMode() override;
 	
@@ -40,6 +39,6 @@ public:
 		return *OutDesc;
 	}
 protected:
-	TWeakPtr<FSkillAssetEditor> AssetEditor;
+	
 	FWorkflowAllowedTabSet SkillAssetTabFactories;
 };
