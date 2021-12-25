@@ -17,6 +17,7 @@ Super(ObjectInitializer)
 
 void USKAUEdGraphSchema::GetGraphContextActions(FGraphContextMenuBuilder& ContextMenuBuilder) const
 {
+	Super::GetGraphContextActions(ContextMenuBuilder);
 	// Add action
 	FText Category = LOCTEXT("AddStateMachine", "Add State Node");
 	FText MenuDesc = LOCTEXT("MenuDesc", "State");

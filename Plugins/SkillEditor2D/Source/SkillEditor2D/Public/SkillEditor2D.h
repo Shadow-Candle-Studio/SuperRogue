@@ -8,6 +8,7 @@
 
 
 #include "KismetCompilerModule.h"
+#include "SKACompilerContext.h"
 #include "SkillAsset2DRuntimeSettings.h"
 #include "Modules/ModuleManager.h"
 #include "Modules/ModuleInterface.h"
@@ -44,6 +45,7 @@ public:
 class FSkillEditor2DModule : public ISkillAssetEditorModule_Base, public IBlueprintCompiler
 {
 public:
+	
 	// TSharedPtr<FSkillEditorViewPortRenderingClient> RealRenderingClient;
 	/** IModuleInterface implementation */
 	virtual void StartupModule() override;
@@ -63,7 +65,10 @@ public:
 	virtual void PreCompile(UBlueprint* Blueprint, const FKismetCompilerOptions& CompileOptions) override;
 	virtual void Compile(UBlueprint* Blueprint, const FKismetCompilerOptions& CompileOptions, FCompilerResultsLog& Results) override;
 	virtual void PostCompile(UBlueprint* Blueprint, const FKismetCompilerOptions& CompileOptions) override;
-	
+	static TSharedPtr<FKismetCompilerContext> GetCompilerForSKABP(UBlueprint* BP, FCompilerResultsLog& InMessageLog, const FKismetCompilerOptions& InCompileOptions)
+	{
+		return TSharedPtr<FKismetCompilerContext>(new SKACompilerContext(CastChecked<USkillAsset>(BP), InMessageLog, InCompileOptions));
+	}
 private :
 	void RegisterMenus();
 	TSharedRef<class SDockTab> OnSpawnPluginTab(const class FSpawnTabArgs& SpawnTabArgs);

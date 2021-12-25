@@ -80,7 +80,9 @@ bool FPixel2DAnimBlueprintCompilerContext::FEffectiveConstantRecord::Apply(UObje
 //////////////////////////////////////////////////////////////////////////
 // FPixel2DAnimBlueprintCompilerContext
 
-FPixel2DAnimBlueprintCompilerContext::FPixel2DAnimBlueprintCompilerContext(UPixel2DAnimBlueprint* SourceSketch, FCompilerResultsLog& InMessageLog, const FKismetCompilerOptions& InCompileOptions)
+FPixel2DAnimBlueprintCompilerContext::FPixel2DAnimBlueprintCompilerContext
+(UPixel2DAnimBlueprint* SourceSketch, FCompilerResultsLog& InMessageLog,
+	const FKismetCompilerOptions& InCompileOptions)
 	: FKismetCompilerContext(SourceSketch, InMessageLog, InCompileOptions)
 	, AnimBlueprint(SourceSketch)
 	, bIsDerivedAnimBlueprint(false)

@@ -10,6 +10,8 @@
 
 #include "IAssetTools.h"
 #include "IPluginManager.h"
+#include "K2Node_Event.h"
+#include "KismetEditorUtilities.h"
 #include "LevelEditor.h"
 #include "SKAFactory.h"
 #include "Widgets/Docking/SDockTab.h"
@@ -20,6 +22,8 @@
 #include "SkillAssetEditor.h"
 #include "SlateStyleRegistry.h"
 #include "SViewport.h"
+#include "USKAInstance.h"
+#include "Engine/MemberReference.h"
 #include "Slate/SceneViewport.h"
 #include "Sequencer/Private/SSequencerTrackArea.h"
 
@@ -40,7 +44,22 @@ void FSkillEditor2DModule::StartupModule()
 {
 	
 
+
+	//Register graph nodes, pins , connection policy
+	FEdGraphUtilities::RegisterVisualNodeFactory(MakeShareable(new SKAGraphNodeFactory()));
+	FEdGraphUtilities::RegisterVisualPinFactory(MakeShareable(new SKAGraphPinFactory()));
+	FEdGraphUtilities::RegisterVisualPinConnectionFactory(MakeShareable(new SKAGraphPinConnectionFactory()));
+	
+	// Register widget blueprint compiler we do this no matter what.
+	IKismetCompilerInterface& KismetCompilerModule = FModuleManager::LoadModuleChecked<IKismetCompilerInterface>("KismetCompiler");
+	KismetCompilerModule.GetCompilers().Add(this);
+
+	FKismetCompilerContext::RegisterCompilerForBP(USkillAsset::StaticClass(), &FSkillEditor2DModule::GetCompilerForSKABP);
 	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-modul
+	FKismetEditorUtilities::RegisterOnBlueprintCreatedCallback(this,
+		USKAInstance::StaticClass(),
+		FKismetEditorUtilities::FOnBlueprintCreated::CreateRaw
+		(this, &FSkillEditor2DModule::onNewBlueprintCreated));
 	SkillEditorWindowStyle::Initialize();
 	SkillEditorWindowStyle::Reloadtextures();
 	//register the command to the system
@@ -56,7 +75,7 @@ void FSkillEditor2DModule::StartupModule()
 	FGlobalTabmanager::Get()->RegisterNomadTabSpawner(SkillEditor2DTabName, FOnSpawnTab::CreateRaw(this, &FSkillEditor2DModule::OnSpawnPluginTab))
 	.SetDisplayName(LOCTEXT("FSkillEditor2DTabTitle","SkillEditor2D"))
 	.SetMenuType(ETabSpawnerMenuType::Hidden);
-
+	
 	MenuExtensibilityManager=MakeShareable(new FExtensibilityManager);
 	ToolBarExtensibilityManager=MakeShareable(new FExtensibilityManager);
 
@@ -91,11 +110,8 @@ void FSkillEditor2DModule::StartupModule()
 		FSlateStyleRegistry::RegisterSlateStyle(*StyleSet);
 
 
-	//Register graph nodes, pins , connection policy
-	FEdGraphUtilities::RegisterVisualNodeFactory(MakeShareable(new SKAGraphNodeFactory()));
-	FEdGraphUtilities::RegisterVisualPinFactory(MakeShareable(new SKAGraphPinFactory()));
-	FEdGraphUtilities::RegisterVisualPinConnectionFactory(MakeShareable(new SKAGraphPinConnectionFactory()));
 	
+	RegisterSettings();
 
 
 
@@ -122,8 +138,16 @@ void FSkillEditor2DModule::ShutdownModule()
 
 	MenuExtensibilityManager.Reset();
 	ToolBarExtensibilityManager.Reset();
+	// Unregister all the asset types that we registered
+	if (FModuleManager::Get().IsModuleLoaded("AssetTools"))
+	{
+		IAssetTools& AssetTools = FModuleManager::GetModuleChecked<FAssetToolsModule>("AssetTools").Get();
+		AssetTools.UnregisterAssetTypeActions(SkillAsset2DAction.ToSharedRef());
+	}
 	
-	
+
+	UnregisterSettings();
+
 	
 
 	
@@ -160,8 +184,34 @@ void FSkillEditor2DModule::PluginButtonClicked()
 
 void FSkillEditor2DModule::onNewBlueprintCreated(UBlueprint* InSkillAsset)
 {
-	;
+	if (ensure(InSkillAsset->UbergraphPages.Num() > 0))
+	{
+		UEdGraph* EventGraph = InSkillAsset->UbergraphPages[0];
+
+		UK2Node_Event* NewEventNode = nullptr;
+		FMemberReference EventReference;
+		EventReference.SetExternalMember(FName("SKAInstance"), USKAInstance::StaticClass());
+
+		// Add the event
+		NewEventNode = NewObject<UK2Node_Event>(EventGraph);
+		NewEventNode->EventReference = EventReference;
+
+		// add update event graph
+		NewEventNode->bOverrideFunction = true;
+		NewEventNode->CreateNewGuid();
+		NewEventNode->PostPlacedNewNode();
+		NewEventNode->SetFlags(RF_Transactional);
+		NewEventNode->AllocateDefaultPins();
+		NewEventNode->bCommentBubblePinned = true;
+		NewEventNode->bCommentBubbleVisible = true;
+		NewEventNode->NodePosY = 0;
+		UEdGraphSchema_K2::SetNodeMetaData(NewEventNode, FNodeMetadata::DefaultGraphNode);
+
+		EventGraph->AddNode(NewEventNode);
+		NewEventNode->MakeAutomaticallyPlacedGhostNode();
+	}
 }
+
 
 bool FSkillEditor2DModule::CanCompile(const UBlueprint* Blueprint)
 {
@@ -178,9 +228,9 @@ void FSkillEditor2DModule::Compile(UBlueprint* Blueprint, const FKismetCompilerO
 {
 	if (USkillAsset* SKA = CastChecked<USkillAsset>(Blueprint))
 	{
-		// FPixel2DAnimBlueprintCompilerContext Compiler(SpriteAnimBlueprint, Results, CompileOptions);
-		// Compiler.Compile();
-		// check(Compiler.NewClass);
+		SKACompilerContext Compiler(SKA, Results, CompileOptions);
+		Compiler.Compile();
+		check(Compiler.NewClass);
 	}
 }
 
@@ -190,19 +240,7 @@ void FSkillEditor2DModule::PostCompile(UBlueprint* Blueprint, const FKismetCompi
 }
 
 
-// TSharedRef<ISkillAssetEditor> FSkillEditor2DModule::CreateCustomAssetEditor(const EToolkitMode::Type Mode,
-//                                                                             const TSharedPtr<IToolkitHost>& InitToolkitHost, USkillAsset* CustomAsset)
-// {
-// 	TSharedRef<FSkillAssetEditor>NewSkillAssetEditor(new FSkillAssetEditor());
-// 	NewSkillAssetEditor->InitSkillAssetEditor(Mode,InitToolkitHost,CustomAsset);
-// 	
-// 	
-// 	
-//
-// 	
-// 	return NewSkillAssetEditor;
-// 	
-// }
+
 
 void FSkillEditor2DModule::RegisterMenus()
 {
