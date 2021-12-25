@@ -5,6 +5,7 @@
 
 #include "BlueprintEditorTabs.h"
 #include "SBlueprintEditorToolbar.h"
+#include "SkillAsset.h"
 
 #include "SkillAssetEditorSequenceTabSummoner.h"
 #include "SkillAssetPropertyTabSummoner.h"
@@ -14,10 +15,11 @@ const FName SkillAssetEditorAPPMode::SKAModeID(TEXT("SKAMode"));
 
 SkillAssetEditorAPPMode::SkillAssetEditorAPPMode
 (TSharedPtr<class FSkillAssetEditor> InEditor):
-FBlueprintEditorApplicationMode(InEditor, SkillAssetEditorAPPMode::SKAModeID, SkillAssetEditorAPPMode::GetLocalizedMode, false, false)
+FBlueprintEditorApplicationMode(InEditor, SkillAssetEditorAPPMode::SKAModeID,
+	SkillAssetEditorAPPMode::GetLocalizedMode, false, false)
 {
 	MyBlueprintEditor=InEditor;
-	
+	//AssetPtr=CastChecked<USkillAsset>(InEditor->GetBlueprintObj());
 	SkillAssetTabFactories.RegisterFactory
 	(MakeShareable(new SkillEditorPreviewSummoner(InEditor)));
 	
@@ -131,7 +133,7 @@ FBlueprintEditorApplicationMode(InEditor, SkillAssetEditorAPPMode::SKAModeID, Sk
 
 void SkillAssetEditorAPPMode::RegisterTabFactories(TSharedPtr<FTabManager> InTabManager)
 {
-	auto Editor = MyBlueprintEditor.Pin();
+	TSharedPtr<FBlueprintEditor> Editor = MyBlueprintEditor.Pin();
 
 	Editor->RegisterToolbarTab(InTabManager.ToSharedRef());
 	Editor->PushTabFactories(CoreTabFactories);
@@ -143,22 +145,22 @@ void SkillAssetEditorAPPMode::RegisterTabFactories(TSharedPtr<FTabManager> InTab
 
 
 
-void SkillAssetEditorAPPMode::PostActivateMode()
-{
-	// Reopen any documents that were open when the blueprint was last saved
-	TSharedPtr<FBlueprintEditor> BP = MyBlueprintEditor.Pin();
-	if(BP.IsValid())
-	{
-		UE_LOG(LogTemp,Warning,L"BP VALID")
-		// BP->RestoreEditedObjectState();
-		// BP->SetupViewForBlueprintEditingMode();
-	}
-	
+// void SkillAssetEditorAPPMode::PostActivateMode()
+// {
+// 	// Reopen any documents that were open when the blueprint was last saved
+// 	// TSharedPtr<FBlueprintEditor> BP = MyBlueprintEditor.Pin();
+// 	// if(BP.IsValid())
+// 	// {
+// 	// 	UE_LOG(LogTemp,Warning,L"BP VALID")
+// 	// 	// BP->RestoreEditedObjectState();
+// 	// 	// BP->SetupViewForBlueprintEditingMode();
+// 	// }
+// 	FBlueprintEditorApplicationMode::PostActivateMode();
+//
+// 	//FApplicationMode::PostActivateMode();
+// 	//FBlueprintEditorApplicationMode::PostActivateMode();
+// }
 
-	FApplicationMode::PostActivateMode();
-	//FBlueprintEditorApplicationMode::PostActivateMode();
-}
-
-SkillAssetEditorAPPMode::~SkillAssetEditorAPPMode()
-{
-}
+// SkillAssetEditorAPPMode::~SkillAssetEditorAPPMode()
+// {
+// }

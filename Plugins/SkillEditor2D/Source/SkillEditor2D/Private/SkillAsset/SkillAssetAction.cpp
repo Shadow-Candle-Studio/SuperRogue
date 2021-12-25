@@ -6,6 +6,7 @@
 #include "SKAFactory.h"
 #include "SkillAssetEditor.h"
 #include "SkillEditor2D.h"
+#include "AssetTypeActions/AssetTypeActions_Blueprint.h"
 #define LOCTEXT_NAMESPACE "SkillAssetActions"
 SkillAssetAction::SkillAssetAction(EAssetTypeCategories::Type Cat): MyCat(Cat)
 {
@@ -34,6 +35,8 @@ UClass* SkillAssetAction::GetSupportedClass() const
 {
 	return USkillAsset::StaticClass();
 }
+
+
 
 void SkillAssetAction::OpenAssetEditor(const TArray<UObject*>& InObjects, TSharedPtr<class IToolkitHost> EditWithinLevelEditor)
 {
@@ -118,5 +121,12 @@ FText SkillAssetAction::GetAssetDescription(const FAssetData& AssetData) const
 bool SkillAssetAction::CanFilter()
 {
 	return true;
+}
+
+
+UFactory* SkillAssetAction::GetFactoryForBlueprintType(UBlueprint* InBlueprint) const
+{
+	USKAFactory* AnimBlueprintFactory = NewObject<USKAFactory>();
+	return AnimBlueprintFactory;
 }
 #undef LOCTEXT_NAMESPACE

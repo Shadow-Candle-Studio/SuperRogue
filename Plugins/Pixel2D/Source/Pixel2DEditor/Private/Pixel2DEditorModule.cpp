@@ -217,7 +217,7 @@ private:
 			UEdGraphSchema_K2::SetNodeMetaData(NewEventNode, FNodeMetadata::DefaultGraphNode);
 
 			EventGraph->AddNode(NewEventNode);
-			NewEventNode->MakeAutomaticallyPlacedGhostNode();
+                                                             			NewEventNode->MakeAutomaticallyPlacedGhostNode();
 		}
 	}
 };

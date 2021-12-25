@@ -87,7 +87,8 @@ public class SkillEditor2D : ModuleRules
 				"AnimGraph",
 				"GraphEditor",
 				"BlueprintGraph",
-				"KismetCompiler"
+				"KismetCompiler",
+				"AssetTools"
 				//"SkillEditorRenderer"
 			}
 			);
@@ -96,7 +97,7 @@ public class SkillEditor2D : ModuleRules
 		DynamicallyLoadedModuleNames.AddRange(
 			new string[]
 			{
-				"AssetTools"
+				//"AssetTools"
 			}
 			);
 	}

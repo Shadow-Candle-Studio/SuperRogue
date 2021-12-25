@@ -25,10 +25,7 @@ public ISkillAssetEditor
 {
 public:
 	virtual UBlueprint* GetBlueprintObj() const override;
-	//register all tab spawner factory to produce tab when opened
-	virtual void RegisterTabSpawners(const TSharedRef<FTabManager>& TabManager) override;
-	//unregister all the tab spawner factory to stop spawning
-	virtual void UnregisterTabSpawners(const TSharedRef<FTabManager>& TabManager) override;
+	
 	//Editor initialization
 	void InitSkillAssetEditor
 	(const EToolkitMode::Type Mode,
@@ -42,9 +39,7 @@ public:
 	virtual FString GetWorldCentricTabPrefix() const override;
 	virtual FLinearColor GetWorldCentricTabColorScale() const override;
 	virtual bool IsPrimaryEditor() const override;
-	
-	//register the layout of the editor
-    //virtual void SetCurrentMode(FName NewMode) override;
+
 	virtual USkillAsset* GetSkillAsset() override;
 	virtual void SetSkillAsset(USkillAsset* InSkillAsset) override;
 	TSharedPtr<class FSceneViewport> Viewport;
@@ -66,11 +61,7 @@ public:
 	 void ExtendToolBar();
 	void CreateNewNode();
 	bool CanCreateNewNode();
-	
-	//called mainly by mode instance
-	virtual void RegisterToolbarTab(const TSharedRef<class FTabManager>& InTabManager);
-	
-	
+
 private:
 	
 	

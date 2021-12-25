@@ -187,7 +187,7 @@ void FSkillEditor2DModule::onNewBlueprintCreated(UBlueprint* InSkillAsset)
 	if (ensure(InSkillAsset->UbergraphPages.Num() > 0))
 	{
 		UEdGraph* EventGraph = InSkillAsset->UbergraphPages[0];
-
+		EventGraph->bEditable=true;
 		UK2Node_Event* NewEventNode = nullptr;
 		FMemberReference EventReference;
 		EventReference.SetExternalMember(FName("SKAInstance"), USKAInstance::StaticClass());

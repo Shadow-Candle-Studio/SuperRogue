@@ -41,22 +41,7 @@ UBlueprint* FSkillAssetEditor::GetBlueprintObj() const
 	return nullptr;
 }
 
-void FSkillAssetEditor::RegisterTabSpawners
-(const TSharedRef<FTabManager>& TabManager)
-{
-	//add new workspace menu category
-	WorkspaceMenuCategory=TabManager->AddLocalWorkspaceMenuCategory
-	(LOCTEXT("WorkspaceMenu_SkillAssetEditor","Skill Asset Editor"));
-}
 
-void FSkillAssetEditor::UnregisterTabSpawners
-(const TSharedRef<FTabManager>& TabManager)
-{
-	// Unregister the tab manager from the asset editor toolkit
-	FAssetEditorToolkit::UnregisterTabSpawners(TabManager);
-
-	
-}
 
 void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
 	const TSharedPtr<IToolkitHost>& InitToolkitHost, USkillAsset* InSkillAsset)
@@ -156,10 +141,7 @@ bool FSkillAssetEditor::IsPrimaryEditor() const
 	return true;
 }
 
-// void FSkillAssetEditor::SetCurrentMode(FName NewMode)
-// {
-// 	
-// }
+
 
 
 
@@ -218,11 +200,11 @@ bool FSkillAssetEditor::CanCreateNewNode()
 	return true;
 }
 
-void FSkillAssetEditor::RegisterToolbarTab(const TSharedRef<FTabManager>& InTabManager)
-{
-	FAssetEditorToolkit::RegisterTabSpawners(InTabManager);
-	
-}
+// void FSkillAssetEditor::RegisterToolbarTab(const TSharedRef<FTabManager>& InTabManager)
+// {
+// 	FAssetEditorToolkit::RegisterTabSpawners(InTabManager);
+// 	
+// }
 
 
 void FSkillAssetEditor::FillToolbar(FToolBarBuilder& ToolBarbuilder)
