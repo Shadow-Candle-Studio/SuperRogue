@@ -20,7 +20,7 @@ public:
 	virtual void RegisterTabFactories(TSharedPtr<FTabManager> InTabManager) override;
 	virtual void AddTabFactory(FCreateWorkflowTabFactory FactoryCreator) override;
 	virtual void RemoveTabFactory(FName TabFactoryID) override;
-	virtual void PreDeactivateMode() override;
+	
 	virtual void PostActivateMode() override;
 	
 	~SkillAssetEditorAPPMode();

@@ -168,15 +168,10 @@ void SkillAssetEditorAPPMode::RemoveTabFactory(FName TabFactoryID)
 	SkillAssetTabFactories.UnregisterFactory(TabFactoryID);
 }
 
-void SkillAssetEditorAPPMode::PreDeactivateMode()
-{
-	FApplicationMode::PreDeactivateMode();
-}
 
 void SkillAssetEditorAPPMode::PostActivateMode()
 {
-	check(AssetEditor.IsValid())
-	AssetEditor.Pin()->InvokeSkillAssetEventBPGraphTab();
+	
 }
 
 SkillAssetEditorAPPMode::~SkillAssetEditorAPPMode()
