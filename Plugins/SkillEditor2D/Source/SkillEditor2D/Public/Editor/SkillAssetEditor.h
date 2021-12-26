@@ -5,7 +5,8 @@
 #include "CoreMinimal.h"
 #include "BlueprintEditor.h"
 #include "SkillEditorPreviewTabBody.h"
-#include "WorkflowCentricApplication.h"
+#include "USKAInstance.h"
+
 #include "WorkflowTabManager.h"
 
 
@@ -46,8 +47,6 @@ public:
 	//FSkillAssetEditor functions ----begins
 	virtual USkillAsset* GetSkillAsset() override;
 	virtual void SetSkillAsset(USkillAsset* InSkillAsset) override;
-	TSharedPtr<class FSceneViewport> Viewport;
-	TSharedPtr<class SViewport> ViewportWidget;
 	void TextFuncOncliked();
 	void FillsubMenu(FMenuBuilder& Menubuilder);
 	void FillToolbar(FToolBarBuilder& ToolBarbuilder);
@@ -64,7 +63,7 @@ public:
 	static const FName PropertiesPanelTabID;
 	
 	TSharedPtr<FUICommandList> SkillAssetExtcommands;
-	
+	TSharedPtr<SKillAssetPriveiwScene> GetPreviewSceneDirectly();
 
 private:
 	
@@ -72,6 +71,7 @@ private:
 
 	
 	TSharedPtr<class SkillAssetEditorAPPMode> SKAEditorModeInuse;
+
 	USkillAsset* SkillAsset;
 protected:
 	/** The extender to pass to the level editor to extend it's window menu */

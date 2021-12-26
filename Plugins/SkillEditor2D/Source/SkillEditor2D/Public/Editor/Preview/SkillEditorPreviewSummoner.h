@@ -18,6 +18,7 @@ public:
 	CreateTabBody(const FWorkflowTabSpawnInfo& Info) const override;
 	virtual FText GetTabToolTipText(const FWorkflowTabSpawnInfo& Info) const override;
 
+	TSharedPtr<SkillEditorPreviewTabBody>& GetFactoryTabBody();
 	
 	~SkillEditorPreviewSummoner();
 

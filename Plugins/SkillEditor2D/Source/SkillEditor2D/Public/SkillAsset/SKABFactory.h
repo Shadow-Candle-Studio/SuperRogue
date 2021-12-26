@@ -7,7 +7,7 @@
 #include "SKABFactory.generated.h"
 
 /**
- * 
+ * Binary import factory, not really used, you can ignore it
  */
 UCLASS()
 class SKILLEDITOR2D_API USKABFactory : public UFactory

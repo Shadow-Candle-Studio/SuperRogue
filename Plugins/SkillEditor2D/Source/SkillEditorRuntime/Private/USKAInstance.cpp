@@ -3,7 +3,10 @@
 
 #include "USKAInstance.h"
 USKAInstance::USKAInstance(const FObjectInitializer& ObjectInitializer)
-	: Super(ObjectInitializer){}
+	: Super(ObjectInitializer)
+{
+	UE_LOG(LogTemp,Warning,L"USK Instance crearted!")
+}
 void USKAInstance::PostInitProperties()
 {
 	UObject::PostInitProperties();

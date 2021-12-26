@@ -66,7 +66,6 @@ public class SkillEditor2D : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
-				"Json",
 				"Core",
 				"CoreUObject",
 				"Json",
@@ -88,7 +87,8 @@ public class SkillEditor2D : ModuleRules
 				"GraphEditor",
 				"BlueprintGraph",
 				"KismetCompiler",
-				"AssetTools"
+				"AssetTools",
+				"Pixel2D"
 				//"SkillEditorRenderer"
 			}
 			);

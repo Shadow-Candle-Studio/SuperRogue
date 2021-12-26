@@ -32,6 +32,10 @@ FText SkillEditorPreviewSummoner::GetTabToolTipText(const FWorkflowTabSpawnInfo&
 	return LOCTEXT("SkillAssetEditorPreviewTabToolTip","This preview tab allows displaying paper animaton with complex particle effects");
 }
 
+TSharedPtr<SkillEditorPreviewTabBody>& SkillEditorPreviewSummoner::GetFactoryTabBody()
+{
+	return SkillAssetPreviewTabBody;
+}
 
 
 SkillEditorPreviewSummoner::~SkillEditorPreviewSummoner()

@@ -7,7 +7,7 @@
 void SkillEditorPreviewTabBody::Construct(const FArguments& Inargs)
 {
 	m_viewportWidget=SNew(SKillEditorPreviewViewport);
-	m_PreviewClient=m_viewportWidget->GetViewportClient();
+	
 	TSharedPtr<SVerticalBox> ViewportContainer=nullptr;
 	this->ChildSlot
 	[
@@ -35,4 +35,9 @@ SkillEditorPreviewTabBody::SkillEditorPreviewTabBody()
 
 SkillEditorPreviewTabBody::~SkillEditorPreviewTabBody()
 {
+}
+
+TSharedPtr<SKillEditorPreviewViewport>& SkillEditorPreviewTabBody::GetSKAViewport()
+{
+	return m_viewportWidget;
 }

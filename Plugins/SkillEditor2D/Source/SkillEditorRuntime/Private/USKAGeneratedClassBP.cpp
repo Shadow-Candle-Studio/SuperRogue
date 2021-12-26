@@ -43,7 +43,6 @@ EDataValidationResult USKAGeneratedClassBP::IsDataValid(TArray<FText>& Validatio
 void USKAGeneratedClassBP::Link(FArchive& Ar, bool bRelinkExistingProperties)
 {
 	Super::Link(Ar, bRelinkExistingProperties);
-	
 	USKAGeneratedClassBP* RootClass = this;
 	while (USKAGeneratedClassBP* NextClass = Cast<USKAGeneratedClassBP>(RootClass->GetSuperClass()))
 	{
@@ -59,5 +58,5 @@ void USKAGeneratedClassBP::PurgeClass(bool bRecompilingOnLoad)
 void USKAGeneratedClassBP::PostLoadDefaultObject(UObject* Object)
 {
 	Super::PostLoadDefaultObject(Object);
-	//CastChecked<UPixel2DAnimInstance>(Object)->PreInitializeRootNode();
+	
 }

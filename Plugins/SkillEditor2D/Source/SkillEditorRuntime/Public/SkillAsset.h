@@ -20,13 +20,14 @@ class SKILLEDITORRUNTIME_API USkillAsset : public UBlueprint
 {
 	GENERATED_BODY()
 public :
+	UPROPERTY(BlueprintReadWrite,EditAnywhere)
+	int num=22;
+	//Constructor
 	USkillAsset();
-	//test text for the property
-	// UPROPERTY(BlueprintReadOnly,EditAnywhere,Category="Skill Editor Test")
-	// FText text;
-	// UPROPERTY()
-	// UEdGraph* AssetGraph;
+	//serialization function
 	virtual void Serialize(FArchive& Ar) override;
+	//Data evaluation function of skill Asset
+	
 virtual EDataValidationResult IsDataValid(TArray<FText>& ValidationErrors) override;
 #if WITH_EDITOR
 

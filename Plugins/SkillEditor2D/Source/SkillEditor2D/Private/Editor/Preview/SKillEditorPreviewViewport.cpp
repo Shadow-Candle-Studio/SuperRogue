@@ -36,14 +36,20 @@ SKillEditorPreviewViewport::~SKillEditorPreviewViewport()
 {
 }
 
+TSharedPtr<SKillAssetPriveiwScene>& SKillEditorPreviewViewport::GetSKAPreview()
+{
+	return CreatedPreviewScene;
+}
+
 TSharedRef<FEditorViewportClient> SKillEditorPreviewViewport::MakeEditorViewportClient()
 {
-	PreviewScene=MakeShareable(new SKillAssetPriveiwScene(SKillAssetPriveiwScene::ConstructionValues()));
-	ViewportClient=MakeShareable(new SkillEditorPreviewClient
-		(nullptr,PreviewScene.Get()));
-	ViewportClient->ViewportType=LVT_Perspective;
-	ViewportClient->bSetListenerPosition=false;
-	return ViewportClient.ToSharedRef();
+	
+	CreatedPreviewScene=MakeShareable(new SKillAssetPriveiwScene(SKillAssetPriveiwScene::ConstructionValues()));
+	Client=MakeShareable(new SkillEditorPreviewClient
+		(nullptr,CreatedPreviewScene.Get()));
+	Client->ViewportType=LVT_Perspective;
+	Client->bSetListenerPosition=false;
+	return Client.ToSharedRef();
 	
 }
 

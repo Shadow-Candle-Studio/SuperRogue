@@ -2,11 +2,8 @@
 
 
 #include "SkillAssetEditorAPPMode.h"
-
 #include "BlueprintEditorTabs.h"
 #include "SBlueprintEditorToolbar.h"
-#include "SkillAsset.h"
-
 #include "SkillAssetEditorSequenceTabSummoner.h"
 #include "SkillAssetPropertyTabSummoner.h"
 #include "SkillEditorPreviewSummoner.h"
@@ -18,14 +15,24 @@ SkillAssetEditorAPPMode::SkillAssetEditorAPPMode
 FBlueprintEditorApplicationMode(InEditor, SkillAssetEditorAPPMode::SKAModeID,
 	SkillAssetEditorAPPMode::GetLocalizedMode, false, false)
 {
+	//assign the editor pointer
 	MyBlueprintEditor=InEditor;
-	
+
+	//add preview tab factory
+	PreviewTabFactory=MakeShareable(new SkillEditorPreviewSummoner(InEditor));
 	SkillAssetTabFactories.RegisterFactory
-	(MakeShareable(new SkillEditorPreviewSummoner(InEditor)));
-	
+	(PreviewTabFactory);
+	//add property showing
+	PropertyTabFactory=MakeShareable(new SkillAssetPropertyTabSummoner(InEditor));
 	SkillAssetTabFactories.RegisterFactory
-	(MakeShareable(new SkillAssetEditorSequenceTabSummoner(InEditor)));
+	(PropertyTabFactory);
 	
+	SequencerTabFactory=MakeShareable(new SkillAssetEditorSequenceTabSummoner(InEditor));
+	//add sequence tab factory
+	SkillAssetTabFactories.RegisterFactory
+	(SequencerTabFactory);
+
+	//Add customized layout
 	check(MyBlueprintEditor.IsValid());
 	TabLayout=FTabManager::NewLayout("SkillAssetEditor_Layout_v1")
 			->AddArea
@@ -34,7 +41,7 @@ FBlueprintEditorApplicationMode(InEditor, SkillAssetEditorAPPMode::SKAModeID,
 			->SetOrientation(Orient_Vertical)
 			->Split
 			(
-				// Top toolbar
+				// Top toolbar with compiling button
 				FTabManager::NewStack()
 				->SetSizeCoefficient(0.186721f)
 				->SetHideTabWell(true)
@@ -53,17 +60,18 @@ FBlueprintEditorApplicationMode(InEditor, SkillAssetEditorAPPMode::SKAModeID,
 					->SetOrientation(Orient_Vertical)
 					->Split
 					(
-						//	Left bottom - preview settings
+						//	Left top - preview tab
 						FTabManager::NewStack()
 						->SetSizeCoefficient(0.5f)
 						->AddTab(FSkillAssetEditor::PreviewTabId, ETabState::OpenedTab)
 					)
 					->Split
 					(
-					//	Left bottom - preview settings
+					//Left bottom blueprint added variables
 					FTabManager::NewStack()
 					->SetSizeCoefficient(0.5f)
 					->AddTab(FBlueprintEditorTabs::MyBlueprintID, ETabState::OpenedTab)
+					->AddTab(FSkillAssetEditor::PropertiesPanelTabID,ETabState::OpenedTab)
 					)
 				)
 				->Split
@@ -84,8 +92,8 @@ FBlueprintEditorApplicationMode(InEditor, SkillAssetEditorAPPMode::SKAModeID,
 						// Middle bottom - compiler results & find
 						FTabManager::NewStack()
 						->SetSizeCoefficient(0.2f)
-						->AddTab(FBlueprintEditorTabs::CompilerResultsID, ETabState::OpenedTab)
-						->AddTab(FBlueprintEditorTabs::FindResultsID, ETabState::OpenedTab)
+						->AddTab(FBlueprintEditorTabs::CompilerResultsID, ETabState::ClosedTab)
+						->AddTab(FBlueprintEditorTabs::FindResultsID, ETabState::ClosedTab)
 					)
 				)
 				->Split
@@ -105,7 +113,7 @@ FBlueprintEditorApplicationMode(InEditor, SkillAssetEditorAPPMode::SKAModeID,
 					)
 					->Split
 					(
-						// Right bottom - Asset browser
+						// Right bottom Sequencer
 						FTabManager::NewStack()
 						->SetHideTabWell(false)
 						->SetSizeCoefficient(0.5f)
@@ -117,50 +125,35 @@ FBlueprintEditorApplicationMode(InEditor, SkillAssetEditorAPPMode::SKAModeID,
 		);
 	
 	ToolbarExtender = MakeShareable(new FExtender);
-	
-	if (UToolMenu* Toolbar = InEditor->RegisterModeToolbarIfUnregistered(GetModeName()))
-	{
-		if(InEditor->GetToolbarBuilder().IsValid())
-		{
-			InEditor->GetToolbarBuilder()->AddCompileToolbar(Toolbar);
-			InEditor->GetToolbarBuilder()->AddScriptingToolbar(Toolbar);
-		}
-			
-	}
+
+	//Add compilation buttons to tool bar
+	 if (UToolMenu* Toolbar = InEditor->RegisterModeToolbarIfUnregistered(GetModeName()))
+	 {
+	 	
+	 	InEditor->GetToolbarBuilder()->AddCompileToolbar(Toolbar);
+	 	InEditor->GetToolbarBuilder()->AddScriptingToolbar(Toolbar);
+	 		
+	 }
 	
 	
 }
 
 void SkillAssetEditorAPPMode::RegisterTabFactories(TSharedPtr<FTabManager> InTabManager)
 {
+	//get the actual ref of editor
 	TSharedPtr<FBlueprintEditor> Editor = MyBlueprintEditor.Pin();
 
+	//register tool bar tab
 	Editor->RegisterToolbarTab(InTabManager.ToSharedRef());
+
+	//Submit all tab factories to tab manager
 	Editor->PushTabFactories(CoreTabFactories);
 	Editor->PushTabFactories(BlueprintEditorTabFactories);
 	Editor->PushTabFactories(SkillAssetTabFactories);
 }
 
+TSharedPtr<SKillAssetPriveiwScene>& SkillAssetEditorAPPMode::GetThePreviewSceneInsideTheMode()
+{
+	return PreviewTabFactory->GetFactoryTabBody()->GetSKAViewport()->GetSKAPreview();
+}
 
-
-
-
-// void SkillAssetEditorAPPMode::PostActivateMode()
-// {
-// 	// Reopen any documents that were open when the blueprint was last saved
-// 	// TSharedPtr<FBlueprintEditor> BP = MyBlueprintEditor.Pin();
-// 	// if(BP.IsValid())
-// 	// {
-// 	// 	UE_LOG(LogTemp,Warning,L"BP VALID")
-// 	// 	// BP->RestoreEditedObjectState();
-// 	// 	// BP->SetupViewForBlueprintEditingMode();
-// 	// }
-// 	FBlueprintEditorApplicationMode::PostActivateMode();
-//
-// 	//FApplicationMode::PostActivateMode();
-// 	//FBlueprintEditorApplicationMode::PostActivateMode();
-// }
-
-// SkillAssetEditorAPPMode::~SkillAssetEditorAPPMode()
-// {
-// }

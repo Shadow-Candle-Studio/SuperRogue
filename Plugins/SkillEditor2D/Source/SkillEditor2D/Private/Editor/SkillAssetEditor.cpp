@@ -10,6 +10,7 @@
 #include "SkillAssetEditorAPPMode.h"
 #include "SkillEditor2D.h"
 #include "ToolMenus.h"
+#include "../../../../../Pixel2D/Source/Pixel2D/Classes/Pixel2DCharacter.h"
 
 
 const FName SkillAssetEditorAppIdentifier = FName(TEXT("SkillAssetEditorApp"));
@@ -42,6 +43,8 @@ UBlueprint* FSkillAssetEditor::GetBlueprintObj() const
 void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
 	const TSharedPtr<IToolkitHost>& InitToolkitHost, USkillAsset* InSkillAsset)
 {
+	//set the skill asset
+	SetSkillAsset(InSkillAsset);
 	//Map the click message to specific function
 	SkillAssetExtcommands=MakeShareable(new FUICommandList);
 	SkillAssetExtcommands->MapAction(FSkillEditorcommands::Get().Textfunc,
@@ -75,10 +78,12 @@ void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
 	Blueprints.Add(InSkillAsset);
 
 	CommonInitialization(Blueprints, false);
-
+	SKAEditorModeInuse=MakeShareable(new SkillAssetEditorAPPMode(SharedThis(this)));
+	check(SKAEditorModeInuse.IsValid())
+	
 	AddApplicationMode(
 		SkillAssetEditorAPPMode::SKAModeID,
-		MakeShareable(new SkillAssetEditorAPPMode(SharedThis(this))));
+		SKAEditorModeInuse.ToSharedRef());
 
 	ExtendMenu();
 	ExtendToolBar();
@@ -89,11 +94,11 @@ void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
 
 	// Post-layout initialization
 	PostLayoutBlueprintEditorInitialization();
-	
 
 	
-
-
+	
+		UE_LOG(LogTemp,Warning,L"Num %d",GetSkillAsset()->num)
+	
 	
 }
 
@@ -192,6 +197,14 @@ void FSkillAssetEditor::ExtendToolBar()
 		}
 	}
 	
+}
+
+TSharedPtr<SKillAssetPriveiwScene> FSkillAssetEditor::GetPreviewSceneDirectly()
+{
+	{
+		return SKAEditorModeInuse->GetThePreviewSceneInsideTheMode();
+		
+	}
 }
 
 void FSkillAssetEditor::FillToolbar(FToolBarBuilder& ToolBarbuilder)

@@ -18,7 +18,7 @@ public:
 	void Construct(const FArguments& Inargs);
 	SkillEditorPreviewTabBody();
 	~SkillEditorPreviewTabBody();
+	TSharedPtr<SKillEditorPreviewViewport>& GetSKAViewport();
 private:
-	TSharedPtr<FEditorViewportClient> m_PreviewClient;
 	TSharedPtr<SKillEditorPreviewViewport> m_viewportWidget;
 };

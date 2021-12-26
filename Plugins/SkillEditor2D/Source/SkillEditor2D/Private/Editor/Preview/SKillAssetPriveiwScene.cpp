@@ -3,6 +3,7 @@
 
 #include "SKillAssetPriveiwScene.h"
 
+#include "Pixel2DCharacter.h"
 #include "Camera/CameraComponent.h"
 #include "Components/DirectionalLightComponent.h"
 #include "Components/SkyLightComponent.h"
@@ -52,15 +53,30 @@ SKillAssetPriveiwScene::SKillAssetPriveiwScene(ConstructionValues CVS):FAdvanced
 		TEXT("/Engine/EditorMeshes/EditorCube.EditorCube"),
 		NULL, LOAD_None,
 		NULL);
+	
 	UStaticMeshComponent* FloorComp = NewObject<UStaticMeshComponent>();
 	FloorComp->SetStaticMesh(FloorMesh);
-	AddComponent(FloorComp, FTransform::Identity);
+	//AddComponent(FloorComp, FTransform::Identity);
 	FloorComp->SetRelativeScale3D(FVector(30.f, 30.f, 10.f));
 	UMaterial* Material = LoadObject<UMaterial>(NULL, TEXT("/Engine/EditorMaterials/PersonaFloorMat.PersonaFloorMat"), NULL, LOAD_None, NULL);
 	FloorComp->SetMaterial(0, Material);
 	FloorComp->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 	FloorComp->SetCollisionObjectType(ECC_WorldStatic);
+	
+	UChildActorComponent* PixelCharacter=NewObject<UChildActorComponent>();
+	PixelCharacter->SetChildActorClass(APixel2DCharacter::StaticClass());
+	PixelCharacter->CreateChildActor();
+	FTransform world;
+	world.SetLocation(FVector(100,100,100));
+	world.SetRotation(FRotator(0,0,0).Quaternion());
+	world.SetScale3D(FVector(20,20,20));
+	this->GetWorld()->SpawnActor(APixel2DCharacter::StaticClass());
 
+	// if(PixelCharacter!=nullptr)
+	// {
+	// 	AddComponent(PixelCharacter,world);
+	// }
+	
 
 	
 }

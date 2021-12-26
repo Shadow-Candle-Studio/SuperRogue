@@ -30,6 +30,7 @@ SkillEditorPreviewClient::SkillEditorPreviewClient(FEditorModeTools* InModeTools
                                                    const TWeakPtr<SEditorViewport>& InEditorViewportWidget ):
 FEditorViewportClient(InModeTools,InPreviewScene,InEditorViewportWidget)
 {
+	
 	SetViewLocation(FVector(100,100,100));
 }
 

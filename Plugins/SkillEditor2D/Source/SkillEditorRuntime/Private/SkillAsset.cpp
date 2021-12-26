@@ -8,7 +8,7 @@
 
 USkillAsset::USkillAsset()
 {
-	
+	UE_LOG(LogTemp,Warning,L"USKILLAsset created")
 }
 
 void USkillAsset::Serialize(FArchive& Ar)

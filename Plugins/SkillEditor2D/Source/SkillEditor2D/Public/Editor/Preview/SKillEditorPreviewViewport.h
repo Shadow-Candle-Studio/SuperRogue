@@ -22,12 +22,11 @@ public:
 	virtual void OnFloatingButtonClicked() override;
 	SKillEditorPreviewViewport();
 	~SKillEditorPreviewViewport();
-	
+	TSharedPtr<class SKillAssetPriveiwScene>& GetSKAPreview();
 
 protected:
 	virtual TSharedRef<FEditorViewportClient> MakeEditorViewportClient() override;
 	virtual TSharedPtr<SWidget> MakeViewportToolbar() override;
 private:
-	TSharedPtr<class FEditorViewportClient> ViewportClient;
-	TSharedPtr<class SKillAssetPriveiwScene> PreviewScene;
+	TSharedPtr<class SKillAssetPriveiwScene> CreatedPreviewScene;
 };

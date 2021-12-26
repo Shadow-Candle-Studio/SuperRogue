@@ -9,10 +9,10 @@
 SkillAssetPropertyTabSummoner::SkillAssetPropertyTabSummoner(TSharedPtr<FSkillAssetEditor> InEditorPtr):
 FWorkflowTabFactory(FSkillAssetEditor::PropertiesPanelTabID, InEditorPtr),EditorPtr(InEditorPtr)
 {
-	TabLabel=LOCTEXT("Details with preview", "Details");
+	TabLabel=LOCTEXT("Details with preview", "DetailsOfSkillAsset");
 	TabIcon=FSlateIcon(FEditorStyle::GetStyleSetName(),"Kismet.Tabs.Components");
 	bIsSingleton=true;
-	ViewMenuDescription = LOCTEXT("Details with preview", "Details");
+	ViewMenuDescription = LOCTEXT("Details with preview", "DetailsOfSkillAsset");
 	ViewMenuTooltip = LOCTEXT("Details with preview_ToolTip", "Show the details view");
 
 	
