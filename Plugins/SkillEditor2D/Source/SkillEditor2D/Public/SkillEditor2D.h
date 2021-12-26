@@ -78,9 +78,9 @@ private :
 	//for editor
 	TSharedPtr<FExtensibilityManager> MenuExtensibilityManager;
 	TSharedPtr<FExtensibilityManager> ToolBarExtensibilityManager;
-	TSharedPtr<FSlateStyleSet> StyleSet;
+	
 	TSharedPtr<IAssetTypeActions> SkillAsset2DAction;
-	IAssetTools* AssetToolsModule;
+	
 	void RegisterSettings()
 	{
 		if (ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings"))

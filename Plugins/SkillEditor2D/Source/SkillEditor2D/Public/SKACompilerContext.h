@@ -34,7 +34,7 @@ protected:
 	virtual void OnNewClassSet(UBlueprintGeneratedClass* ClassToUse) override;
 	virtual void CopyTermDefaultsToDefaultObject(UObject* DefaultObject) override;
 	virtual void PostCompileDiagnostics() override;
-	virtual UEdGraphSchema_K2* CreateSchema() override;
+
 	virtual void EnsureProperGeneratedClass(UClass*& TargetClass) override;
 	virtual void CleanAndSanitizeClass(UBlueprintGeneratedClass* ClassToClean, UObject*& InOldCDO) override;
 	virtual void FinishCompilingClass(UClass* Class) override;

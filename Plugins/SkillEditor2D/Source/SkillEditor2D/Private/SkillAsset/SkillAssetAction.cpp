@@ -59,7 +59,7 @@ void SkillAssetAction::OpenAssetEditor(const TArray<UObject*>& InObjects, TShare
 		}
 		else
 		{
-			FMessageDialog::Open(EAppMsgType::Ok, LOCTEXT("FailedToLoadCorruptAnimBlueprint", "The Anim Blueprint could not be loaded because it is corrupt."));
+			FMessageDialog::Open(EAppMsgType::Ok, LOCTEXT("FailedToLoadCorruptSkillAssetBlueprint", "The Skill Asset Blueprint could not be loaded because it is corrupt."));
 		}
 	}
 }
@@ -80,7 +80,7 @@ void SkillAssetAction::GetActions(const TArray<UObject*>& InObjects, FMenuBuilde
 	auto SkillAssets=GetTypedObjectPtrs<USkillAsset>(InObjects);
 	MenuBuilder.AddMenuEntry(
 		LOCTEXT("SkillAssetClearAsset","Clear Asset"),
-		LOCTEXT("SkillAssetClearAssetToolTip","Clear the asset contens in a text"),
+		LOCTEXT("SkillAssetClearAssetToolTip","Clear the asset contens"),
         FSlateIcon(),
         FUIAction(
 					FExecuteAction::CreateLambda([=]{

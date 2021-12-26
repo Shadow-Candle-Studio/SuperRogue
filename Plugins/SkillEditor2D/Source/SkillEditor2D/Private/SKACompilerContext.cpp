@@ -22,7 +22,7 @@ void SKACompilerContext::PostCompile()
 {
 	FKismetCompilerContext::PostCompile();
 	USKAGeneratedClassBP* AnimBlueprintGeneratedClass = CastChecked<USKAGeneratedClassBP>(NewClass);
-	USKAInstance* DefaultAnimInstance = CastChecked<USKAInstance>(AnimBlueprintGeneratedClass->GetDefaultObject());
+	USKAInstance* DefaultUSKAInstance = CastChecked<USKAInstance>(AnimBlueprintGeneratedClass->GetDefaultObject());
 	
 }
 void SKACompilerContext::CreateFunctionList()
@@ -35,11 +35,7 @@ void SKACompilerContext::CreateClassVariablesFromBlueprint()
 	FKismetCompilerContext::CreateClassVariablesFromBlueprint();
 }
 
-// UEdGraphSchema_K2* SKACompilerContext::CreateSchema()
-// {
-// 	SKASchema=NewObject<USKAUEdGraphSchema>();
-// 	return SKASchema;
-// }
+
 
 void SKACompilerContext::MergeUbergraphPagesIn(UEdGraph* Ubergraph)
 {
@@ -89,10 +85,7 @@ void SKACompilerContext::PostCompileDiagnostics()
 	
 }
 
-UEdGraphSchema_K2* SKACompilerContext::CreateSchema()
-{
-	return FKismetCompilerContext::CreateSchema();
-}
+
 
 void SKACompilerContext::EnsureProperGeneratedClass(UClass*& TargetClass)
 {

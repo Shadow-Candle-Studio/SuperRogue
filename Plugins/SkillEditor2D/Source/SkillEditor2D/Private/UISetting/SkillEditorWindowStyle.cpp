@@ -48,7 +48,30 @@ TSharedRef<FSlateStyleSet> SkillEditorWindowStyle::Create()
 	TSharedRef< FSlateStyleSet > Style = MakeShareable(new FSlateStyleSet("SkillEditorWindowStyle"));
 	Style->SetContentRoot(IPluginManager::Get().FindPlugin("SkillEditor2D")->GetBaseDir() / TEXT("Resources"));
 
-	Style->Set("SkillEditor2D.OpenPluginWindow", new IMAGE_BRUSH(TEXT("ButtonIcon_40x"), Icon40x40));
+	Style->Set("SkillEditor2D.OpenPluginWindow", new IMAGE_BRUSH(TEXT("Icon128"), Icon40x40));
+	FSlateImageBrush* MenuthumbNailBrush=new FSlateImageBrush
+	(Style->RootToContentDir
+		(TEXT
+			("Icon128"), TEXT
+			(".png")), FVector2D
+			(128.f, 128.f));
+	FSlateImageBrush* BrowserthumbNailBrush=new FSlateImageBrush
+		(Style->RootToContentDir
+			(TEXT
+				("Icon128"), TEXT
+				(".png")), FVector2D
+				(128.f, 128.f));
+	if(MenuthumbNailBrush&&BrowserthumbNailBrush)
+	{
+		Style->Set
+		("ClassThumbnail.SkillAsset",
+			MenuthumbNailBrush);
+		Style->Set
+	("ClassThumbnail.SKAInstance",
+		BrowserthumbNailBrush);
+		
+	}
+	
 
 	return Style;
 }

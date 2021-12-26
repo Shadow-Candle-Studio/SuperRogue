@@ -40,7 +40,6 @@ virtual EDataValidationResult IsDataValid(TArray<FText>& ValidationErrors) overr
 
 	virtual bool IsValidForBytecodeOnlyRecompile() const override { return false; }
 	virtual bool CanRecompileWhilePlayingInEditor() const override;
-
 	virtual void PostLoad() override;
 #endif	// #if WITH_EDITOR
 };

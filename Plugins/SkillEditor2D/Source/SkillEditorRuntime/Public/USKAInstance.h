@@ -10,7 +10,7 @@
  * 
  */
 
-UCLASS(transient, Blueprintable, hideCategories = AnimInstance, BlueprintType, meta = (BlueprintThreadSafe))
+UCLASS(transient, Blueprintable, hideCategories = SKillAssetInstance, BlueprintType, meta = (BlueprintThreadSafe))
 class SKILLEDITORRUNTIME_API USKAInstance : public UObject
 {
 	GENERATED_UCLASS_BODY()
