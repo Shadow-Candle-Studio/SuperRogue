@@ -59,4 +59,5 @@ void USKAGeneratedClassBP::PostLoadDefaultObject(UObject* Object)
 {
 	Super::PostLoadDefaultObject(Object);
 	
+	
 }

@@ -4,9 +4,9 @@
 #include "SkillEditorPreviewClient.h"
 
 
-void SkillEditorPreviewClient::Draw(FViewport* Viewport, FCanvas* Canvas)
+void SkillEditorPreviewClient::Draw(FViewport* InViewport, FCanvas* Canvas)
 {
-	FEditorViewportClient::Draw(Viewport, Canvas);
+	FEditorViewportClient::Draw(InViewport, Canvas);
 }
 
 void SkillEditorPreviewClient::Tick(float DeltaSeconds)

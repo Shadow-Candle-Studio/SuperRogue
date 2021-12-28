@@ -87,13 +87,13 @@ void SKACompilerContext::PostCompileDiagnostics()
 
 
 
-void SKACompilerContext::EnsureProperGeneratedClass(UClass*& TargetClass)
+void SKACompilerContext::EnsureProperGeneratedClass(UClass*& InTargetClass)
 {
-	FKismetCompilerContext::EnsureProperGeneratedClass(TargetClass);
-	if (TargetClass && !((UObject*)TargetClass)->IsA(USKAGeneratedClassBP::StaticClass()))
+	FKismetCompilerContext::EnsureProperGeneratedClass(InTargetClass);
+	if (InTargetClass && !((UObject*)InTargetClass)->IsA(USKAGeneratedClassBP::StaticClass()))
 	{
-		FKismetCompilerUtilities::ConsignToOblivion(TargetClass, Blueprint->bIsRegeneratingOnLoad);
-		TargetClass = NULL;
+		FKismetCompilerUtilities::ConsignToOblivion(InTargetClass, Blueprint->bIsRegeneratingOnLoad);
+		InTargetClass = NULL;
 	}
 }
 

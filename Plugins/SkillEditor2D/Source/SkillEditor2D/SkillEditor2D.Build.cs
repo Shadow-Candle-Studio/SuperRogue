@@ -89,7 +89,9 @@ public class SkillEditor2D : ModuleRules
 				"KismetCompiler",
 				"AssetTools",
 				"Pixel2D",
-				"ImageWrapper"
+				"ImageWrapper", "UMGEditor",
+				"UMG",
+				"MovieScene"
 				//"SkillEditorRenderer"
 			}
 			);

@@ -43,7 +43,6 @@ public:
 	virtual bool IsPrimaryEditor() const override;
 	//Blueprint interfaces ----ends
 
-
 	//FSkillAssetEditor functions ----begins
 	virtual USkillAsset* GetSkillAsset() override;
 	virtual void SetSkillAsset(USkillAsset* InSkillAsset) override;

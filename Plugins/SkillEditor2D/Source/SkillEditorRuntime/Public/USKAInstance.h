@@ -7,7 +7,7 @@
 #include "USKAInstance.generated.h"
 
 /**
- * store all of the blueprint editable 
+ * store all of the blueprint editable datas
  */
 
 UCLASS(transient, Blueprintable, hideCategories = SKillAssetInstance, BlueprintType, meta = (BlueprintThreadSafe))

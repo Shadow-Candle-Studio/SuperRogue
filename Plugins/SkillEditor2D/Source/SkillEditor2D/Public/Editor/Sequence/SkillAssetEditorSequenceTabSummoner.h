@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
 #include "WorkflowTabFactory.h"
 
 /**
@@ -19,7 +20,13 @@ public:
 	{
 		;
 	}
+	void OnGetAnimationAddMenuContent( FMenuBuilder& /*MenuBuilder*/, TSharedRef<class ISequencer>);
+	void OnBuildCustomContextMenuForGuid(FMenuBuilder&, FGuid);
+	UObject* GetAnimationPlaybackContext() const;
+	TArray<UObject*>GetAnimationEventContexts() const;
 	~SkillAssetEditorSequenceTabSummoner();
+	TSharedPtr<IToolkitHost> ToolkitHost;
+	TSharedPtr<class ISequencer> TabSequencer;
 private:
 	TWeakPtr<class FSkillAssetEditor> EditorPtr;
 };

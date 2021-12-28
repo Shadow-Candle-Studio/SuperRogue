@@ -6,18 +6,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa3c9db2-0144-44ee-bf21-7a08a4670a13" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/NewSkillAsset3.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/NewSkillAsset4.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SuperRogue/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SuperRogue/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/NewPixel2DAnimBlueprint.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/NewPixel2DAnimBlueprint.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/NewSkillAsset.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/NewSkillAsset.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/NewSkillAsset1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/NewSkillAsset1.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Public/Maps/Demo01.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Maps/Demo01.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Public/Maps/Demo01_BuiltData.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Maps/Demo01_BuiltData.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/Editor/SkillAssetEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/Editor/SkillAssetEditor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/NewSkillAsset2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/NewSkillAsset2.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/NewSkillAsset3.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/NewSkillAsset3.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/Editor/Preview/SkillEditorPreviewClient.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/Editor/Preview/SkillEditorPreviewClient.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/Editor/Sequence/SkillAssetEditorSequenceTabSummoner.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/Editor/Sequence/SkillAssetEditorSequenceTabSummoner.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SKACompilerContext.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SKACompilerContext.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/Editor/Sequence/SkillAssetEditorSequenceTabSummoner.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/Editor/Sequence/SkillAssetEditorSequenceTabSummoner.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/Editor/SkillAssetEditor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/Editor/SkillAssetEditor.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/UISetting/SkillEditorWindowStyle.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/UISetting/SkillEditorWindowStyle.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/SkillEditor2D.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/SkillEditor2D.Build.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/SkillAsset.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/SkillAsset.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/USKAGeneratedClassBP.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/USKAGeneratedClassBP.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/USKAInstance.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/USKAInstance.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/USKAInstance.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/USKAInstance.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -467,7 +470,8 @@
       <workItem from="1640446605973" duration="3639000" />
       <workItem from="1640483122063" duration="28162000" />
       <workItem from="1640572183254" duration="11650000" />
-      <workItem from="1640657278833" duration="923000" />
+      <workItem from="1640657278833" duration="1108000" />
+      <workItem from="1640677012045" duration="7983000" />
     </task>
     <servers />
   </component>
