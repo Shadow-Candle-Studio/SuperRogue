@@ -3,8 +3,15 @@
 
 #include "SkillAssetEditor.h"
 
+#include "AssetToolsModule.h"
 #include "BlueprintEditorUtils.h"
+#include "FileHelper.h"
 #include "FSkillEditorcommands.h"
+#include "IImageWrapper.h"
+#include "IImageWrapperModule.h"
+#include "ImageUtils.h"
+#include "IPluginManager.h"
+#include "ObjectTools.h"
 #include "SBlueprintEditorToolbar.h"
 #include "SkillAsset.h"
 #include "SkillAssetEditorAPPMode.h"
@@ -95,9 +102,11 @@ void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
 	// Post-layout initialization
 	PostLayoutBlueprintEditorInitialization();
 
+
+	UpdateAssetThumbnail();
 	
 	
-		UE_LOG(LogTemp,Warning,L"Num %d",GetSkillAsset()->num)
+	
 	
 	
 }
@@ -205,6 +214,150 @@ TSharedPtr<SKillAssetPriveiwScene> FSkillAssetEditor::GetPreviewSceneDirectly()
 		return SKAEditorModeInuse->GetThePreviewSceneInsideTheMode();
 		
 	}
+}
+
+void FSkillAssetEditor::UpdateAssetThumbnail()
+{
+	check(GetSkillAsset()!=nullptr);
+	if(GetSkillAsset()->LastTimeAssetOwnerType==GetSkillAsset()->AssetOwnerType)
+	{
+		UE_LOG(LogTemp,Warning,L"No need to update the thumbnail")
+	}
+	else
+	{
+		FString ThumbNailName=IPluginManager::Get().FindPlugin("SkillEditor2D")->GetBaseDir() / TEXT("Resources");
+	ThumbNailName+="/";
+	switch (GetSkillAsset()->AssetOwnerType)
+	{
+	    case E_SkillAssetType::Umbrella:
+		{
+			ThumbNailName+="UmSword.png";
+			break;
+		}
+	case E_SkillAssetType::B_Hammer:
+		    {
+	    		ThumbNailName+="Hammer.png";
+			    break;
+		    }
+	case E_SkillAssetType::B_ClayMore:
+		    {
+	    		ThumbNailName+="ClayMore.png";
+			    break;
+		    }
+	case E_SkillAssetType::S_DoubleBlade:
+		    {
+	    		ThumbNailName+="ClayMore.png";
+			    break;
+		    }
+		default:
+		    {
+	    		ThumbNailName+="UmSword.png";
+			    
+		    }
+	}
+	IImageWrapperModule& ImageWrapperModule = FModuleManager::LoadModuleChecked<IImageWrapperModule>(FName("ImageWrapper"));
+	TSharedPtr<IImageWrapper> ImageWrapper = ImageWrapperModule.CreateImageWrapper(EImageFormat::PNG);
+	TArray<uint8> RawPNGImageData;
+	TArray<uint8> RawBMPData;
+	if(FFileHelper::LoadFileToArray(RawPNGImageData,*ThumbNailName))
+	{
+		if(ImageWrapper.IsValid()&&
+			ImageWrapper->SetCompressed
+			(RawPNGImageData.GetData(),
+				RawPNGImageData.
+				Num()))
+		{
+			if(ImageWrapper->GetRaw(ERGBFormat::BGRA,8,RawBMPData))
+			{
+				
+			}
+		}
+	}
+	uint32 SrcWidth = ImageWrapper->GetWidth();
+	uint32 SrcHeight = ImageWrapper->GetHeight();
+	TArray<FColor> OrigBitmap;
+	OrigBitmap.Init(FColor(0,0,0,0),SrcHeight*SrcWidth);
+	FMemory::Memcpy((void*)OrigBitmap.GetData(),(void*)RawBMPData.GetData(),SrcHeight*SrcWidth*4);
+	
+	check(OrigBitmap.Num() == SrcWidth * SrcHeight);
+	//pin to smallest value
+		int32 CropSize = FMath::Min<uint32>(SrcWidth, SrcHeight);
+		//pin to max size
+		int32 ScaledSize  = FMath::Min<uint32>(ThumbnailTools::DefaultThumbnailSize, CropSize);
+ 
+		//calculations for cropping
+		TArray<FColor> CroppedBitmap;
+		CroppedBitmap.AddUninitialized(CropSize*CropSize);
+		//Crop the image
+		int32 CroppedSrcTop  = (SrcHeight - CropSize)/2;
+		int32 CroppedSrcLeft = (SrcWidth - CropSize)/2;
+		for (int32 Row = 0; Row < CropSize; ++Row)
+		{
+			//Row*Side of a row*byte per color
+			int32 SrcPixelIndex = (CroppedSrcTop+Row)*SrcWidth + CroppedSrcLeft;
+			const void* SrcPtr = &(OrigBitmap[SrcPixelIndex]);
+			void* DstPtr = &(CroppedBitmap[Row*CropSize]);
+			FMemory::Memcpy(DstPtr, SrcPtr, CropSize*4);
+		}
+ 
+		//Scale image down if needed
+		TArray<FColor> ScaledBitmap;
+		if (ScaledSize < CropSize)
+		{
+			FImageUtils::ImageResize( CropSize, CropSize, CroppedBitmap, ScaledSize, ScaledSize, ScaledBitmap, true );
+		}
+		else
+		{
+			//just copy the data over. sizes are the same
+			ScaledBitmap = CroppedBitmap;
+		}
+ 
+		//setup actual thumbnail
+		FObjectThumbnail TempThumbnail;
+		TempThumbnail.SetImageSize( ScaledSize, ScaledSize );
+		TArray<uint8>& ThumbnailByteArray = TempThumbnail.AccessImageData();
+ 
+		// Copy scaled image into destination thumb
+		int32 MemorySize = ScaledSize*ScaledSize*sizeof(FColor);
+		ThumbnailByteArray.AddUninitialized(MemorySize);
+		FMemory::Memcpy(&(ThumbnailByteArray[0]), &(ScaledBitmap[0]), MemorySize);
+ 
+		FAssetToolsModule& AssetToolsModule = FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools");
+	
+		FAssetData CurrentUpdateAsset(GetSkillAsset());
+		const FAssetData& CurrentAsset = CurrentUpdateAsset;
+ 
+		//assign the thumbnail and dirty
+		const FString ObjectFullName = CurrentAsset.GetFullName();
+		const FString PackageName    = CurrentAsset.PackageName.ToString();
+ 
+		UPackage* AssetPackage = FindObject<UPackage>( NULL, *PackageName );
+		if ( ensure(AssetPackage) )
+		{
+			FObjectThumbnail* NewThumbnail = ThumbnailTools::CacheThumbnail(ObjectFullName, &TempThumbnail, AssetPackage);
+			if ( ensure(NewThumbnail) )
+			{
+				//we need to indicate that the package needs to be resaved
+				AssetPackage->MarkPackageDirty();
+ 
+				// Let the content browser know that we've changed the thumbnail
+				NewThumbnail->MarkAsDirty();
+						
+				// Signal that the asset was changed if it is loaded so thumbnail pools will update
+				if ( CurrentAsset.IsAssetLoaded() )
+				{
+					CurrentAsset.GetAsset()->PostEditChange();
+				}
+ 
+				//Set that thumbnail as a valid custom thumbnail so it'll be saved out
+				NewThumbnail->SetCreatedAfterCustomThumbsEnabled();
+			}
+		}
+		GetSkillAsset()->LastTimeAssetOwnerType=GetSkillAsset()->AssetOwnerType;	
+	}
+	
+
+	
 }
 
 void FSkillAssetEditor::FillToolbar(FToolBarBuilder& ToolBarbuilder)

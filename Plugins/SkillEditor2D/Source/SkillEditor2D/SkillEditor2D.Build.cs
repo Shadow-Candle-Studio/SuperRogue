@@ -88,7 +88,8 @@ public class SkillEditor2D : ModuleRules
 				"BlueprintGraph",
 				"KismetCompiler",
 				"AssetTools",
-				"Pixel2D"
+				"Pixel2D",
+				"ImageWrapper"
 				//"SkillEditorRenderer"
 			}
 			);

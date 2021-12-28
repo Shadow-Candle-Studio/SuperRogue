@@ -8,6 +8,10 @@
 #include "UObject/ObjectMacros.h"
 #include "SkillAsset.generated.h"
 
+
+UENUM(Blueprintable,BlueprintType)
+enum E_SkillAssetType {Umbrella,B_ClayMore,B_Hammer, S_DoubleBlade};
+
 /**
  * This class Stores everything including:
  * Params of the skill
@@ -20,8 +24,13 @@ class SKILLEDITORRUNTIME_API USkillAsset : public UBlueprint
 {
 	GENERATED_BODY()
 public :
+	
 	UPROPERTY(BlueprintReadWrite,EditAnywhere)
 	int num=22;
+	UPROPERTY(BlueprintReadWrite,EditAnywhere)
+	TEnumAsByte<E_SkillAssetType> AssetOwnerType=E_SkillAssetType::Umbrella;
+
+	TEnumAsByte<E_SkillAssetType> LastTimeAssetOwnerType=AssetOwnerType;
 	//Constructor
 	USkillAsset();
 	//serialization function

@@ -13,7 +13,7 @@ public:
 	static void Initialize();
 
 	static void ShutDown();
-
+	
 	static void Reloadtextures();
 
 	static const ISlateStyle& Get();

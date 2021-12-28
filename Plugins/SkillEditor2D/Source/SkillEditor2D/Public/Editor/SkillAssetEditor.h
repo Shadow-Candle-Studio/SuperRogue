@@ -69,7 +69,7 @@ private:
 	
 	
 
-	
+	void UpdateAssetThumbnail();
 	TSharedPtr<class SkillAssetEditorAPPMode> SKAEditorModeInuse;
 
 	USkillAsset* SkillAsset;
