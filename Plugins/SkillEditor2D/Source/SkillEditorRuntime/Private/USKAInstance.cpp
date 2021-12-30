@@ -9,7 +9,7 @@ USKAInstance::USKAInstance(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
 	
-	UE_LOG(LogTemp,Warning,L"USK des %d",((USkillAsset*)GetOutermostObject())->num)
+	//UE_LOG(LogTemp,Warning,L"USK des %d",((USkillAsset*)GetOutermostObject())->num)
 }
 void USKAInstance::PostInitProperties()
 {

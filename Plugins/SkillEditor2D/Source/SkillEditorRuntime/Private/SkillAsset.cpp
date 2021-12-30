@@ -8,7 +8,10 @@
 
 USkillAsset::USkillAsset()
 {
-	UE_LOG(LogTemp,Warning,L"USKILLAsset created")
+	
+	
+	//FMemory::Memcpy((void*)this->SequenceData,(void*)GenerateLevelSeq,sizeof)
+	//UE_LOG(LogTemp,Warning,L"Size of ulevelsequencer is %d",GenerateLevelSeq->GetResourceSizeBytes(EResourceSizeMode::EstimatedTotal))
 }
 
 void USkillAsset::Serialize(FArchive& Ar)

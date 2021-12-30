@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "BlueprintEditor.h"
+#include "ISequencer.h"
 #include "SkillEditorPreviewTabBody.h"
 #include "USKAInstance.h"
 
@@ -11,7 +12,24 @@
 
 
 class USkillAsset;
+class SKAActorObjectAndDisplayName
+{
+public:
+	SKAActorObjectAndDisplayName(FText InDisplayName, UObject* InObject)
+	{
+		DisplayName = InDisplayName;
+		Object = InObject;
+	}
 
+	bool operator<(SKAActorObjectAndDisplayName const& Other) const
+	{
+		return DisplayName.CompareTo(Other.DisplayName) < 0;
+	}
+
+	FText DisplayName;
+	UObject* Object;
+
+};
 
 class SKILLEDITOR2D_API ISkillAssetEditor : public FBlueprintEditor
 {
@@ -25,8 +43,7 @@ class SKILLEDITOR2D_API FSkillAssetEditor:
 public ISkillAssetEditor
 {
 public:
-	
-	
+	virtual ~FSkillAssetEditor() override;
 	//Editor initialization
 	void InitSkillAssetEditor
 	(const EToolkitMode::Type Mode,
@@ -42,7 +59,7 @@ public:
 	virtual FLinearColor GetWorldCentricTabColorScale() const override;
 	virtual bool IsPrimaryEditor() const override;
 	//Blueprint interfaces ----ends
-
+	
 	//FSkillAssetEditor functions ----begins
 	virtual USkillAsset* GetSkillAsset() override;
 	virtual void SetSkillAsset(USkillAsset* InSkillAsset) override;
@@ -52,8 +69,20 @@ public:
 	void ExtendMenu();
 	void ExtendToolBar();
 	bool canExecuteBar()const {return true;}
+	TSharedPtr<ISequencer>& GetSequencer();
+	TSharedPtr<SWidget> GetSkillAssetSequencerWidget();
 	//FSkillAssetEditor functions ----ends
 
+
+
+	//Notify Part interfaces begins
+	//void OnPopulateAddableObjectSection(FMenuBuilder& MenuBuilder);
+
+
+	//Notify part interfaces ends
+
+
+	
 	//Identifiers for tabs and graphs
 	static const FName ToolkitFName;
 	static const FName PreviewTabId;
@@ -76,6 +105,7 @@ protected:
 	/** The extender to pass to the level editor to extend it's window menu */
 	TSharedPtr<FExtender> MenuExtender;
 
+	TSharedPtr<ISequencer> AssetSequencer;
 	/** Toolbar extender */
 	TSharedPtr<FExtender> ToolbarExtender;
 };

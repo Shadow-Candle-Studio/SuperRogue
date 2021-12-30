@@ -19,8 +19,8 @@ class SKILLEDITORRUNTIME_API USKAInstance : public UObject
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	~USKAInstance() {}
 	PRAGMA_ENABLE_DEPRECATION_WARNINGS
-	// UPROPERTY(BlueprintReadWrite,EditAnywhere)
-	// int NumFromUSKinstande;
+	UPROPERTY(BlueprintReadWrite,EditAnywhere)
+	int NumFromUSKinstande;
 
 	/** Flag to check back on the game thread that indicates we need to run PostUpdateAnimation() in the post-eval call */
 	bool bNeedsUpdate;

@@ -9,15 +9,18 @@
 #include "FSkillEditorcommands.h"
 #include "IImageWrapper.h"
 #include "IImageWrapperModule.h"
+#include "ILevelSequenceModule.h"
 #include "ImageUtils.h"
 #include "IPluginManager.h"
+#include "ISequencerModule.h"
+
 #include "ObjectTools.h"
 #include "SBlueprintEditorToolbar.h"
 #include "SkillAsset.h"
 #include "SkillAssetEditorAPPMode.h"
+#include "SKillAssetPriveiwScene.h"
 #include "SkillEditor2D.h"
 #include "ToolMenus.h"
-#include "../../../../../Pixel2D/Source/Pixel2D/Classes/Pixel2DCharacter.h"
 
 
 const FName SkillAssetEditorAppIdentifier = FName(TEXT("SkillAssetEditorApp"));
@@ -46,9 +49,13 @@ UBlueprint* FSkillAssetEditor::GetBlueprintObj() const
 }
 
 
+FSkillAssetEditor::~FSkillAssetEditor()
+{
+	AssetSequencer.Reset();
+}
 
 void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
-	const TSharedPtr<IToolkitHost>& InitToolkitHost, USkillAsset* InSkillAsset)
+                                             const TSharedPtr<IToolkitHost>& InitToolkitHost, USkillAsset* InSkillAsset)
 {
 	//set the skill asset
 	SetSkillAsset(InSkillAsset);
@@ -83,7 +90,7 @@ void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
 	
 	TArray<UBlueprint*> Blueprints;
 	Blueprints.Add(InSkillAsset);
-
+	GetSequencer();
 	CommonInitialization(Blueprints, false);
 	SKAEditorModeInuse=MakeShareable(new SkillAssetEditorAPPMode(SharedThis(this)));
 	check(SKAEditorModeInuse.IsValid())
@@ -96,6 +103,12 @@ void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
 	ExtendToolBar();
 	RegenerateMenusAndToolbars();
 
+
+	
+
+
+
+	
 	// Activate the initial mode (which will populate with a real layout)
 	SetCurrentMode(SkillAssetEditorAPPMode::SKAModeID);
 
@@ -104,6 +117,7 @@ void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
 
 
 	UpdateAssetThumbnail();
+
 	
 	
 	
@@ -206,6 +220,83 @@ void FSkillAssetEditor::ExtendToolBar()
 		}
 	}
 	
+}
+
+TSharedPtr<ISequencer>& FSkillAssetEditor::GetSequencer()
+{
+	
+	if(!AssetSequencer.IsValid())
+	{
+		// const float InTime  = 0.f;
+	 //    const float OutTime = 5.0f;
+	 //
+		// // FSequencerViewParams ViewParams(TEXT("MysequencerSetting"));
+		// // {
+		// // 	ViewParams.OnGetAddMenuContent = FOnGetAddMenuContent::CreateSP(this, &FSkillAssetEditor::OnPopulateAddableObjectSection);
+		// //
+		// //     ViewParams.OnBuildCustomContextMenuForGuid = FOnBuildCustomContextMenuForGuid::CreateSP(this, &SkillAssetEditorSequenceTabSummoner::OnBuildCustomContextMenuForGuid);
+		// // }
+	 //
+		// FSequencerInitParams SequencerInitParams;
+		// {
+		// 	UWidgetAnimation* NullAnimation = UWidgetAnimation::GetNullAnimation();
+		// 	FFrameRate TickResolution = NullAnimation->MovieScene->GetTickResolution();
+		// 	FFrameNumber StartFrame = (InTime  * TickResolution).FloorToFrame();
+		// 	FFrameNumber EndFrame   = (OutTime * TickResolution).CeilToFrame();
+		// 	NullAnimation->MovieScene->SetPlaybackRange(StartFrame, (EndFrame-StartFrame).Value);
+		// 	FMovieSceneEditorData& EditorData = NullAnimation->MovieScene->GetEditorData();
+		// 	EditorData.WorkStart = InTime;
+		// 	EditorData.WorkEnd   = OutTime;
+	 //
+		// 	// SequencerInitParams.ViewParams = ViewParams;
+		// 	SequencerInitParams.RootSequence = NullAnimation;
+		// 	SequencerInitParams.bEditWithinLevelEditor = false;
+		// 	SequencerInitParams.ToolkitHost = this->GetToolkitHost();
+		// 	// SequencerInitParams.PlaybackContext = TAttribute<UObject*>(this, &SkillAssetEditorSequenceTabSummoner::GetAnimationPlaybackContext);
+		// 	// SequencerInitParams.EventContexts = TAttribute<TArray<UObject*>>(this, &SkillAssetEditorSequenceTabSummoner::GetAnimationEventContexts);
+	 //
+		// 	SequencerInitParams.HostCapabilities.bSupportsCurveEditor = true;
+		// };
+	 //
+		// AssetSequencer = FModuleManager::LoadModuleChecked<ISequencerModule>("Sequencer").CreateSequencer(SequencerInitParams);
+		// // // Never recompile the blueprint on evaluate as this can create an insidious loop
+		// // TabSequencer->GetSequencerSettings()->SetCompileDirectorOnEvaluate(false);
+		// // TabSequencer->OnMovieSceneDataChanged().AddSP( this, &FWidgetBlueprintEditor::OnMovieSceneDataChanged );
+		// // TabSequencer->OnMovieSceneBindingsPasted().AddSP( this, &FWidgetBlueprintEditor::OnMovieSceneBindingsPasted );
+		// // // Change selected widgets in the sequencer tree view
+		// // TabSequencer->GetSelectionChangedObjectGuids().AddSP(this, &FWidgetBlueprintEditor::SyncSelectedWidgetsWithSequencerSelection);
+		// // OnSelectedWidgetsChanged.AddSP(this, &FWidgetBlueprintEditor::SyncSequencerSelectionToSelectedWidgets);
+		// //
+		// // // Allow sequencer to test which bindings are selected
+		// // TabSequencer->OnGetIsBindingVisible().BindRaw(this, &FWidgetBlueprintEditor::IsBindingSelected);
+
+		UWorld* WorldContext = GetPreviewSceneDirectly()->GetWorld();
+		EToolkitMode::Type Mode = EToolkitMode::Standalone;
+		ULevelSequence* LevelSequence = GetSkillAsset()->GetSequenceData();
+
+		if (LevelSequence != nullptr)
+		{
+			
+			// Legacy upgrade
+			// LevelSequence->ConvertPersistentBindingsToDefault(WorldContext);
+			// ILevelSequenceModule ;
+			// const TSharedPtr<ISlateStyle> Stye;
+			// TSharedPtr<FLevelSequenceEditorToolkit> Toolkit=MakeShareable(new FLevelSequenceEditorToolkit(Stye.ToSharedRef()));
+			// Toolkit->Initialize(Mode, GetToolkitHost(), LevelSequence);
+			// AssetSequencer=Toolkit->GetSequencer();
+		}
+	}
+
+	return AssetSequencer;
+}
+
+TSharedPtr<SWidget> FSkillAssetEditor::GetSkillAssetSequencerWidget()
+{
+	if(AssetSequencer.IsValid())
+	{
+		return GetSequencer()->GetSequencerWidget();
+	}
+	return SNew(STextBlock).Text(FText::FromString("The Sequencer is not properly spawned!"));
 }
 
 TSharedPtr<SKillAssetPriveiwScene> FSkillAssetEditor::GetPreviewSceneDirectly()
