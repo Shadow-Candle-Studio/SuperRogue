@@ -13,6 +13,7 @@
 #include "ImageUtils.h"
 #include "IPluginManager.h"
 #include "ISequencerModule.h"
+#include "LevelSequencerEditor_SKA.h"
 
 #include "ObjectTools.h"
 #include "SBlueprintEditorToolbar.h"
@@ -21,7 +22,7 @@
 #include "SKillAssetPriveiwScene.h"
 #include "SkillEditor2D.h"
 #include "ToolMenus.h"
-
+#include "FLevelSequenceEditorStyle_SKA.h"
 
 const FName SkillAssetEditorAppIdentifier = FName(TEXT("SkillAssetEditorApp"));
 #define LOCTEXT_NAMESPACE "SkillAssetEditor"
@@ -90,6 +91,9 @@ void FSkillAssetEditor::InitSkillAssetEditor(const EToolkitMode::Type Mode,
 	
 	TArray<UBlueprint*> Blueprints;
 	Blueprints.Add(InSkillAsset);
+
+
+
 	GetSequencer();
 	CommonInitialization(Blueprints, false);
 	SKAEditorModeInuse=MakeShareable(new SkillAssetEditorAPPMode(SharedThis(this)));
@@ -224,69 +228,51 @@ void FSkillAssetEditor::ExtendToolBar()
 
 TSharedPtr<ISequencer>& FSkillAssetEditor::GetSequencer()
 {
-	
 	if(!AssetSequencer.IsValid())
 	{
-		// const float InTime  = 0.f;
-	 //    const float OutTime = 5.0f;
-	 //
-		// // FSequencerViewParams ViewParams(TEXT("MysequencerSetting"));
-		// // {
-		// // 	ViewParams.OnGetAddMenuContent = FOnGetAddMenuContent::CreateSP(this, &FSkillAssetEditor::OnPopulateAddableObjectSection);
-		// //
-		// //     ViewParams.OnBuildCustomContextMenuForGuid = FOnBuildCustomContextMenuForGuid::CreateSP(this, &SkillAssetEditorSequenceTabSummoner::OnBuildCustomContextMenuForGuid);
-		// // }
-	 //
-		// FSequencerInitParams SequencerInitParams;
-		// {
-		// 	UWidgetAnimation* NullAnimation = UWidgetAnimation::GetNullAnimation();
-		// 	FFrameRate TickResolution = NullAnimation->MovieScene->GetTickResolution();
-		// 	FFrameNumber StartFrame = (InTime  * TickResolution).FloorToFrame();
-		// 	FFrameNumber EndFrame   = (OutTime * TickResolution).CeilToFrame();
-		// 	NullAnimation->MovieScene->SetPlaybackRange(StartFrame, (EndFrame-StartFrame).Value);
-		// 	FMovieSceneEditorData& EditorData = NullAnimation->MovieScene->GetEditorData();
-		// 	EditorData.WorkStart = InTime;
-		// 	EditorData.WorkEnd   = OutTime;
-	 //
-		// 	// SequencerInitParams.ViewParams = ViewParams;
-		// 	SequencerInitParams.RootSequence = NullAnimation;
-		// 	SequencerInitParams.bEditWithinLevelEditor = false;
-		// 	SequencerInitParams.ToolkitHost = this->GetToolkitHost();
-		// 	// SequencerInitParams.PlaybackContext = TAttribute<UObject*>(this, &SkillAssetEditorSequenceTabSummoner::GetAnimationPlaybackContext);
-		// 	// SequencerInitParams.EventContexts = TAttribute<TArray<UObject*>>(this, &SkillAssetEditorSequenceTabSummoner::GetAnimationEventContexts);
-	 //
-		// 	SequencerInitParams.HostCapabilities.bSupportsCurveEditor = true;
-		// };
-	 //
-		// AssetSequencer = FModuleManager::LoadModuleChecked<ISequencerModule>("Sequencer").CreateSequencer(SequencerInitParams);
-		// // // Never recompile the blueprint on evaluate as this can create an insidious loop
-		// // TabSequencer->GetSequencerSettings()->SetCompileDirectorOnEvaluate(false);
-		// // TabSequencer->OnMovieSceneDataChanged().AddSP( this, &FWidgetBlueprintEditor::OnMovieSceneDataChanged );
-		// // TabSequencer->OnMovieSceneBindingsPasted().AddSP( this, &FWidgetBlueprintEditor::OnMovieSceneBindingsPasted );
-		// // // Change selected widgets in the sequencer tree view
-		// // TabSequencer->GetSelectionChangedObjectGuids().AddSP(this, &FWidgetBlueprintEditor::SyncSelectedWidgetsWithSequencerSelection);
-		// // OnSelectedWidgetsChanged.AddSP(this, &FWidgetBlueprintEditor::SyncSequencerSelectionToSelectedWidgets);
-		// //
-		// // // Allow sequencer to test which bindings are selected
-		// // TabSequencer->OnGetIsBindingVisible().BindRaw(this, &FWidgetBlueprintEditor::IsBindingSelected);
-
-		UWorld* WorldContext = GetPreviewSceneDirectly()->GetWorld();
-		EToolkitMode::Type Mode = EToolkitMode::Standalone;
+		// // UWorld* WorldContext = GetPreviewSceneDirectly()->GetWorld();
+		// EToolkitMode::Type Mode = EToolkitMode::Standalone;
 		ULevelSequence* LevelSequence = GetSkillAsset()->GetSequenceData();
-
-		if (LevelSequence != nullptr)
+		// if (LevelSequence != nullptr)
+		// {
+		// 	//Legacy upgrade
+		// 	LevelSequence->ConvertPersistentBindingsToDefault(GWorld->GetWorld());
+		// 	
+		// 	TSharedPtr<FLevelSequenceEditorToolkit_SKA> Toolkit=MakeShareable(new FLevelSequenceEditorToolkit_SKA());
+		// 	Toolkit->Initialize(Mode, GetToolkitHost(), LevelSequence);
+		// 	AssetSequencer=Toolkit->GetSequencer();
+		// 	check(AssetSequencer.IsValid())
+		// 	
+		// }
+		// initialize sequencer
+		FSequencerInitParams SequencerInitParams;
 		{
-			
-			// Legacy upgrade
-			// LevelSequence->ConvertPersistentBindingsToDefault(WorldContext);
-			// ILevelSequenceModule ;
-			// const TSharedPtr<ISlateStyle> Stye;
-			// TSharedPtr<FLevelSequenceEditorToolkit> Toolkit=MakeShareable(new FLevelSequenceEditorToolkit(Stye.ToSharedRef()));
-			// Toolkit->Initialize(Mode, GetToolkitHost(), LevelSequence);
-			// AssetSequencer=Toolkit->GetSequencer();
-		}
-	}
+			SequencerInitParams.RootSequence = LevelSequence;
+			SequencerInitParams.bEditWithinLevelEditor = true;
+			SequencerInitParams.ToolkitHost = GetToolkitHost();
+			//SequencerInitParams.SpawnRegister = SpawnRegister;
 
+			//SequencerInitParams.EventContexts.Bind(PlaybackContext.ToSharedRef(), &FLevelSequencePlaybackContext_SKA::GetEventContexts);
+			//SequencerInitParams.PlaybackContext.Bind(PlaybackContext.ToSharedRef(), &FLevelSequencePlaybackContext_SKA::GetAsObject);
+
+			SequencerInitParams.ViewParams.UniqueName = "LevelSequenceEditor";
+			SequencerInitParams.ViewParams.ScrubberStyle = ESequencerScrubberStyle::FrameBlock;
+			//SequencerInitParams.ViewParams.OnReceivedFocus.BindRaw(this, &FLevelSequenceEditorToolkit_SKA::OnSequencerReceivedFocus);
+
+			SequencerInitParams.HostCapabilities.bSupportsCurveEditor = true;
+			SequencerInitParams.HostCapabilities.bSupportsSaveMovieSceneAsset = true;
+
+			//TSharedRef<FExtender> ToolbarExtender = MakeShared<FExtender>();
+			// ToolbarExtender->AddToolBarExtension("Base Commands",
+			// 	EExtensionHook::Before, nullptr, FToolBarExtensionDelegate::
+			// 	CreateSP(this, &FLevelSequenceEditorToolkit_SKA::ExtendSequencerToolbar));
+			//SequencerInitParams.ViewParams.ToolbarExtender = ToolbarExtender;
+		}
+		
+		AssetSequencer = FModuleManager::LoadModuleChecked<ISequencerModule>("Sequencer").CreateSequencer(SequencerInitParams);
+		//SpawnRegister->SetSequencer(Sequencer);
+		//AssetSequencer->OnActorAddedToSequencer().AddSP(this, &FLevelSequenceEditorToolkit_SKA::HandleActorAddedToSequencer);
+	}
 	return AssetSequencer;
 }
 

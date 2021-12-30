@@ -45,7 +45,7 @@ public class SkillEditor2D : ModuleRules
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"Core", "AdvancedPreviewScene"
+				"Core", "AdvancedPreviewScene", "LevelSequence"
 			}
 			);
 			
@@ -87,7 +87,7 @@ public class SkillEditor2D : ModuleRules
 				"UMG",
 				"MovieScene",
 				"LevelSequence",
-				"MovieSceneTools"
+				"MovieSceneTools", "MovieSceneCaptureDialog", "CinematicCamera","ViewportInteraction","Sequencer","MovieSceneTracks","VREditor"
 				//"SkillEditorRenderer"
 			}
 			);

@@ -6,42 +6,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa3c9db2-0144-44ee-bf21-7a08a4670a13" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Jump.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/JumpAnimation.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/NewLevelSequence1.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/NewSkillAsset5.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/NewSkillAsset6.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/NewWidgetBlueprint.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/NewWidgetBlueprint1.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/NewSkillAsset1.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/NotifyEditor/FLevelSequenceEditorActorBinding_SKA.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/NotifyEditor/FLevelSequenceEditorSpawnRegister_SKA.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/NotifyEditor/LevelSequenceEditorActorSpawner_SKA.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/NotifyEditor/LevelSequenceEditorHelpers_SKA.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/NotifyEditor/LevelSequencerEditor_SKA.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/NotifyEditor/PlayBackContext_SKA.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/NotifyEditor/ULevelSequenceEditorBlueprintLibrary_SKA.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/NotifyEditor/ULevelSequenceEditorSettings_SKA.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/NotifyEditor/FLevelSequenceEditorActorBinding_SKA.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/NotifyEditor/FLevelSequenceEditorSpawnRegister_SKA.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/NotifyEditor/FLevelSequenceEditorStyle_SKA.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/NotifyEditor/FMovieSceneSequenceEditor_LevelSequence_SKA.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/NotifyEditor/ILevelSequenceEditorToolkit_SKA.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/NotifyEditor/LevelSequenceEditorActorSpawner_SKA.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/NotifyEditor/LevelSequenceEditorHelpers_SKA.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/NotifyEditor/LevelSequencerEditor_SKA.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/NotifyEditor/PlayBackContext_SKA.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/NotifyEditor/ULevelSequenceEditorBlueprintLibrary_SKA.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/NotifyEditor/ULevelSequenceEditorSettings_SKA.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SuperRogue/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SuperRogue/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/NewLevelSequence.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/NewPixel2DAnimBlueprint.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/NewPixel2DAnimBlueprint.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/NewSkillAsset.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/NewSkillAsset.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/NewSkillAsset1.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/NewSkillAsset2.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/NewSkillAsset3.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/NewSkillAsset4.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Public/Blueprints/BP_PixelCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Blueprints/BP_PixelCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Public/Blueprints/BP_PixelCharacterMovementComponent.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Blueprints/BP_PixelCharacterMovementComponent.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/NewSkillAsset5.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/NewSkillAsset6.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/NewWidgetBlueprint.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/NewWidgetBlueprint1.uasset" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Public/Maps/Demo01.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Maps/Demo01.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Public/Maps/Demo01_BuiltData.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Maps/Demo01_BuiltData.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Pixel2D/Source/Pixel2D/Private/Pixel2DAnimInstance.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/Pixel2D/Source/Pixel2D/Private/Pixel2DAnimInstance.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Pixel2D/Source/Pixel2DEditor/Private/Pixel2DAnimGraph/UK2Node_PixelEvent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/Pixel2D/Source/Pixel2DEditor/Private/Pixel2DAnimGraph/UK2Node_PixelEvent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/Editor/Sequence/SkillAssetEditorSequenceTabSummoner.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/Editor/Sequence/SkillAssetEditorSequenceTabSummoner.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/Editor/SkillAssetEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/Editor/SkillAssetEditor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAsset/SKAFactory.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAsset/SKAFactory.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/Editor/Sequence/SkillAssetEditorSequenceTabSummoner.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/Editor/Sequence/SkillAssetEditorSequenceTabSummoner.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/Editor/SkillAssetEditor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/Editor/SkillAssetEditor.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillAsset/SKAFactory.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillAsset/SKAFactory.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillEditor2D.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillEditor2D.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/SkillEditor2D.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/SkillEditor2D.Build.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/SkillAsset.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/SkillAsset.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/USKAInstance.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/USKAInstance.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/SkillAsset.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/SkillAsset.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/USKAInstance.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/USKAInstance.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/SkillEditorRuntime.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/SkillEditorRuntime.Build.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SuperRogue.Target.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SuperRogue.Target.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SuperRogue/SuperRogue.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SuperRogue/SuperRogue.Build.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SuperRogueEditor.Target.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SuperRogueEditor.Target.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -499,6 +494,9 @@
       <workItem from="1640832313442" duration="14849000" />
       <workItem from="1640855332342" duration="355000" />
       <workItem from="1640856679164" duration="3991000" />
+      <workItem from="1640865287872" duration="215000" />
+      <workItem from="1640865695196" duration="12915000" />
+      <workItem from="1640878765065" duration="606000" />
     </task>
     <servers />
   </component>
