@@ -3,9 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "BlueprintEditorModule.h"
+#include "ISettingsModule.h"
 #include "WorkflowTabManager.h"
 
 
+#include "KismetCompilerModule.h"
+#include "SKACompilerContext.h"
+#include "SkillAsset2DRuntimeSettings.h"
 #include "Modules/ModuleManager.h"
 #include "Modules/ModuleInterface.h"
 #include "Toolkits/AssetEditorToolkit.h"
@@ -20,7 +25,7 @@ class USkillAsset;
 
 
 
-
+#define LOCTEXT_NAMESPACE "SkillAsset2D_Module"
 
 class SKILLEDITOR2D_API ISkillAssetEditorModule_Base:
 public IModuleInterface,
@@ -28,9 +33,9 @@ public IHasMenuExtensibility,
 public IHasToolBarExtensibility
 {
 public:
+	virtual TSharedRef<ISkillAssetEditor> CreateSkillAssetBPEditor(const EToolkitMode::Type Mode, const TSharedPtr< class IToolkitHost >& InitToolkitHost,USkillAsset* Blueprint) = 0;
 	ISkillAssetEditorModule_Base();
 	~ISkillAssetEditorModule_Base();
-	virtual TSharedRef<ISkillAssetEditor> CreateCustomAssetEditor(const EToolkitMode::Type Mode, const TSharedPtr< IToolkitHost >& InitToolkitHost, USkillAsset* CustomAsset) = 0;
 };
 
 
@@ -38,16 +43,17 @@ public:
 
 
 
-class FSkillEditor2DModule : public ISkillAssetEditorModule_Base
+class FSkillEditor2DModule : public ISkillAssetEditorModule_Base, public IBlueprintCompiler
 {
 public:
+	
 	// TSharedPtr<FSkillEditorViewPortRenderingClient> RealRenderingClient;
 	/** IModuleInterface implementation */
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
 	void PluginButtonClicked();
-
-	virtual TSharedRef<ISkillAssetEditor> CreateCustomAssetEditor(const EToolkitMode::Type Mode, const TSharedPtr< IToolkitHost >& InitToolkitHost, USkillAsset* CustomAsset) override;
+	virtual void onNewBlueprintCreated(UBlueprint* InSkillAsset);
+	virtual TSharedRef<ISkillAssetEditor> CreateSkillAssetBPEditor(const EToolkitMode::Type Mode, const TSharedPtr< class IToolkitHost >& InitToolkitHost,USkillAsset* Blueprint) override;
 	virtual TSharedPtr<FExtensibilityManager> GetMenuExtensibilityManager() override
 	{
 		return  MenuExtensibilityManager;
@@ -56,18 +62,46 @@ public:
 	{
 		return ToolBarExtensibilityManager;
 	}
-	
+	virtual bool CanCompile(const UBlueprint* Blueprint) override;
+	virtual void PreCompile(UBlueprint* Blueprint, const FKismetCompilerOptions& CompileOptions) override;
+	virtual void Compile(UBlueprint* Blueprint, const FKismetCompilerOptions& CompileOptions, FCompilerResultsLog& Results) override;
+	virtual void PostCompile(UBlueprint* Blueprint, const FKismetCompilerOptions& CompileOptions) override;
+	static TSharedPtr<FKismetCompilerContext> GetCompilerForSKABP(UBlueprint* BP, FCompilerResultsLog& InMessageLog, const FKismetCompilerOptions& InCompileOptions)
+	{
+		return TSharedPtr<FKismetCompilerContext>(new SKACompilerContext(CastChecked<USkillAsset>(BP), InMessageLog, InCompileOptions));
+	}
 private :
 	void RegisterMenus();
 	TSharedRef<class SDockTab> OnSpawnPluginTab(const class FSpawnTabArgs& SpawnTabArgs);
 	TSharedPtr<FUICommandList> PluginCommands;
-
+	
 	//for editor
 	TSharedPtr<FExtensibilityManager> MenuExtensibilityManager;
 	TSharedPtr<FExtensibilityManager> ToolBarExtensibilityManager;
-	TSharedPtr<FSlateStyleSet> StyleSet;
+	
 	TSharedPtr<IAssetTypeActions> SkillAsset2DAction;
-	IAssetTools* AssetToolsModule;
+	
+	void RegisterSettings()
+	{
+		if (ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings"))
+		{
+			SettingsModule->RegisterSettings("Project", "Plugins", "SkillEditor2D",
+				LOCTEXT("RuntimeSettingsName", "SkillEditor2D"),
+				LOCTEXT("RuntimeSettingsDescription", "Configure SkillEditor2D plugin"),
+				GetMutableDefault<USkillAsset2DRuntimeSettings>());
+		}
+	}
+	void UnregisterSettings()
+	{
+		if (ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings"))
+		{
+			SettingsModule->UnregisterSettings("Project", "Plugins", "SkillEditor2D");
+		}
+	}
 	
 
 };
+
+
+
+#undef LOCTEXT_NAMESPACE

@@ -100,7 +100,7 @@ void FPixel2DAnimBlueprintEditor::ExtendMenu()
 		RemoveMenuExtender(MenuExtender);
 		MenuExtender.Reset();
 	}
-
+	
 	MenuExtender = MakeShareable(new FExtender);
 	AddMenuExtender(MenuExtender);
 }
