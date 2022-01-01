@@ -25,7 +25,7 @@ class SKILLEDITORRUNTIME_API USkillAsset : public UBlueprint
 {
 	GENERATED_BODY()
 public :
-	uint8 SequenceData[512];
+	uint8 SequenceData[2048];
 	UPROPERTY(BlueprintReadWrite,EditAnywhere)
 	int num=22;
 	UPROPERTY(BlueprintReadWrite,EditAnywhere)
@@ -36,11 +36,6 @@ public :
 	ULevelSequence* GetSequenceData()
 	{
 		return (ULevelSequence*)SequenceData;
-	}
-	UFUNCTION(BlueprintCallable)
-	void FFF()
-	{
-		;
 	}
 	//Constructor
 	USkillAsset();

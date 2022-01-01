@@ -60,6 +60,7 @@ uint32 USKAFactory::GetMenuCategories() const
 
 void USKAFactory::FillInSequenceData(USkillAsset* Inskill)
 {
+	
 	ULevelSequence* NewLevelSequence = NewObject<ULevelSequence>(Inskill,"SkillAssetSequence", RF_Transactional);
 	NewLevelSequence->Initialize();
 	// Set up some sensible defaults

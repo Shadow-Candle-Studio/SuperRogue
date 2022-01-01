@@ -52,6 +52,7 @@ UBlueprint* FSkillAssetEditor::GetBlueprintObj() const
 
 FSkillAssetEditor::~FSkillAssetEditor()
 {
+	
 	AssetSequencer.Reset();
 }
 
@@ -233,6 +234,7 @@ TSharedPtr<ISequencer>& FSkillAssetEditor::GetSequencer()
 		// // UWorld* WorldContext = GetPreviewSceneDirectly()->GetWorld();
 		// EToolkitMode::Type Mode = EToolkitMode::Standalone;
 		ULevelSequence* LevelSequence = GetSkillAsset()->GetSequenceData();
+		if(LevelSequence!=nullptr)LevelSequence->Initialize();
 		// if (LevelSequence != nullptr)
 		// {
 		// 	//Legacy upgrade
@@ -270,9 +272,13 @@ TSharedPtr<ISequencer>& FSkillAssetEditor::GetSequencer()
 		}
 		
 		AssetSequencer = FModuleManager::LoadModuleChecked<ISequencerModule>("Sequencer").CreateSequencer(SequencerInitParams);
+
+		
 		//SpawnRegister->SetSequencer(Sequencer);
 		//AssetSequencer->OnActorAddedToSequencer().AddSP(this, &FLevelSequenceEditorToolkit_SKA::HandleActorAddedToSequencer);
 	}
+	UE_LOG(LogTemp,Warning,L"Sizeof this is %d",sizeof(decltype(*AssetSequencer.Get())))
+	
 	return AssetSequencer;
 }
 
