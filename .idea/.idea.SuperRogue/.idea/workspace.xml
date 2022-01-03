@@ -8,18 +8,11 @@
     <list default="true" id="fa3c9db2-0144-44ee-bf21-7a08a4670a13" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SuperRogue/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SuperRogue/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Jump.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Jump.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/JumpAnimation.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/NewSkillAsset.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/NewSkillAsset.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/NewSkillAsset1.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/NewLevelSequence1.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/NewSkillAsset.uasset" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Public/Blueprints/BP_PixelCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Blueprints/BP_PixelCharacter.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Public/Maps/Demo01.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Maps/Demo01.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Public/Maps/Demo01_BuiltData.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Maps/Demo01_BuiltData.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/Editor/SkillAssetEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/Editor/SkillAssetEditor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAsset/SKAFactory.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Private/SkillAsset/SKAFactory.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/NotifyEditor/PlayBackContext_SKA.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/NotifyEditor/PlayBackContext_SKA.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillEditor2D.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditor2D/Public/SkillEditor2D.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/SkillAsset.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Private/SkillAsset.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/SkillAsset.h" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/SkillEditor2D/Source/SkillEditorRuntime/Public/SkillAsset.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -485,6 +478,8 @@
       <workItem from="1640865695196" duration="12915000" />
       <workItem from="1640878765065" duration="606000" />
       <workItem from="1640911737358" duration="8053000" />
+      <workItem from="1641208779169" duration="1588000" />
+      <workItem from="1641218083614" duration="271000" />
     </task>
     <servers />
   </component>
