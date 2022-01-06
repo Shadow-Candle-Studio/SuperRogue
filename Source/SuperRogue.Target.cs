@@ -9,6 +9,6 @@ public class SuperRogueTarget : TargetRules
 	{
 		Type = TargetType.Game;
 
-		ExtraModuleNames.AddRange( new string[] { "SuperRogue","SkillEditor2D" } );
+		ExtraModuleNames.AddRange( new string[] { "SuperRogue","SkillEditor2D","LevelSequenceEditor" } );
 	}
 }

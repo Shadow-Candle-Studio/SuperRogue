@@ -27,5 +27,6 @@ public:
 	virtual UObject* FactoryCreateNew(UClass* InClass, UObject* InParent, FName InName, EObjectFlags Flags, UObject* Context, FFeedbackContext* Warn) override;
 	virtual UObject* FactoryCreateNew(UClass* InClass, UObject* InParent, FName InName, EObjectFlags Flags, UObject* Context, FFeedbackContext* Warn, FName CallingContext) override;
 	virtual bool ShouldShowInNewMenu() const override;
-	virtual uint32 GetMenuCategories() const override; 
+	virtual uint32 GetMenuCategories() const override;
+	void FillInSequenceData(class USkillAsset* Inskill);
 };

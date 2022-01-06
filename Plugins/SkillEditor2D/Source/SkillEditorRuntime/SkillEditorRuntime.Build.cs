@@ -86,7 +86,8 @@ public class SkillEditorRuntime : ModuleRules
 				"AssetTools",
 				"CurveEditor",
 				"SequencerWidgets",
-				"Sequencer"
+				"Sequencer",
+				"LevelSequence"
 			}
 			);
 		

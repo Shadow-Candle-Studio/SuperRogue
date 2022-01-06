@@ -3,12 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "BlueprintEditorModule.h"
+#include "AssetToolsModule.h"
 #include "ISettingsModule.h"
-#include "WorkflowTabManager.h"
-
-
 #include "KismetCompilerModule.h"
+#include "LevelEditor.h"
 #include "SKACompilerContext.h"
 #include "SkillAsset2DRuntimeSettings.h"
 #include "Modules/ModuleManager.h"
@@ -47,7 +45,7 @@ class FSkillEditor2DModule : public ISkillAssetEditorModule_Base, public IBluepr
 {
 public:
 	
-	// TSharedPtr<FSkillEditorViewPortRenderingClient> RealRenderingClient;
+	
 	/** IModuleInterface implementation */
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
@@ -70,6 +68,8 @@ public:
 	{
 		return TSharedPtr<FKismetCompilerContext>(new SKACompilerContext(CastChecked<USkillAsset>(BP), InMessageLog, InCompileOptions));
 	}
+	
+	
 private :
 	void RegisterMenus();
 	TSharedRef<class SDockTab> OnSpawnPluginTab(const class FSpawnTabArgs& SpawnTabArgs);
@@ -99,7 +99,6 @@ private :
 		}
 	}
 	
-
 };
 
 

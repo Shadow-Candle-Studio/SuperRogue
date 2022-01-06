@@ -30,9 +30,7 @@ public class SkillEditor2D : ModuleRules
 				"IntroTutorials",
 				"AssetTools",
 				"LevelEditor",
-				"SkillEditorRuntime",
-				
-				//"SkillEditorRenderer"
+				"SkillEditorRuntime"
 			}
 			
 			);	
@@ -40,7 +38,6 @@ public class SkillEditor2D : ModuleRules
 			new string[]
 			{
 				"SkillEditorRuntime"
-				//"SkillEditorRenderer"
 			}
 
 
@@ -48,10 +45,7 @@ public class SkillEditor2D : ModuleRules
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"Core", "AdvancedPreviewScene"
-				//"SkillEditorRenderer"
-				//"AssetTools"
-				// ... add other public dependencies that you statically link with here ...
+				"Core", "AdvancedPreviewScene", "LevelSequence"
 			}
 			);
 			
@@ -91,7 +85,9 @@ public class SkillEditor2D : ModuleRules
 				"Pixel2D",
 				"ImageWrapper", "UMGEditor",
 				"UMG",
-				"MovieScene"
+				"MovieScene",
+				"LevelSequence",
+				"MovieSceneTools", "MovieSceneCaptureDialog", "CinematicCamera","ViewportInteraction","Sequencer","MovieSceneTracks","VREditor"
 				//"SkillEditorRenderer"
 			}
 			);

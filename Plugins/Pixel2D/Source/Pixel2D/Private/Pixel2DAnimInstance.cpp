@@ -185,6 +185,7 @@ void UPixel2DAnimInstance::TriggerSingleAnimNotify(const FAnimNotifyEvent* AnimN
 		}
 		else if (AnimNotifyEvent->NotifyName != NAME_None)
 		{
+			
 			// Custom Event based notifies. These will call a AnimNotify_* function on the AnimInstance.
 			UFunction* Function = FindFunction(AnimNotifyEvent->NotifyName);
 			if (Function)

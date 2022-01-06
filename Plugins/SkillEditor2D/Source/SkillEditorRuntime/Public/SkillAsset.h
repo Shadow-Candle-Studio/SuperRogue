@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "LevelSequence/Public/LevelSequence.h"
 
 #include "UObject/Object.h"
 #include "UObject/ObjectMacros.h"
@@ -24,20 +25,28 @@ class SKILLEDITORRUNTIME_API USkillAsset : public UBlueprint
 {
 	GENERATED_BODY()
 public :
-	
+	uint8 SequenceData[2048];
 	UPROPERTY(BlueprintReadWrite,EditAnywhere)
 	int num=22;
 	UPROPERTY(BlueprintReadWrite,EditAnywhere)
 	TEnumAsByte<E_SkillAssetType> AssetOwnerType=E_SkillAssetType::Umbrella;
 
 	TEnumAsByte<E_SkillAssetType> LastTimeAssetOwnerType=AssetOwnerType;
+
+	ULevelSequence* GetSequenceData()
+	{
+		return (ULevelSequence*)SequenceData;
+	}
 	//Constructor
 	USkillAsset();
+	//sequence level 488
+	
 	//serialization function
 	virtual void Serialize(FArchive& Ar) override;
 	//Data evaluation function of skill Asset
 	
 virtual EDataValidationResult IsDataValid(TArray<FText>& ValidationErrors) override;
+	
 #if WITH_EDITOR
 
 	virtual UClass* GetBlueprintClass() const override;

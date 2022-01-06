@@ -25,6 +25,7 @@ bool UK2Node_PixelEvent::CanCreateUnderSpecifiedSchema(const UEdGraphSchema* Sch
 
 void UK2Node_PixelEvent::GetMenuActions(FBlueprintActionDatabaseRegistrar& ActionRegistrar) const
 {
+	UE_LOG(LogTemp,Warning,L"Pixel_event action created!")
 	// First cache the available functions for getters
 	UClass* ActionKey = GetClass();
 	const UPixel2DAnimBlueprint* AnimBlueprint = Cast<UPixel2DAnimBlueprint>(ActionRegistrar.GetActionKeyFilter());
