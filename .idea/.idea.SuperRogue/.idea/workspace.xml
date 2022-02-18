@@ -6,25 +6,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa3c9db2-0144-44ee-bf21-7a08a4670a13" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Private/Sigua/Jump.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Private/Sigua/hammer/T_HamX1_01.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Private/Sigua/hammer/T_HamX1_02.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Private/Sigua/hammer/T_HamX2_01.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Private/Sigua/hammer/T_HamX2_02.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Private/Sigua/hammer/T_HamX2_03.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Private/Sigua/hammer/T_HamX3_01.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Private/Sigua/hammer/T_HamX3_02.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Private/Sigua/hammer/T_HamX3_03.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Private/Sigua/hammer/T_UmbToHam_01.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Private/Sigua/hammer/T_UmbToHam_02.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Private/Sigua/hammer/switching2_5.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SuperRogue/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SuperRogue/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Jump.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Jump.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/NewLevelSequence1.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/NewSkillAsset.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Public/Blueprints/BP_PixelCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Blueprints/BP_PixelCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Public/Blueprints/BP_CommonFunctions.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Blueprints/BP_CommonFunctions.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Public/Maps/Demo01.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Maps/Demo01.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Public/Maps/Demo01_BuiltData.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Maps/Demo01_BuiltData.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Public/Maps/DemoLevel.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Maps/DemoLevel.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Public/Sprites/Final/S_Sword_Wooden.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Sprites/Final/S_Sword_Wooden.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Public/Widgets/Inventory/BP_FloatingText.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Public/Widgets/Inventory/BP_FloatingText.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -492,6 +480,7 @@
       <workItem from="1640911737358" duration="8053000" />
       <workItem from="1641208779169" duration="1588000" />
       <workItem from="1641218083614" duration="866000" />
+      <workItem from="1645060667753" duration="670000" />
     </task>
     <servers />
   </component>
